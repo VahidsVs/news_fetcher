@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryApiController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class,'showHome'])->name("home");
+Route::get('/', [HomeController::class,'showHome'])->name("showHome");
+Route::get('/api/apifetchcategories', [CategoryApiController::class,'apiFetchCategories'])->name("api.fetchCategories");
+
