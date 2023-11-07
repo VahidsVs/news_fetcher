@@ -38,7 +38,7 @@ services:
 
   #MySQL Service
   db:
-    image: mysql:5.7.22
+    image: mysql:8.2.0
     container_name: db_newsfetcher
     restart: unless-stopped
     tty: true
