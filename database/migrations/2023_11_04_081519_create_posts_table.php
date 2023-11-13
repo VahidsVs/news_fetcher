@@ -14,18 +14,18 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('summary');
+            $table->text('summary');
             $table->text('body')->nullable();
-            $table->string('thubmnail_path')->nullable();
+            $table->string('thumbnail_path')->nullable();
             $table->string('slug')->unique();
             $table->string('meta_keyword')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('tags')->nullable();
             $table->tinyInteger('commentable')->default(1)->comment('0=>uncommentable, 1=>commentable');
             $table->tinyInteger('status')->default(1)->comment('0=>inactive, 1=>active');
-            $table->foreignId('author_id')->constrained('users')->nullable()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('api_id')->constrained('api_resources')->nullable()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('author_id')->constrained('users')->nullable()->default(null)->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->nullable()->onUpdate('cascade')->onDelete('cascade');
+            $table->string('resource')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

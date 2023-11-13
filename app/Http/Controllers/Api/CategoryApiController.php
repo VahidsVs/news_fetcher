@@ -26,12 +26,10 @@ class CategoryApiController extends Controller
             $jsonData = json_decode(json_encode($xmlData))->item;
 
             foreach ($jsonData as $value) {
-
                 Category::updateOrCreate(
                     ['parent_category_id' => 1, 'description' => $value->subject],
                     ['name' => $value->subject]
                 );
-                echo 'done';
             }
         } catch (Exception $e) {
             echo "Error Message Is: {$e->getMessage()}";

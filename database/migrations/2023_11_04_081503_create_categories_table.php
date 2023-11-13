@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('parent_category_id')->constrained('parent_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
+            $table->string('source_url');
             $table->tinyInteger('status')->default(1)->comment('0=>inactive, 1=>active');
             $table->string('description');
             $table->timestamps();

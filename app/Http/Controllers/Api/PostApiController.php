@@ -16,8 +16,8 @@ class PostApiController extends Controller
     //
     public function apiFetchNews()
     {
-        $url = ApiResource::all()[0]->url;
-        dispatch(new NewsJob($url,"controller")); // orf.at
-
+        $categories = Category::all();
+        foreach ($categories as $category) 
+        dispatch(new NewsJob($category->source_url,$category->id,"controller"));
     }
 }

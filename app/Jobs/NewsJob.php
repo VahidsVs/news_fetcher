@@ -18,18 +18,19 @@ use Illuminate\Support\Facades\Log;
 class NewsJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    private $apiId;
-    public $jsonData;
+    private $sourceURL, $categoryId;
     /**
      * Create a new job instance.
      */
-    public function __construct($apiId,$callSource)
+    public function __construct($sourceURL, $categoryId, $callSource)
     {
-        $this->apiId = $apiId;
-        // if ($callSource=="kernel") {
-        //     self::handle();
-        // }
-        //
+        $this->sourceURL = $sourceURL;
+        $this->categoryId = $categoryId;
+        Log::debug("From Contoller");
+        if ($callSource == "kernel") {
+            Log::debug("From Kernel");
+            self::handle();
+        }
     }
 
     /**
@@ -37,25 +38,20 @@ class NewsJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $client = new Client();
-        $res = $client->get($this->apiId);
-        $content = (string)$res->getBody();
-        $content = str_replace('&', 'and', $content);
-        $content = str_replace('dc:', '', $content);
-        $content = str_replace('orfon:', '', $content);
-        $xmlData = simplexml_load_string($content);
-        $jsonData = json_decode(json_encode($xmlData))->item;
         try {
+            $client = new Client();
+            $res = $client->get($this->sourceURL);
+            $content = (string)$res->getBody();
+            $jsonData = json_decode($content)->articles;
+
             foreach ($jsonData as $value) {
-                $category = Category::where('name', $value->subject)->first();
                 Post::updateOrCreate(
-                    ['title' => $value->title, 'body' => $value->title, 'summary' => $value->title, 'author_id' => 1],
-                    ['slug' => $value->link, 'category_id' => $category->id, 'api_id' => ApiResource::API_ID_ORF_AT]
+                    ['title' => $value->title, 'body' => $value->content, 'summary' => $value->description, 'thumbnail_path' => $value->urlToImage, 'author_id' => 1],
+                    ['slug' => $value->url, 'category_id' => $this->categoryId]
                 );
-                echo 'done';
             }
         } catch (Exception $e) {
-            echo "Error Message Is: {$e->getMessage()}";
+            echo "Error: {$e->getMessage()}";
         }
     }
 }
