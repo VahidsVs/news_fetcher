@@ -990,3 +990,9 @@
     </div>
     <!-- banner-last End -->
 @endsection
+
+@section('script')
+<script>
+
+</script>
+@endsection

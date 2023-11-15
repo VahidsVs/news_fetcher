@@ -18,6 +18,6 @@ class PostApiController extends Controller
     {
         $categories = Category::all();
         foreach ($categories as $category) 
-        dispatch(new NewsJob($category->source_url,$category->id,"controller"));
+        dispatch(new NewsJob($category->api_url.env('API_KEY_Gnews'),$category->id,"controller"));
     }
 }

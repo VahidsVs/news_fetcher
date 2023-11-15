@@ -25,7 +25,7 @@ return new class extends Migration
             $table->tinyInteger('status')->default(1)->comment('0=>inactive, 1=>active');
             $table->foreignId('author_id')->constrained('users')->nullable()->default(null)->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->nullable()->onUpdate('cascade')->onDelete('cascade');
-            $table->string('resource')->nullable();
+            $table->string('source')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
