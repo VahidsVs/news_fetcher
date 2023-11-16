@@ -1,0 +1,41 @@
+.change-photo-size-online-min {
+    width: 124px !important;
+    height: 104px !important;
+    transition: all linear .3s!important
+}
+
+.change-photo-size-online-middle {
+    width: 360px !important;
+    height: 245px !important
+}
+
+/* *--
+      sVs && f@rshid
+--* */
+.whats-right-cap .name-last-four-posts {
+    color: #0077b5 !important;
+    font-size: 13px !important;
+    font-weight: bold!important;
+    margin-top: .1rem!important
+}
+
+.whats-right-cap .title-last-four-posts {
+    margin-top: .5rem !important;
+    margin-bottom: .8rem !important
+}
+
+.whats-right-cap .title-last-four-posts a {
+    font-size: 13px !important;
+    color: #000000 !important;
+    font-family: "Roboto", sans-serif !important;
+    letter-spacing: .01rem!important;
+    transition: all color .2s !important
+}
+
+.whats-right-cap .title-last-four-posts a:hover {
+    color: #ff2143 !important
+}
+
+.last-four-posts-parent:hover .change-photo-size-online-min {
+    transform: scale(1.1)!important
+}

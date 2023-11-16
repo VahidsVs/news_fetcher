@@ -4,7 +4,6 @@
 @endsection
 {{-- main-body --}}
 @section('content')
-    {{-- {{ dd($categories) }} --}}
     <!-- Trending Area Start -->
     <div class="trending-area fix pt-25 gray-bg">
         <div class="container">
@@ -121,10 +120,10 @@
                                     <!--Nav Button  -->
                                     <nav>
                                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                            @foreach ($categories as $category)
+                                            @foreach ($categories as $item)
                                                 <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab"
                                                     href="#nav-home" role="tab" aria-controls="nav-home"
-                                                    aria-selected="true">{{ $category->name }}</a>
+                                                    aria-selected="true">{{ ucfirst($item->name) }}</a>
                                             @endforeach
                                         </div>
                                     </nav>
@@ -145,15 +144,12 @@
                                             <div class="col-xl-6 col-lg-12">
                                                 <div class="whats-news-single mb-40 mb-40">
                                                     <div class="whates-img">
-                                                        <img src="assets/img/gallery/whats_news_details1.png"
-                                                            alt="">
+                                                        <img class="change-photo-size-online-middle" src="{{ $lastetPost->thumbnail_path }}" alt="last-post">
                                                     </div>
                                                     <div class="whates-caption">
-                                                        <h4><a href="latest_news.html">Secretart for Economic Air plane
-                                                                that looks like</a></h4>
-                                                        <span>by Alice cloe - Jun 19, 2020</span>
-                                                        <p>Struggling to sell one multi-million dollar home currently on
-                                                            the market won’t stop actress and singer Jennifer Lopez.</p>
+                                                        <h4><a href="">{{ ucfirst($lastetPost->title) }}</a></h4>
+                                                        <span>{{ $lastetPost->created_at }}</span>
+                                                        <p>{{ ucfirst($lastetPost->summary) }}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -161,62 +157,20 @@
                                             <div class="col-xl-6 col-lg-12">
                                                 <div class="row">
                                                     <!-- single -->
-                                                    <div class="col-xl-12 col-lg-6 col-md-6 col-sm-10">
-                                                        <div class="whats-right-single mb-20">
-                                                            <div class="whats-right-img">
-                                                                <img src="assets/img/gallery/whats_right_img1.png"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="whats-right-cap">
-                                                                <span class="colorb">FASHION</span>
-                                                                <h4><a href="latest_news.html">Portrait of group of
-                                                                        friends ting eat. market in.</a></h4>
-                                                                <p>Jun 19, 2020</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-12 col-lg-6 col-md-6 col-sm-10">
-                                                        <div class="whats-right-single mb-20">
-                                                            <div class="whats-right-img">
-                                                                <img src="assets/img/gallery/whats_right_img2.png"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="whats-right-cap">
-                                                                <span class="colorb">FASHION</span>
-                                                                <h4><a href="latest_news.html">Portrait of group of
-                                                                        friends ting eat. market in.</a></h4>
-                                                                <p>Jun 19, 2020</p>
+                                                    @foreach ($posts as $item)
+                                                        <div class="col-xl-12 col-lg-6 col-md-6 col-sm-10">
+                                                            <div class="whats-right-single last-four-posts-parent mb-20">
+                                                                <div class="whats-right-img">
+                                                                    <img class="change-photo-size-online-min" src="{{ $item->thumbnail_path }}" alt="{{ ucfirst($item->category->name) }}">
+                                                                </div>
+                                                                <div class="whats-right-cap">
+                                                                    <p class="name-last-four-posts">{{ ucfirst($item->category->name) }}</p>
+                                                                    <p class="title-last-four-posts" style=""><a href="">{{ ucfirst($item->title) }}</a></p>
+                                                                    <p>{{ $item->created_at }}</p>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-xl-12 col-lg-6 col-md-6 col-sm-10">
-                                                        <div class="whats-right-single mb-20">
-                                                            <div class="whats-right-img">
-                                                                <img src="assets/img/gallery/whats_right_img3.png"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="whats-right-cap">
-                                                                <span class="colorg">FASHION</span>
-                                                                <h4><a href="latest_news.html">Portrait of group of
-                                                                        friends ting eat. market in.</a></h4>
-                                                                <p>Jun 19, 2020</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-12 col-lg-6 col-md-6 col-sm-10">
-                                                        <div class="whats-right-single mb-20">
-                                                            <div class="whats-right-img">
-                                                                <img src="assets/img/gallery/whats_right_img4.png"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="whats-right-cap">
-                                                                <span class="colorr">FASHION</span>
-                                                                <h4><a href="latest_news.html">Portrait of group of
-                                                                        friends ting eat. market in.</a></h4>
-                                                                <p>Jun 19, 2020</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
@@ -992,7 +946,5 @@
 @endsection
 
 @section('script')
-<script>
-
-</script>
+    <script></script>
 @endsection
