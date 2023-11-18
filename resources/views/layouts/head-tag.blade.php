@@ -18,4 +18,3 @@
 <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/grid.css') }}">

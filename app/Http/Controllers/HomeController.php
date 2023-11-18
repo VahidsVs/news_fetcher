@@ -17,7 +17,7 @@ class HomeController extends Controller
         $posts = Post::with('category:id,name')->orderByDesc('id')->get();
         $lastetPost = $posts->first();
         $posts = $posts->skip(1)->take(4);
-
+        
         // return to view
         return view("home", compact('categories', 'lastetPost', 'posts'));
     }

@@ -1,41 +1,91 @@
 .change-photo-size-online-min {
     width: 124px !important;
     height: 104px !important;
-    transition: all linear .3s!important
+    transition: all linear 0.3s !important;
 }
 
 .change-photo-size-online-middle {
     width: 360px !important;
-    height: 245px !important
+    height: 245px !important;
 }
 
-/* *--
-      sVs && f@rshid
---* */
+.fcolor-blue {
+    color: #068FFF !important;
+}
+
 .whats-right-cap .name-last-four-posts {
-    color: #0077b5 !important;
+    color: #4E4FEB !important;
     font-size: 13px !important;
-    font-weight: bold!important;
-    margin-top: .1rem!important
+    font-weight: bold !important;
+}
+
+.whats-right-cap-last-four-posts {
+    display: flex !important;
+    flex-direction: column !important;
+    align-content: center !important;
+    justify-content: space-between !important;
+    margin: 0.1rem 0 !important;
 }
 
 .whats-right-cap .title-last-four-posts {
-    margin-top: .5rem !important;
-    margin-bottom: .8rem !important
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.8rem !important;
 }
 
 .whats-right-cap .title-last-four-posts a {
     font-size: 13px !important;
     color: #000000 !important;
     font-family: "Roboto", sans-serif !important;
-    letter-spacing: .01rem!important;
-    transition: all color .2s !important
+    letter-spacing: 0.01rem !important;
+    transition: all color 0.2s !important;
+}
+
+.source-date-last-post {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+}
+
+.source-date-last-post .date-last-post small {
+    font-size: 18px !important;
+    color: #707b8e !important;
+
+}
+
+.source-date-last-post .source-last-post small a {
+    font-size: 18px !important;
+    color: #707b8e !important;
+    transition: all linear 0.2s !important;
+}
+
+.source-date-last-post .source-last-post small a:hover {
+    color: #ff2143 !important;
 }
 
 .whats-right-cap .title-last-four-posts a:hover {
-    color: #ff2143 !important
+    color: #ff2143 !important;
+}
+
+.whats-right-cap .date-last-four-posts small {
+    font-size: 13px !important;
+}
+
+.whats-right-cap .source-last-four-posts small a {
+    font-size: 13px !important;
+    color: #707b8e !important;
+    transition: all linear 0.2s !important;
+}
+
+.whats-right-cap .source-last-four-posts small a:hover {
+    color: #ff2143 !important;
+}
+
+.whats-right-cap .date-source-last-four-posts {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
 }
 
 .last-four-posts-parent:hover .change-photo-size-online-min {
-    transform: scale(1.1)!important
+    transform: scale(1.1) !important;
 }
