@@ -149,7 +149,7 @@
                                                     <div class="whates-caption">
                                                         <h4><a href="">{{ ucfirst($lastetPost->title) }}</a></h4>
                                                         <span>{{ $lastetPost->created_ago }}</span>
-                                                        <h5>source:<a href="{{$lastetPost->slug}}">{{ explode('_',$lastetPost->source)[0]  }}</a></h5>
+                                                        <h5>source:<a href="{{ explode('_',$lastetPost->source)[1] }}">{{ explode('_',$lastetPost->source)[0]  }}</a></h5>
                                                         <p>{{ ucfirst($lastetPost->summary) }}</p>
                                                     </div>
                                                 </div>
@@ -168,7 +168,7 @@
                                                                     <p class="name-last-four-posts">{{ ucfirst($item->category->name) }}</p>
                                                                     <p class="title-last-four-posts" style=""><a href="">{{ ucfirst($item->title) }}</a></p>
                                                                     <p>{{ $item->created_ago }}</p>
-                                                                    <p class="title-last-four-posts" style="" >source:<a href="{{$item->slug}}" target="_blank">{{ explode('_',$item->source)[0] }}</a></p>
+                                                                    <p class="title-last-four-posts" style="" >source:<a href="{{ explode('_',$item->source)[1] }}" target="_blank">{{ explode('_',$item->source)[0] }}</a></p>
                                                                 </div>
                                                             </div>
                                                         </div>
