@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('mobile')->unique()->nullable();
             $table->tinyInteger('status')->default(1)->comment('0=>inactive, 1=>active');
-            $table->enum('user_type',['admin','editor','viewer']);
+            $table->enum('user_type',['api','admin','editor','viewer']);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
