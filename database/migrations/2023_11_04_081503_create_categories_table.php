@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('api_url');
             $table->tinyInteger('status')->default(1)->comment('0=>inactive, 1=>active');
             $table->string('description');
+            $table->tinyInteger('order');
             $table->string('api_url_options')->nullable();
             $table->timestamps();
         });

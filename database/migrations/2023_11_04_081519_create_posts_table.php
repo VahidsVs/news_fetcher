@@ -22,7 +22,10 @@ return new class extends Migration
             $table->string('meta_description')->nullable();
             $table->string('tags')->nullable();
             $table->tinyInteger('commentable')->default(1)->comment('0=>uncommentable, 1=>commentable');
+            $table->integer('likes')->nullable();
             $table->tinyInteger('status')->default(1)->comment('0=>inactive, 1=>active');
+            $table->timestamp('published_at')->nullable();
+            $table->enum('display',['section1','section2','section3','section4','section5'])->nullable();
             $table->foreignId('author_id')->constrained('users')->nullable()->default(null)->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('categories')->nullable()->onUpdate('cascade')->onDelete('cascade');
             $table->string('source')->nullable();

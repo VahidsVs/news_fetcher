@@ -11,12 +11,12 @@ class HomeController extends Controller
     public function showHome()
     {
         // get all Categories
-        $categories = Category::where('status', 1)->orderByDesc('id')->get();
+        $categories = Category::where('status', 1)->orderBy('order')->get();
 
         // get all Post :: lazy loading
         $posts = Post::with('category:id,name')->orderByDesc('id')->get();
         $lastetPost = $posts->first();
-        $posts = $posts->skip(1)->take(4);
+        $posts = $posts->skip(1)->take(6);
         
         // return to view
         return view("home", compact('categories', 'lastetPost', 'posts'));

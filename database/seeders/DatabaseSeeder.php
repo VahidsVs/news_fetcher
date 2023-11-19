@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             'api_url' => 'https://gnews.io/api/v4/top-headlines?category=general&lang=de&apikey=',
             'status' => '1',
             'description' => 'gnews.io',
+            'order'=>1
         ],
         [
             'parent_category_id' => 1,
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
             'api_url' => 'https://gnews.io/api/v4/top-headlines?category=world&lang=de&apikey=',
             'status' => '1',
             'description' => 'gnews.io',
+            'order'=>2
         ],
         [
             'parent_category_id' => 1,
@@ -42,13 +44,7 @@ class DatabaseSeeder extends Seeder
             'api_url' => 'https://gnews.io/api/v4/top-headlines?category=nation&lang=de&apikey=',
             'status' => '1',
             'description' => 'gnews.io',
-        ],
-            [
-            'parent_category_id' => 1,
-            'name' => 'Nation',
-            'api_url' => 'https://gnews.io/api/v4/top-headlines?category=nation&lang=de&apikey=',
-            'status' => '1',
-            'description' => 'gnews.io',
+            'order'=>3
         ],
         [
             'parent_category_id' => 1,
@@ -56,6 +52,7 @@ class DatabaseSeeder extends Seeder
             'api_url' => 'https://gnews.io/api/v4/top-headlines?category=sports&lang=de&apikey=',
             'status' => '1',
             'description' => 'gnews.io',
+            'order'=>4
         ],
         [
             'parent_category_id' => 1,
@@ -63,6 +60,7 @@ class DatabaseSeeder extends Seeder
             'api_url' => 'https://gnews.io/api/v4/top-headlines?category=science&lang=de&apikey=',
             'status' => '1',
             'description' => 'gnews.io',
+            'order'=>5
         ],
         [
             'parent_category_id' => 1,
@@ -70,6 +68,7 @@ class DatabaseSeeder extends Seeder
             'api_url' => 'https://gnews.io/api/v4/top-headlines?category=health&lang=de&apikey=',
             'status' => '1',
             'description' => 'gnews.io',
+            'order'=>6
         ],
         [
             'parent_category_id' => 1,
@@ -77,6 +76,7 @@ class DatabaseSeeder extends Seeder
             'api_url' => 'https://gnews.io/api/v4/top-headlines?category=business&lang=de&apikey=',
             'status' => '1',
             'description' => 'gnews.io',
+            'order'=>7
         ],
         [
             'parent_category_id' => 1,
@@ -84,6 +84,8 @@ class DatabaseSeeder extends Seeder
             'api_url' => 'https://gnews.io/api/v4/top-headlines?category=entertainment&lang=de&apikey=',
             'status' => '1',
             'description' => 'gnews.io',
+            'order'=>8
+            
         ]
     ]);
         DB::table('users')->insert([
