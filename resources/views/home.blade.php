@@ -6,6 +6,22 @@
 {{-- main-body --}}
 @section('content')
     <style>
+        .rounded-fetcher-news {
+            border-radius: .5rem !important
+        }
+
+        .fsize-30px {
+            font-size: 30px !important;
+        }
+
+        .fsize-15px {
+            font-size: 15px !important;
+        }
+
+        .fsize-20px {
+            font-size: 20px !important;
+        }
+
         .change-photo-size-online-min {
             width: 124px !important;
             height: 104px !important;
@@ -15,6 +31,21 @@
         .change-photo-size-online-middle {
             width: 360px !important;
             height: 245px !important;
+        }
+
+        .change-photo-size-online-section-one {
+            width: 770px !important;
+            height: 650px !important;
+        }
+
+        .change-photo-size-online-section-two {
+            width: 381px !important;
+            height: 395px !important;
+        }
+
+        .change-photo-size-online-section-three {
+            width: 381px !important;
+            height: 222px !important;
         }
 
         .fcolor-blue {
@@ -107,106 +138,100 @@
                         <!-- Trending Top -->
                         <div class="slider-active">
                             <!-- Single -->
-                            <div class="single-slider">
-                                <div class="trending-top mb-30">
-                                    <div class="trend-top-img">
-                                        <img src="assets/img/trending/trending_top2.jpg" alt="" />
-                                        <div class="trend-top-cap">
-                                            <span class="bgr" data-animation="fadeInUp" data-delay=".2s"
-                                                data-duration="1000ms">Business</span>
-                                            <h2>
-                                                <a href="latest_news.html" data-animation="fadeInUp" data-delay=".4s"
-                                                    data-duration="1000ms">Anna Lora Stuns In White At Her
-                                                    Australian Premiere</a>
-                                            </h2>
-                                            <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">
-                                                by Alice cloe - Jun 19, 2020
-                                            </p>
+                            @foreach ($trendingPostsSectionOne as $item)
+                                <div class="single-slider">
+                                    <div class="trending-top mb-30">
+                                        <div class="trend-top-img">
+                                            <img class="change-photo-size-online-section-one rounded-fetcher-news"
+                                                src="{{ $item->thumbnail_path }}"
+                                                alt="{{ ucfirst($item->category->name) }}" />
+                                            <div class="trend-top-cap">
+                                                <span class="bgr fsize-20px" data-animation="fadeInUp" data-delay=".2s"
+                                                    data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
+                                                <h2>
+                                                    <a href="#" class="fsize-30px" data-animation="fadeInUp"
+                                                        data-delay=".4s"
+                                                        data-duration="1000ms">{{ ucfirst($item->title) }}</a>
+                                                </h2>
+                                                <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">
+                                                    <i class="fas fa-clock fcolor-blue fsize-20px"></i>
+                                                    <small class="fsize-20px">{{ $item->published_ago }}</small>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Single -->
-                            <div class="single-slider">
-                                <div class="trending-top mb-30">
-                                    <div class="trend-top-img">
-                                        <img src="assets/img/trending/trending_top02.jpg" alt="" />
-                                        <div class="trend-top-cap">
-                                            <span class="bgr" data-animation="fadeInUp" data-delay=".2s"
-                                                data-duration="1000ms">Business</span>
-                                            <h2>
-                                                <a href="latest_news.html" data-animation="fadeInUp" data-delay=".4s"
-                                                    data-duration="1000ms">Anna Lora Stuns In White At Her
-                                                    Australian Premiere</a>
-                                            </h2>
-                                            <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">
-                                                by Alice cloe - Jun 19, 2020
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single -->
-                            <div class="single-slider">
-                                <div class="trending-top mb-30">
-                                    <div class="trend-top-img">
-                                        <img src="assets/img/trending/trending_top03.jpg" alt="" />
-                                        <div class="trend-top-cap">
-                                            <span class="bgr" data-animation="fadeInUp" data-delay=".2s"
-                                                data-duration="1000ms">Business</span>
-                                            <h2>
-                                                <a href="latest_news.html" data-animation="fadeInUp" data-delay=".4s"
-                                                    data-duration="1000ms">Anna Lora Stuns In White At Her
-                                                    Australian Premiere</a>
-                                            </h2>
-                                            <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">
-                                                by Alice cloe - Jun 19, 2020
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <!-- Right content -->
                     <div class="col-lg-4">
                         <!-- Trending Top -->
-                        <div class="row">
-                            <div class="col-lg-12 col-md-6 col-sm-6">
-                                <div class="trending-top mb-30">
-                                    <div class="trend-top-img">
-                                        <img src="assets/img/trending/trending_top3.jpg" alt="" />
-                                        <div class="trend-top-cap trend-top-cap2">
-                                            <span class="bgb">FASHION</span>
-                                            <h2>
-                                                <a href="latest_news.html">Secretart for Economic Air
-                                                    plane that looks like</a>
-                                            </h2>
-                                            <p>by Alice cloe - Jun 19, 2020</p>
+                        <div class="slider-active">
+                            <!-- Single -->
+                            @foreach ($trendingPostsSectionTwo as $item)
+                                <div class="col-lg-12 col-md-6 col-sm-6">
+                                    <div class="single-slider">
+                                        <div class="trending-top mb-30">
+                                            <div class="trend-top-img">
+                                                <img class="change-photo-size-online-section-two rounded-fetcher-news"
+                                                    src="{{ $item->thumbnail_path }}"
+                                                    alt="{{ ucfirst($item->category->name) }}" />
+                                                <div class="trend-top-cap trend-top-cap2">
+                                                    <span class="bgg fsize-15px" data-animation="fadeInUp" data-delay=".2s"
+                                                        data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
+                                                    <h2>
+                                                        <a href="#" class="fsize-15px" data-animation="fadeInUp"
+                                                            data-delay=".4s"
+                                                            data-duration="1000ms">{{ ucfirst($item->title) }}</a>
+                                                    </h2>
+                                                    <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">
+                                                        <i class="fas fa-clock fcolor-blue fsize-15px"></i>
+                                                        <small class="fsize-15px">{{ $item->published_ago }}</small>
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12 col-md-6 col-sm-6">
-                                <div class="trending-top mb-30">
-                                    <div class="trend-top-img">
-                                        <img src="assets/img/trending/trending_top4.jpg" alt="" />
-                                        <div class="trend-top-cap trend-top-cap2">
-                                            <span class="bgg">TECH </span>
-                                            <h2>
-                                                <a href="latest_news.html">Secretart for Economic Air
-                                                    plane that looks like</a>
-                                            </h2>
-                                            <p>by Alice cloe - Jun 19, 2020</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
+
+                        <div class="slider-active">
+                            <!-- Single -->
+                            @foreach ($trendingPostsSectionThree as $item)
+                                <div class="col-lg-12 col-md-6 col-sm-6">
+                                    <div class="single-slider">
+                                        <div class="trending-top mb-30">
+                                            <div class="trend-top-img">
+                                                <img class="change-photo-size-online-section-three rounded-fetcher-news"
+                                                    src="{{ $item->thumbnail_path }}"
+                                                    alt="{{ ucfirst($item->category->name) }}" />
+                                                <div class="trend-top-cap trend-top-cap2">
+                                                    <span class="bgb fsize-15px" data-animation="fadeInUp" data-delay=".2s"
+                                                        data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
+                                                    <h2>
+                                                        <a href="#" class="fsize-15px" data-animation="fadeInUp"
+                                                            data-delay=".4s"
+                                                            data-duration="1000ms">{{ ucfirst($item->title) }}</a>
+                                                    </h2>
+                                                    <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">
+                                                        <i class="fas fa-clock fcolor-blue fsize-15px"></i>
+                                                        <small class="fsize-15px">{{ $item->published_ago }}</small>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- Trending Area End -->
     <!-- Whats New Start -->
@@ -261,7 +286,8 @@
                                                         <div class="source-date-last-post">
                                                             <p class="source-last-post">
                                                                 <i class="fa fa-book fcolor-blue"></i>
-                                                                <small><a href="{{ explode('_', $lastetPost->source)[1] }}"
+                                                                <small><a
+                                                                        href="{{ explode('_', $lastetPost->source)[1] }}"
                                                                         target="__blank">{{ strtoupper(explode('_', $lastetPost->source)[0]) }}</a></small>
                                                             </p>
                                                             <p class="date-last-post">

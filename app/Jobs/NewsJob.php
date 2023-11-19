@@ -14,6 +14,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
+
 
 class NewsJob implements ShouldQueue
 {
@@ -48,8 +50,10 @@ class NewsJob implements ShouldQueue
             // Log::debug("jsonData: $jsonItems");
 
             foreach ($jsonItems as $item) {
-                $item->publishedAt=str_replace('T',' ',$item->publishedAt);
-                $item->publishedAt=str_replace('Z','',$item->publishedAt);
+                // $item->publishedAt=str_replace('T',' ',$item->publishedAt);
+                // $item->publishedAt=str_replace('Z','',$item->publishedAt);
+                $item->publishedAt = Str::of($item->publishedAt)->replace('T', ' ');
+                $item->publishedAt = Str::of($item->publishedAt)->replace('Z', '');
                 Post::updateOrCreate(
                     [
                         'title' => $item->title, 'body' => $item->content, 'summary' => $item->description,
