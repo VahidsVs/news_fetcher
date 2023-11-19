@@ -15,11 +15,11 @@ class Post extends Model
     protected $guarded = ['id'];
     
     protected $appends = [
-        'created_ago'
+        'published_ago'
     ];
-    public function getCreatedAgoAttribute()
+    public function getPublishedAgoAttribute()
     {
-        return  Carbon::parse($this->created_at)->diffForHumans();
+        return  Carbon::parse($this->published_at)->diffForHumans();
     }
     public function category()
     {

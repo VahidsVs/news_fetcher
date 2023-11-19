@@ -266,7 +266,7 @@
                                                             </p>
                                                             <p class="date-last-post">
                                                                 <i class="fas fa-clock fcolor-blue"></i>
-                                                                <small>{{ $lastetPost->created_ago }}</small>
+                                                                <small>{{ $lastetPost->published_ago }}</small>
                                                             </p>
                                                         </div>
                                                         <p>
@@ -307,7 +307,7 @@
                                                                         </p>
                                                                         <p class="date-last-four-posts">
                                                                             <i class="fas fa-clock fcolor-blue"></i>
-                                                                            <small>{{ $item->created_ago }}</small>
+                                                                            <small>{{ $item->published_ago }}</small>
                                                                         </p>
                                                                     </div>
                                                                 </div>

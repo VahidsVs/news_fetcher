@@ -26,8 +26,8 @@ class NewsJob implements ShouldQueue
     {
         $this->sourceURL = $sourceURL;
         $this->categoryId = $categoryId;
-        if($callSource == "contoller")
-        Log::debug("From Contoller");
+        if ($callSource == "contoller")
+            Log::debug("From Contoller");
         if ($callSource == "kernel") {
             Log::debug("From Kernel");
             self::handle();
@@ -45,12 +45,16 @@ class NewsJob implements ShouldQueue
             $res = $client->get($this->sourceURL);
             $content = (string)$res->getBody();
             $jsonItems = json_decode($content)->articles;
-           // Log::debug("jsonData: $jsonItems");
-            
+            // Log::debug("jsonData: $jsonItems");
+
             foreach ($jsonItems as $item) {
+                $item->publishedAt=str_replace('T',' ',$item->publishedAt);
+                $item->publishedAt=str_replace('Z','',$item->publishedAt);
                 Post::updateOrCreate(
-                    ['title' => $item->title, 'body' => $item->content, 'summary' => $item->description,
-                     'thumbnail_path' => $item->image, 'author_id' => 1,'source'=>$item->source->name.'_'.$item->source->url],
+                    [
+                        'title' => $item->title, 'body' => $item->content, 'summary' => $item->description,
+                        'thumbnail_path' => $item->image, 'author_id' => 1, 'source' => $item->source->name . '_' . $item->source->url, 'published_at' => $item->publishedAt
+                    ],
                     ['slug' => $item->url, 'category_id' => $this->categoryId]
                 );
             }

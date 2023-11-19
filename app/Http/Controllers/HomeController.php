@@ -14,7 +14,7 @@ class HomeController extends Controller
         $categories = Category::where('status', 1)->orderBy('order')->get();
 
         // get all Post :: lazy loading
-        $posts = Post::with('category:id,name')->orderByDesc('id')->get();
+        $posts = Post::where('category_id',1)->with('category:id,name')->orderByDesc('id')->get();
         $lastetPost = $posts->first();
         $posts = $posts->skip(1)->take(6);
         
