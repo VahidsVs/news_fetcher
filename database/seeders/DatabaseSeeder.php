@@ -38,11 +38,54 @@ class DatabaseSeeder extends Seeder
         ],
         [
             'parent_category_id' => 1,
-            'name' => 'Sport',
+            'name' => 'Nation',
+            'api_url' => 'https://gnews.io/api/v4/top-headlines?category=nation&lang=de&apikey=',
+            'status' => '1',
+            'description' => 'gnews.io',
+        ],
+            [
+            'parent_category_id' => 1,
+            'name' => 'Nation',
+            'api_url' => 'https://gnews.io/api/v4/top-headlines?category=nation&lang=de&apikey=',
+            'status' => '1',
+            'description' => 'gnews.io',
+        ],
+        [
+            'parent_category_id' => 1,
+            'name' => 'Sports',
             'api_url' => 'https://gnews.io/api/v4/top-headlines?category=sports&lang=de&apikey=',
             'status' => '1',
             'description' => 'gnews.io',
-        ]]);
+        ],
+        [
+            'parent_category_id' => 1,
+            'name' => 'Science',
+            'api_url' => 'https://gnews.io/api/v4/top-headlines?category=science&lang=de&apikey=',
+            'status' => '1',
+            'description' => 'gnews.io',
+        ],
+        [
+            'parent_category_id' => 1,
+            'name' => 'Health',
+            'api_url' => 'https://gnews.io/api/v4/top-headlines?category=health&lang=de&apikey=',
+            'status' => '1',
+            'description' => 'gnews.io',
+        ],
+        [
+            'parent_category_id' => 1,
+            'name' => 'Business',
+            'api_url' => 'https://gnews.io/api/v4/top-headlines?category=business&lang=de&apikey=',
+            'status' => '1',
+            'description' => 'gnews.io',
+        ],
+        [
+            'parent_category_id' => 1,
+            'name' => 'Entertainment',
+            'api_url' => 'https://gnews.io/api/v4/top-headlines?category=entertainment&lang=de&apikey=',
+            'status' => '1',
+            'description' => 'gnews.io',
+        ]
+    ]);
         DB::table('users')->insert([
             'first_name' => 'Api',
             'last_name' => 'auto',
