@@ -17,17 +17,20 @@ class HomeController extends Controller
 
         // get all Categories
         $categories = Category::where('status', 1)->orderBy('order')->get();
+        // dd($categories);
 
         // get all Post :: lazy loading
         $posts = Post::where('category_id', 1)->with('category:id,name')->orderByDesc('id')->get();
         $lastetPost = $posts->first();
         $posts = $posts->skip(1)->take(6);
 
+        // post populars
+        $popularPosts = Post::where('display', 'section4')->get();
+
         // return to view
-        return view("home",
-        compact('postsSection1', 'postsSection2', 'postsSection3', 'categories', 'lastetPost', 'posts'));
+        return view(
+            "home",
+            compact('postsSection1', 'postsSection2', 'postsSection3', 'categories', 'lastetPost', 'posts', 'popularPosts')
+        );
     }
-
-
-    //
 }

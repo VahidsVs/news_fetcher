@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('head-tag')
-    <link rel="stylesheet" href="{{ asset('assets/css/grid.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/grid.css') }}"> --}}
     <title>News</title>
 @endsection
 {{-- main-body --}}
@@ -10,12 +10,21 @@
             border-radius: .5rem !important
         }
 
+        .font-family-news-fetcher {
+            font-family: "Roboto", sans-serif !important;
+            letter-spacing: 0.01rem !important;
+        }
+
         .fsize-30px {
             font-size: 30px !important;
         }
 
         .fsize-15px {
             font-size: 15px !important;
+        }
+
+        .fsize-13px {
+            font-size: 13px !important;
         }
 
         .fsize-20px {
@@ -48,8 +57,19 @@
             height: 222px !important;
         }
 
+        .change-photo-size-online-popular-post {
+            width: 85px !important;
+            height: 79px !important;
+        }
+
         .fcolor-blue {
             color: #068FFF !important;
+        }
+
+        .categories-list {
+            display: flex !important;
+            justify-content: start !important;
+            margin-bottom: 0 !important
         }
 
         .whats-right-cap .name-last-four-posts {
@@ -127,6 +147,12 @@
 
         .last-four-posts-parent:hover .change-photo-size-online-min {
             transform: scale(1.1) !important;
+        }
+
+        .popular-posts-info {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
         }
     </style>
     <!-- Trending Area Start -->
@@ -251,10 +277,10 @@
                                 <div class="properties__button">
                                     <!--Nav Button  -->
                                     <nav>
-                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <div class="nav nav-tabs categories-list" id="nav-tab" role="tablist">
                                             @foreach ($categories as $item)
                                                 <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab"
-                                                    href="#nav-home" role="tab" aria-controls="nav-home"
+                                                    href="" role="tab" aria-controls="nav-home"
                                                     aria-selected="true">{{ ucfirst($item->name) }}</a>
                                             @endforeach
                                         </div>
@@ -856,10 +882,10 @@
                     <div class="most-recent-area">
                         <!-- Section Tittle -->
                         <div class="small-tittle mb-20">
-                            <h4>Most Recent</h4>
+                            <h4>Most Popular</h4>
                         </div>
                         <!-- Details -->
-                        <div class="most-recent mb-40">
+                        {{-- <div class="most-recent mb-40">
                             <div class="most-recent-img">
                                 <img src="assets/img/gallery/most_recent.png" alt="" />
                                 <div class="most-recent-cap">
@@ -871,33 +897,32 @@
                                     <p>Jhon | 2 hours ago</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- Single -->
-                        <div class="most-recent-single">
-                            <div class="most-recent-images">
-                                <img src="assets/img/gallery/most_recent1.png" alt="" />
+                        @foreach ($popularPosts as $item)
+                            <div class="most-recent-single">
+                                <div class="most-recent-images">
+                                    <img class="change-photo-size-online-popular-post rounded-fetcher-news"
+                                        src="{{ $item->thumbnail_path }}" alt="" />
+                                </div>
+                                <div class="most-recent-capt">
+                                    <h4>
+                                        <a href="#"
+                                            class="fsize-13px font-family-news-fetcher">{{ ucfirst($item->title) }}</a>
+                                    </h4>
+                                    <div class="popular-posts-info">
+                                        <p>
+                                            <i class="fas fa-thumbs-up fcolor-blue fsize-13px"></i>
+                                            <small class="fsize-13px">455</small>
+                                        </p>
+                                        <p>
+                                            <i class="fas fa-clock fcolor-blue fsize-13px"></i>
+                                            <small class="fsize-13px">{{ $item->published_ago }}</small>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="most-recent-capt">
-                                <h4>
-                                    <a href="latest_news.html">Scarlett’s disappointment at latest
-                                        accolade</a>
-                                </h4>
-                                <p>Jhon | 2 hours ago</p>
-                            </div>
-                        </div>
-                        <!-- Single -->
-                        <div class="most-recent-single">
-                            <div class="most-recent-images">
-                                <img src="assets/img/gallery/most_recent2.png" alt="" />
-                            </div>
-                            <div class="most-recent-capt">
-                                <h4>
-                                    <a href="latest_news.html">Most Beautiful Things to Do in Sidney with
-                                        Your BF</a>
-                                </h4>
-                                <p>Jhon | 3 hours ago</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -1272,3 +1297,4 @@
     </div>
     <!-- banner-last End -->
 @endsection
+
