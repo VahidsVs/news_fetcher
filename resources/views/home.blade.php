@@ -138,7 +138,7 @@
                         <!-- Trending Top -->
                         <div class="slider-active">
                             <!-- Single -->
-                            @foreach ($trendingPostsSectionOne as $item)
+                            @foreach ($postsSection1 as $item)
                                 <div class="single-slider">
                                     <div class="trending-top mb-30">
                                         <div class="trend-top-img">
@@ -169,7 +169,7 @@
                         <!-- Trending Top -->
                         <div class="slider-active">
                             <!-- Single -->
-                            @foreach ($trendingPostsSectionTwo as $item)
+                            @foreach ($postsSection2 as $item)
                                 <div class="col-lg-12 col-md-6 col-sm-6">
                                     <div class="single-slider">
                                         <div class="trending-top mb-30">
@@ -199,7 +199,7 @@
 
                         <div class="slider-active">
                             <!-- Single -->
-                            @foreach ($trendingPostsSectionThree as $item)
+                            @foreach ($postsSection3 as $item)
                                 <div class="col-lg-12 col-md-6 col-sm-6">
                                     <div class="single-slider">
                                         <div class="trending-top mb-30">

@@ -11,9 +11,9 @@ class HomeController extends Controller
     public function showHome()
     {
         // get all trending posts
-        $trendingPostsSectionOne = Post::where('display', 'section1')->with('category:id,name')->get();
-        $trendingPostsSectionTwo = Post::where('display', 'section2')->with('category:id,name')->get();
-        $trendingPostsSectionThree = Post::where('display', 'section3')->with('category:id,name')->get();
+        $postsSection1 = Post::where('display', 'section1')->with('category:id,name')->get();
+        $postsSection2 = Post::where('display', 'section2')->with('category:id,name')->get();
+        $postsSection3 = Post::where('display', 'section3')->with('category:id,name')->get();
 
         // get all Categories
         $categories = Category::where('status', 1)->orderBy('order')->get();
@@ -25,7 +25,7 @@ class HomeController extends Controller
 
         // return to view
         return view("home",
-        compact('trendingPostsSectionOne', 'trendingPostsSectionTwo', 'trendingPostsSectionThree', 'categories', 'lastetPost', 'posts'));
+        compact('postsSection1', 'postsSection2', 'postsSection3', 'categories', 'lastetPost', 'posts'));
     }
 
 
