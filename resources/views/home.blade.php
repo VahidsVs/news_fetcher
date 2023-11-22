@@ -37,7 +37,7 @@
 
         .change-photo-size-online-min {
             width: 124px !important;
-            height: 104px !important;
+            height: 120px !important;
             transition: all linear 0.3s !important;
         }
 
@@ -113,7 +113,7 @@
             flex-direction: column !important;
             align-content: center !important;
             justify-content: space-between !important;
-            margin: 0.1rem 0 !important;
+            margin: 0.2rem 0 !important;
         }
 
         .whats-right-cap .title-last-four-posts {
@@ -169,9 +169,9 @@
         }
 
         .whats-right-cap .date-source-last-four-posts {
-            display: flex !important;
+            /* display: flex !important;
             align-items: center !important;
-            justify-content: space-between !important;
+            justify-content: space-between !important; */
         }
 
         .last-four-posts-parent:hover .change-photo-size-online-min {
@@ -1267,4 +1267,3 @@
     <!-- banner-last End -->
 @endsection
 {{-- script specific this page --}}
-

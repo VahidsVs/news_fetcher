@@ -10,7 +10,7 @@
              </h4>
              <div class="source-date-last-post">
                  <p class="source-last-post">
-                     <i class="fa fa-book fcolor-blue"></i>
+                     <i class="fas fa-clone fcolor-blue"></i>
                      <small><a href="{{ explode('_', $lastetPost->source)[1] }}"
                              target="__blank">{{ strtoupper(explode('_', $lastetPost->source)[0]) }}</a></small>
                  </p>
@@ -41,17 +41,17 @@
                              <p class="name-last-four-posts">
                                  {{ ucfirst($item->category->name) }}
                              </p>
-                             <p class="title-last-four-posts" style="">
+                             <p class="title-last-four-posts">
                                  <a href="">{{ ucfirst($item->title) }}</a>
                              </p>
                          </div>
                          <div class="date-source-last-four-posts">
                              <p class="source-last-four-posts">
-                                 <i class="fa fa-book fcolor-blue"></i>
+                                 <i class="fas fa-clone fcolor-blue"></i>
                                  <small><a href="{{ explode('_', $item['source'])[1] }}"
                                          target="__blank">{{ strtoupper(explode('_', $item['source'])[0]) }}</a></small>
                              </p>
-                             <p class="date-last-four-posts">
+                             <p class="date-last-four-posts pt-1">
                                  <i class="fas fa-clock fcolor-blue"></i>
                                  <small>{{ $item->published_ago }}</small>
                              </p>
