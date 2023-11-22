@@ -1,7 +1,7 @@
 <!-- JS here -->
 <script src="{{ asset('assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
 <!-- Jquery, Popper, Bootstrap -->
-<script src="{{ asset('assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/jquery-3.7.1.min.js') }}"></script>
 <script src="{{ asset('assets/js/popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <!-- Jquery Mobile Menu -->
@@ -32,3 +32,4 @@
 <!-- Jquery Plugins, main Jquery -->
 <script src="{{ asset('assets/js/plugins.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
+<script src="{{ asset('assets/js/components.js') }}"></script>

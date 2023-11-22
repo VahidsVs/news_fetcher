@@ -6,6 +6,10 @@
 {{-- main-body --}}
 @section('content')
     <style>
+        .cursor-fetcher-news {
+            cursor: pointer;
+        }
+
         .rounded-fetcher-news {
             border-radius: .5rem !important
         }
@@ -66,6 +70,32 @@
             color: #068FFF !important;
         }
 
+        .icon-facebook {
+            color: #4167B2 !important;
+            font-size: 30px !important;
+        }
+
+        .icon-twitter {
+            color: #1DA1F1 !important;
+            font-size: 30px !important;
+        }
+
+        .icon-youtube {
+            color: #FF0000 !important;
+            font-size: 30px !important
+        }
+
+        .icon-instagram {
+            color: #FD1D1D;
+            font-size: 30px !important
+        }
+
+        .posts-content-error {
+            margin: 0 auto !important;
+            font-weight: 700 !important;
+            font-size: 30px;
+        }
+
         .categories-list {
             display: flex !important;
             justify-content: start !important;
@@ -108,7 +138,6 @@
         .source-date-last-post .date-last-post small {
             font-size: 18px !important;
             color: #707b8e !important;
-
         }
 
         .source-date-last-post .source-last-post small a {
@@ -279,8 +308,9 @@
                                     <nav>
                                         <div class="nav nav-tabs categories-list" id="nav-tab" role="tablist">
                                             @foreach ($categories as $item)
-                                                <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab"
-                                                    href="" role="tab" aria-controls="nav-home"
+                                                <a onclick="showPostsByCategory({{ $item->id }})"
+                                                    class="nav-item nav-link cursor-fetcher-news" id="nav-home-tab"
+                                                    data-toggle="tab" role="tab" aria-controls="nav-home"
                                                     aria-selected="true">{{ ucfirst($item->name) }}</a>
                                             @endforeach
                                         </div>
@@ -297,77 +327,8 @@
                                     <!-- card one -->
                                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                         aria-labelledby="nav-home-tab">
-                                        <div class="row">
-                                            <!-- Left Details Caption -->
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="whats-news-single mb-40 mb-40">
-                                                    <div class="whates-img">
-                                                        <img class="change-photo-size-online-middle"
-                                                            src="{{ $lastetPost->thumbnail_path }}" alt="last-post" />
-                                                    </div>
-                                                    <div class="whates-caption">
-                                                        <h4>
-                                                            <a href="">{{ ucfirst($lastetPost->title) }}</a>
-                                                        </h4>
-                                                        <div class="source-date-last-post">
-                                                            <p class="source-last-post">
-                                                                <i class="fa fa-book fcolor-blue"></i>
-                                                                <small><a
-                                                                        href="{{ explode('_', $lastetPost->source)[1] }}"
-                                                                        target="__blank">{{ strtoupper(explode('_', $lastetPost->source)[0]) }}</a></small>
-                                                            </p>
-                                                            <p class="date-last-post">
-                                                                <i class="fas fa-clock fcolor-blue"></i>
-                                                                <small>{{ $lastetPost->published_ago }}</small>
-                                                            </p>
-                                                        </div>
-                                                        <p>
-                                                            {{ ucfirst($lastetPost->summary) }}
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Right single caption -->
-                                            <div class="col-xl-6 col-lg-12">
-                                                <div class="row">
-                                                    <!-- single -->
-                                                    @foreach ($posts as $item)
-                                                        <div class="col-xl-12 col-lg-6 col-md-6 col-sm-10">
-                                                            <div class="whats-right-single last-four-posts-parent mb-20">
-                                                                <div class="whats-right-img">
-                                                                    <img class="change-photo-size-online-min"
-                                                                        src="{{ $item->thumbnail_path }}"
-                                                                        alt="{{ ucfirst($item->category->name) }}" />
-                                                                </div>
-                                                                <div
-                                                                    class="whats-right-cap whats-right-cap-last-four-posts">
-                                                                    <div>
-                                                                        <p class="name-last-four-posts">
-                                                                            {{ ucfirst($item->category->name) }}
-                                                                        </p>
-                                                                        <p class="title-last-four-posts" style="">
-                                                                            <a
-                                                                                href="">{{ ucfirst($item->title) }}</a>
-                                                                        </p>
-                                                                    </div>
-                                                                    <div class="date-source-last-four-posts">
-                                                                        <p class="source-last-four-posts">
-                                                                            <i class="fa fa-book fcolor-blue"></i>
-                                                                            <small><a
-                                                                                    href="{{ explode('_', $item['source'])[1] }}"
-                                                                                    target="__blank">{{ strtoupper(explode('_', $item['source'])[0]) }}</a></small>
-                                                                        </p>
-                                                                        <p class="date-last-four-posts">
-                                                                            <i class="fas fa-clock fcolor-blue"></i>
-                                                                            <small>{{ $item->published_ago }}</small>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
+                                        <div class="row posts-content">
+                                            @includeIf('whats-new-post.post-only')
                                         </div>
                                     </div>
                                     <!-- Card two -->
@@ -842,7 +803,9 @@
                         <div class="single-box">
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
-                                    <a href="#"><img src="assets/img/news/icon-fb.png" alt="" /></a>
+                                    <a href="#">
+                                        <i class="fab fa-facebook icon-facebook"></i>
+                                    </a>
                                 </div>
                                 <div class="follow-count">
                                     <span>8,045</span>
@@ -851,7 +814,9 @@
                             </div>
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
-                                    <a href="#"><img src="assets/img/news/icon-tw.png" alt="" /></a>
+                                    <a href="#">
+                                        <i class="fab fa-twitter-square icon-twitter"></i>
+                                    </a>
                                 </div>
                                 <div class="follow-count">
                                     <span>8,045</span>
@@ -860,7 +825,9 @@
                             </div>
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
-                                    <a href="#"><img src="assets/img/news/icon-ins.png" alt="" /></a>
+                                    <a href="#">
+                                        <i class="fab fa-instagram icon-instagram"></i>
+                                    </a>
                                 </div>
                                 <div class="follow-count">
                                     <span>8,045</span>
@@ -869,7 +836,9 @@
                             </div>
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
-                                    <a href="#"><img src="assets/img/news/icon-yo.png" alt="" /></a>
+                                    <a href="#">
+                                        <i class="fab fa-youtube icon-youtube"></i>
+                                    </a>
                                 </div>
                                 <div class="follow-count">
                                     <span>8,045</span>
@@ -903,7 +872,7 @@
                             <div class="most-recent-single">
                                 <div class="most-recent-images">
                                     <img class="change-photo-size-online-popular-post rounded-fetcher-news"
-                                        src="{{ $item->thumbnail_path }}" alt="" />
+                                        src="{{ $item->thumbnail_path }}" alt="Most-Popular" />
                                 </div>
                                 <div class="most-recent-capt">
                                     <h4>
@@ -1297,4 +1266,5 @@
     </div>
     <!-- banner-last End -->
 @endsection
+{{-- script specific this page --}}
 

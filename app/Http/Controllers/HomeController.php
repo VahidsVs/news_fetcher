@@ -33,4 +33,15 @@ class HomeController extends Controller
             compact('postsSection1', 'postsSection2', 'postsSection3', 'categories', 'lastetPost', 'posts', 'popularPosts')
         );
     }
+
+    public function getPostsByCategory(Category $category)
+    {
+        // post back section whats new
+        $posts = Post::where('category_id', $category->id)->with('category:id,name')->orderByDesc('id')->get();
+        $lastetPost = $posts->first();
+        $posts = $posts->skip(1)->take(6);
+
+        // return to view
+        return view("whats-new-post.post-only", compact('lastetPost', 'posts'));
+    }
 }
