@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
         //$schedule->command('inspire')->everyFifteenSeconds();
         $categories = Category::all();
         foreach ($categories as $category) 
-        $schedule->job(new NewsJob($category->api_url.env('API_KEY_Gnews'),$category->id,"kernel"))->everyMinute();
+        $schedule->job(new NewsJob($category->api_url.env('API_KEY_Gnews'),$category->id,"kernel"))->everyThirtyMinutes();
     }   
 
     /**
