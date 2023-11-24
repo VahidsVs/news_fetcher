@@ -265,7 +265,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="whats-news-wrapper">
+                    <div class="whats-news-wrapper px-md-0">
                         <!-- Heading & Nav Button -->
                         <div class="row justify-content-between align-items-end mb-15">
                             <div class="col-xl-12">
@@ -279,7 +279,7 @@
                                 </div>
                             </div>
                             {{-- categories menu --}}
-                            <div class="col-xl-12 ml-1">
+                            <div class="col-xl-12">
                                 <div class="properties__button">
                                     <!--Nav Button  -->
                                     <nav>
