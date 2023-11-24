@@ -19,8 +19,8 @@
             letter-spacing: 0.01rem !important;
         }
 
-        .fsize-30px {
-            font-size: 30px !important;
+        .fsize-25px {
+            font-size: 25px !important;
         }
 
         .fsize-15px {
@@ -185,7 +185,7 @@
                                                 <span class="bgr fsize-20px" data-animation="fadeInUp" data-delay=".2s"
                                                     data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
                                                 <h2>
-                                                    <a href="#" class="fsize-30px" data-animation="fadeInUp"
+                                                    <a href="#" class="fsize-25px" data-animation="fadeInUp"
                                                         data-delay=".4s"
                                                         data-duration="1000ms">{{ ucfirst($item->title) }}</a>
                                                 </h2>
@@ -232,7 +232,6 @@
                                 </div>
                             @endforeach
                         </div>
-
                         <div class="slider-active">
                             <!-- Single -->
                             @foreach ($postsSection3 as $item)
@@ -262,7 +261,6 @@
                                 </div>
                             @endforeach
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -297,7 +295,7 @@
                                             id="nav-tab" role="tablist">
                                             @foreach ($categories as $item)
                                                 <a onclick="getPostsByCategory({{ $item->id }})"
-                                                    class="nav-item nav-link cursor-fetcher-news" id="nav-home-tab"
+                                                    class="nav-item nav-link cursor-fetcher-news font-family-news-fetcher" id="nav-home-tab"
                                                     data-toggle="tab" role="tab" aria-controls="nav-home"
                                                     aria-selected="true">{{ ucfirst($item->name) }}</a>
                                             @endforeach
@@ -331,7 +329,7 @@
                 </div>
                 <div class="col-lg-4 gray-bg py-3 rounded">
                     <!-- Flow Socail -->
-                    <div class="single-follow bgcolor-gray mb-45">
+                    <div class="single-follow bgcolor-gray mb-45 p-0">
                         <div class="single-box">
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
@@ -695,3 +693,4 @@
     <!-- banner-last End -->
 @endsection
 {{-- script specific this page --}}
+
