@@ -296,10 +296,9 @@
                                         <div class="nav nav-tabs categories-list mb-0 d-flex justify-content-start"
                                             id="nav-tab" role="tablist">
                                             @foreach ($categories as $item)
-                                                <a onclick="showPostsByCategory({{ $item->id }})"
-                                                    class="nav-item nav-link cursor-fetcher-news font-family-news-fetcher"
-                                                    id="nav-home-tab" data-toggle="tab" role="tab"
-                                                    aria-controls="nav-home"
+                                                <a onclick="getPostsByCategory({{ $item->id }})"
+                                                    class="nav-item nav-link cursor-fetcher-news" id="nav-home-tab"
+                                                    data-toggle="tab" role="tab" aria-controls="nav-home"
                                                     aria-selected="true">{{ ucfirst($item->name) }}</a>
                                             @endforeach
                                         </div>
