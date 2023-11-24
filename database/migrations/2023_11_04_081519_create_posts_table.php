@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('summary',510);
             $table->text('body')->nullable();
-            $table->string('thumbnail_path',510)->nullable();
+            $table->string('thumbnail_path',1020)->nullable();
             $table->string('slug',510)->unique();
             $table->string('meta_keyword')->nullable();
             $table->string('meta_description')->nullable();
