@@ -175,7 +175,7 @@
                                                 src="{{ $item->thumbnail_path }}"
                                                 alt="{{ ucfirst($item->category->name) }}" />
                                             <div class="trend-top-cap">
-                                                <span class="bgr fsize-20px" data-animation="fadeInUp" data-delay=".2s"
+                                                <span class="bgcolor-red fsize-20px" data-animation="fadeInUp" data-delay=".2s"
                                                     data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
                                                 <h2>
                                                     <a href="#" class="fsize-25px" data-animation="fadeInUp"
@@ -207,7 +207,7 @@
                                                     src="{{ $item->thumbnail_path }}"
                                                     alt="{{ ucfirst($item->category->name) }}" />
                                                 <div class="trend-top-cap trend-top-cap2">
-                                                    <span class="bgg fsize-15px" data-animation="fadeInUp" data-delay=".2s"
+                                                    <span class="bgcolor-red fsize-15px" data-animation="fadeInUp" data-delay=".2s"
                                                         data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
                                                     <h2>
                                                         <a href="#" class="fsize-15px" data-animation="fadeInUp"
@@ -236,7 +236,7 @@
                                                     src="{{ $item->thumbnail_path }}"
                                                     alt="{{ ucfirst($item->category->name) }}" />
                                                 <div class="trend-top-cap trend-top-cap2">
-                                                    <span class="bgb fsize-15px" data-animation="fadeInUp" data-delay=".2s"
+                                                    <span class="bgcolor-red fsize-15px" data-animation="fadeInUp" data-delay=".2s"
                                                         data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
                                                     <h2>
                                                         <a href="#" class="fsize-15px" data-animation="fadeInUp"
