@@ -265,7 +265,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="whats-news-wrapper px-md-0">
+                    <div class="whats-news-wrapper px-md-0 pt-0">
                         <!-- Heading & Nav Button -->
                         <div class="row justify-content-between align-items-end mb-15">
                             <div class="col-xl-12">
