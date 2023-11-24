@@ -2,7 +2,7 @@
  <div class="col-xl-6 col-lg-12 mr-0 pr-0">
      <div class="whats-news-single mb-40 mb-40">
          <div class="whates-img">
-             <img class="change-photo-size-online-middle rounded" src="{{ $lastetPost->thumbnail_path }}"
+             <img class="change-photo-size-online-middle img-rounded img-fluid" src="{{ $lastetPost->thumbnail_path }}"
                  alt="last-post" />
          </div>
          <div class="whates-caption">
@@ -34,7 +34,7 @@
              <div class="col-xl-12 col-lg-6 col-md-6 col-sm-10">
                  <div class="whats-right-single last-four-posts-parent mb-20">
                      <div class="whats-right-img">
-                         <img class="change-photo-size-online-min" src="{{ $item->thumbnail_path }}"
+                         <img class="change-photo-size-online-min img-rounded" src="{{ $item->thumbnail_path }}"
                              alt="{{ ucfirst($item->category->name) }}" />
                      </div>
                      <div class="whats-right-cap my-1 d-flex flex-column justify-content-between align-content-center">

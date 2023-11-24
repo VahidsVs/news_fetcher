@@ -10,10 +10,6 @@
             cursor: pointer;
         }
 
-        .rounded-fetcher-news {
-            border-radius: .5rem !important
-        }
-
         .font-family-news-fetcher {
             font-family: "Roboto", sans-serif !important;
             letter-spacing: 0.01rem !important;
@@ -175,7 +171,7 @@
                                 <div class="single-slider">
                                     <div class="trending-top mb-30">
                                         <div class="trend-top-img">
-                                            <img class="change-photo-size-online-section-one rounded-fetcher-news"
+                                            <img class="change-photo-size-online-section-one img-rounded img-fluid"
                                                 src="{{ $item->thumbnail_path }}"
                                                 alt="{{ ucfirst($item->category->name) }}" />
                                             <div class="trend-top-cap">
@@ -207,7 +203,7 @@
                                     <div class="single-slider">
                                         <div class="trending-top mb-30">
                                             <div class="trend-top-img">
-                                                <img class="change-photo-size-online-section-two rounded-fetcher-news"
+                                                <img class="change-photo-size-online-section-two img-rounded img-fluid"
                                                     src="{{ $item->thumbnail_path }}"
                                                     alt="{{ ucfirst($item->category->name) }}" />
                                                 <div class="trend-top-cap trend-top-cap2">
@@ -236,7 +232,7 @@
                                     <div class="single-slider">
                                         <div class="trending-top mb-30">
                                             <div class="trend-top-img">
-                                                <img class="change-photo-size-online-section-three rounded-fetcher-news"
+                                                <img class="change-photo-size-online-section-three img-rounded img-fluid"
                                                     src="{{ $item->thumbnail_path }}"
                                                     alt="{{ ucfirst($item->category->name) }}" />
                                                 <div class="trend-top-cap trend-top-cap2">
@@ -389,7 +385,7 @@
                         @foreach ($popularPosts as $item)
                             <div class="most-recent-single">
                                 <div class="most-recent-images">
-                                    <img class="change-photo-size-online-popular-post rounded-fetcher-news"
+                                    <img class="change-photo-size-online-popular-post img-rounded"
                                         src="{{ $item->thumbnail_path }}" alt="Most-Popular" />
                                 </div>
                                 <div class="most-recent-capt">
