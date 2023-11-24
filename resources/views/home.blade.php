@@ -66,6 +66,10 @@
             height: 79px !important;
         }
 
+        .fcolor-707b8e {
+            color: #707b8e !important;
+        }
+
         .fcolor-blue {
             color: #068FFF !important;
         }
@@ -112,7 +116,6 @@
             font-size: 30px;
         }
 
-
         .whats-right-cap .title-last-four-posts {
             margin-top: 0.5rem !important;
             margin-bottom: 0.8rem !important;
@@ -132,13 +135,7 @@
             justify-content: space-between !important;
         }
 
-        .source-date-last-post .date-last-post small {
-            font-size: 18px !important;
-            color: #707b8e !important;
-        }
-
         .source-date-last-post .source-last-post small a {
-            font-size: 18px !important;
             color: #707b8e !important;
             transition: all linear 0.2s !important;
         }
@@ -266,7 +263,6 @@
             </div>
         </div>
     </div>
-    </div>
     <!-- Trending Area End -->
     <!-- Whats New Start -->
     <section class="whats-news-area pt-50 pb-20">
@@ -295,8 +291,9 @@
                                             id="nav-tab" role="tablist">
                                             @foreach ($categories as $item)
                                                 <a onclick="getPostsByCategory({{ $item->id }})"
-                                                    class="nav-item nav-link cursor-fetcher-news font-family-news-fetcher" id="nav-home-tab"
-                                                    data-toggle="tab" role="tab" aria-controls="nav-home"
+                                                    class="nav-item nav-link cursor-fetcher-news font-family-news-fetcher"
+                                                    id="nav-home-tab" data-toggle="tab" role="tab"
+                                                    aria-controls="nav-home"
                                                     aria-selected="true">{{ ucfirst($item->name) }}</a>
                                             @endforeach
                                         </div>
@@ -693,4 +690,3 @@
     <!-- banner-last End -->
 @endsection
 {{-- script specific this page --}}
-

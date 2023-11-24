@@ -11,13 +11,13 @@
              </h4>
              <div class="source-date-last-post">
                  <p class="source-last-post">
-                     <i class="fas fa-clone fcolor-blue"></i>
-                     <small><a href="{{ explode('_', $lastetPost->source)[1] }}"
-                             target="__blank">{{ strtoupper(explode('_', $lastetPost->source)[0]) }}</a></small>
+                     <i class="fas fa-clone fcolor-blue fsize-15px"></i>
+                     <small><a class="fsize-15px" href="{{ explode('_', $lastetPost->source)[1] }}"
+                             target="__blank">{{ ucfirst(strtolower(explode('_', $lastetPost->source)[0])) }}</a></small>
                  </p>
                  <p class="date-last-post">
-                     <i class="fas fa-history fcolor-blue"></i>
-                     <small>{{ $lastetPost->published_ago }}</small>
+                     <i class="fas fa-history fcolor-blue fsize-15px"></i>
+                     <small class="fsize-15px fcolor-707b8e">{{ $lastetPost->published_ago }}</small>
                  </p>
              </div>
              <p>
