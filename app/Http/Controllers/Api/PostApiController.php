@@ -13,8 +13,11 @@ class PostApiController extends Controller
     //
     public function apiFetchNews()
     {
-        $categories = Category::all();
+        $categories = Category::whereIn('source',['api','rss'])->where('status',2);
         foreach ($categories as $category)
-        dispatch(new NewsJob($category->api_url.env('API_KEY_Gnews'),$category->id,"controller"));
+    {
+        $apiURL=$category->parent_name=='news-gnews.io'?env('API_KEY_Gnews'):null;
+        dispatch(new NewsJob($category->api_url.$apiURL,$category->id,$category->source_data_type,"controller"));
+    }
     }
 }

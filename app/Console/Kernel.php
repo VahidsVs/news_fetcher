@@ -16,9 +16,12 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         //$schedule->command('inspire')->everyFifteenSeconds();
-        $categories = Category::all();
+        $categories = Category::where('status',2)->whereIn('source',['api','rss'])->get();
         foreach ($categories as $category) 
-        $schedule->job(new NewsJob($category->api_url.env('API_KEY_Gnews'),$category->id,"kernel"))->everyThirtyMinutes();
+        {
+        $apiKey=$category->parent_name=='news-gnews.io'?env('API_KEY_Gnews'):null;
+        $schedule->job(new NewsJob($category->api_url.$apiKey,$category->id,$category->source_data_type,"kernel"))->everyThirtyMinutes();
+        }
     }   
 
     /**

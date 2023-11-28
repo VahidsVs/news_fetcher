@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('parent_category_id')->constrained('parent_categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('parent_name');
             $table->string('name');
             $table->string('api_url');
+            $table->enum('source',['user','api','rss']);
+            $table->enum('source_data_type',['text','xml','json']);
             $table->tinyInteger('status')->default(1)->comment('0=>inactive, 1=>active');
+            $table->string('api_url_options')->nullable();
             $table->string('description');
             $table->tinyInteger('order');
-            $table->string('api_url_options')->nullable();
             $table->timestamps();
         });
     }
