@@ -6,6 +6,7 @@
 {{-- main-body --}}
 @section('content')
     <style>
+        
         .cursor-fetcher-news {
             cursor: pointer;
         }
@@ -125,18 +126,12 @@
             transition: all color 0.2s !important;
         }
 
-        .source-date-last-post {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-        }
-
-        .source-date-last-post .source-last-post small a {
+        .source-last-post small a {
             color: #707b8e !important;
             transition: all linear 0.2s !important;
         }
 
-        .source-date-last-post .source-last-post small a:hover {
+        .source-last-post small a:hover {
             color: #ff2143 !important;
         }
 
@@ -160,8 +155,6 @@
     </style>
     <!-- Trending Area Start -->
     <div class="trending-area fix pt-25 gray-bg">
-        
-            <!-- Start of www.likeforex.com Code --><div style=" width:80% background-color:text-align:center;padding:1px;margin: 0 auto;overflow:hidden;"><a href="//www.likeforex.com/widgets"><script type="text/javascript" src="//www.likeforex.com/widgets/c/st.php?f=EUR&t=1"></script></a></div><!-- End of www.likeforex.com Code -->
         <div class="container">
             <div class="trending-main">
                 <div class="row">
@@ -197,14 +190,10 @@
                     </div>
                     <!-- Right content -->
                     <div class="col-lg-4">
-                        <div class="slider1-active1">
-                            <a class="weatherwidget-io" href="https://forecast7.com/de/47d5214d55/austria/" data-label_1="Österreich" data-label_2="Wetter" data-font="Arial Narrow" data-theme="clear" >Österreich Wetter</a>
-                            <script>
-                            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-                            </script>
                         <!-- Trending Top -->
+                        <div class="slider-active">
                             <!-- Single -->
-                            {{-- @foreach ($postsSection2 as $item)
+                            @foreach ($postsSection2 as $item)
                                 <div class="col-lg-12 col-md-6 col-sm-6">
                                     <div class="single-slider">
                                         <div class="trending-top mb-30">
@@ -229,13 +218,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach --}}
+                            @endforeach
                         </div>
-                        <div class="slider1-active1">
-                            <iframe src="https://goldbroker.com/widget/live-price/XAU?currency=EUR" width="370px" height="100" style="border: 0; overflow: hidden;"></iframe>
-                        <div class="bw-toplist" style="width: 370px; height: auto;" data-pane="top" data-theme='green' data-unit="EUR" data-size="10"><a href="https://bitgur.com">View Coin Top 100 on Bitgur</a></div><script src='https://bitgur.com/static/widgets/toplist/toplist.js'></script>
+                        <div class="slider-active">
                             <!-- Single -->
-                            {{-- @foreach ($postsSection3 as $item)
+                            @foreach ($postsSection3 as $item)
                                 <div class="col-lg-12 col-md-6 col-sm-6">
                                     <div class="single-slider">
                                         <div class="trending-top mb-30">
@@ -260,8 +247,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach --}}
-                        {{-- </div> --}}
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
