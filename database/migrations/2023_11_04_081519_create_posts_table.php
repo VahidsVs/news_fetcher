@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('summary',510);
+            $table->string('title',510);
+            $table->text('summary');
             $table->text('body')->nullable();
             $table->text('thumbnail_path')->nullable();
             $table->string('slug',765)->unique();

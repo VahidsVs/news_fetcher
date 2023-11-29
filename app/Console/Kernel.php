@@ -16,20 +16,19 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         //$schedule->command('inspire')->everyFifteenSeconds();
-        $categories = Category::where('status',2)->whereIn('source',['api','rss'])->get();
-        foreach ($categories as $category) 
-        {
-        $apiKey=$category->parent_name=='news-gnews.io'?env('API_KEY_Gnews'):null;
-        $schedule->job(new NewsJob($category->api_url.$apiKey,$category->id,$category->source_data_type,"kernel"))->everyThirtyMinutes();
+        $categories = Category::where('status', 2)->whereIn('source', ['api', 'rss'])->get();
+        foreach ($categories as $item) {
+            $apiKey = $item->parent_name == 'news-gnews.io' ? env('API_KEY_Gnews') : null;
+            $schedule->job(new NewsJob($item->api_url . $apiKey,$item->source_data_type, $item->parent_name ,$item->id, "kernel"))->everyThirtyMinutes();
         }
-    }   
+    }
 
     /**
      * Register the commands for the application.
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
