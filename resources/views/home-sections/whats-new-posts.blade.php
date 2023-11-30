@@ -7,7 +7,7 @@
         </div>
         <div class="whates-caption">
             <h4>
-                <a href="">{{ ucfirst($lastetPost->title) }}</a>
+                <a href="{{ route('home.post-details', $lastetPost->id) }}">{{ ucfirst($lastetPost->title) }}</a>
             </h4>
             <div class="d-flex justify-content-between align-content-center">
                 <p class="source-last-post">
@@ -45,7 +45,7 @@
                                 </span>
                             </p>
                             <p class="title-last-four-posts">
-                                <a href="">{{ ucfirst($item->title) }}</a>
+                                <a href="{{ route('home.post-details', $item->id) }}">{{ ucfirst($item->title) }}</a>
                             </p>
                         </div>
                         <div class="date-source-last-four-posts">

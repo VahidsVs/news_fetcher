@@ -6,7 +6,6 @@
 {{-- main-body --}}
 @section('content')
     <style>
-        
         .cursor-fetcher-news {
             cursor: pointer;
         }
@@ -173,7 +172,7 @@
                                                 <span class="bgcolor-red fsize-20px" data-animation="fadeInUp" data-delay=".2s"
                                                     data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
                                                 <h2>
-                                                    <a href="#" class="fsize-25px" data-animation="fadeInUp"
+                                                    <a href="{{ route('home.post-details', $item->id) }}" class="fsize-25px" data-animation="fadeInUp"
                                                         data-delay=".4s"
                                                         data-duration="1000ms">{{ ucfirst($item->title) }}</a>
                                                 </h2>
@@ -327,7 +326,7 @@
                                 </div>
                                 <div class="follow-count">
                                     <span>8,045</span>
-                                    <p>Fans</p>
+                                    <p>FaceBook</p>
                                 </div>
                             </div>
                             <div class="follow-us d-flex align-items-center">
@@ -385,7 +384,7 @@
                                 </div>
                                 <div class="most-recent-capt">
                                     <h4>
-                                        <a href="#"
+                                        <a href="{{ route('home.post-details', $item->id) }}"
                                             class="fsize-13px font-family-news-fetcher">{{ ucfirst($item->title) }}</a>
                                     </h4>
                                     <div class="d-flex justify-content-between align-items-center">

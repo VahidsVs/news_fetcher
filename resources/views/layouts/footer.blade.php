@@ -9,7 +9,8 @@
                             <div class="single-footer-caption mb-30">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
+                                    <a href="index.html"><img src="{{ asset('assets/img/logo/logo2_footer.png') }}"
+                                            alt="footer-picture"></a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
@@ -30,7 +31,7 @@
                             <!-- Popular post -->
                             <div class="whats-right-single mb-20">
                                 <div class="whats-right-img">
-                                    <img src="assets/img/gallery/footer_post1.png" alt="">
+                                    <img src="{{ asset('assets/img/gallery/footer_post1.png') }}" alt="footer-picture">
                                 </div>
                                 <div class="whats-right-cap">
                                     <h4><a href="latest_news.html">Scarlett’s disappointment at latest accolade</a></h4>
@@ -40,7 +41,7 @@
                             <!-- Popular post -->
                             <div class="whats-right-single mb-20">
                                 <div class="whats-right-img">
-                                    <img src="assets/img/gallery/footer_post2.png" alt="">
+                                    <img src="{{ asset('assets/img/gallery/footer_post2.png') }}" alt="footer-picture">
                                 </div>
                                 <div class="whats-right-cap">
                                     <h4><a href="latest_news.html">Scarlett’s disappointment at latest accolade</a></h4>
@@ -50,7 +51,7 @@
                             <!-- Popular post -->
                             <div class="whats-right-single mb-20">
                                 <div class="whats-right-img">
-                                    <img src="assets/img/gallery/footer_post3.png" alt="">
+                                    <img src="{{ asset('assets/img/gallery/footer_post3.png') }}" alt="footer-picture">
                                 </div>
                                 <div class="whats-right-cap">
                                     <h4><a href="latest_news.html">Scarlett’s disappointment at latest accolade</a></h4>
