@@ -82,6 +82,14 @@
             background-color: #f4f4f4 !important;
         }
 
+        .bgcolor-f9f9f9 {
+            background-color: #f9f9f9 !important;
+        }
+
+        .bgcolor-E9ECEF {
+            background-color: #E9ECEF !important;
+        }
+
         .fcolor-white {
             color: #ffffff !important;
         }
@@ -161,6 +169,16 @@
             width: 750px !important;
             height: 400px !important;
         }
+
+        .likeBtn,
+        .disLikeBtn {
+            transition: all linear .2s;
+        }
+
+        .likeBtn:active,
+        .disLikeBtn:active {
+            transform: scale(1.5)
+        }
     </style>
     <!-- About US Start -->
     <div class="about-area2 gray-bg pt-60 pb-60">
@@ -198,8 +216,26 @@
                                 <small class="fsize-20px fcolor-707b8e">{{ $post->published_ago }}</small>
                             </p>
                         </div>
-                        <div class="about-prea text-justify">
+                        <div class="about-prea text-justify bgcolor-f9f9f9 p-2 rounded">
                             <p class="fsize-15px mb-25">{{ ucfirst($post->body) }}</p>
+                        </div>
+                        <div class="bgcolor-E9ECEF rounded my-3 p-3">
+                            <span class="d-flex justify-content-between align-items-center">
+                                <span class="font-weight-bold fsize-20px">You Like This Post?</span>
+                                <div>
+                                    <button onclick="likeBtn({{ $post->id }})" id="likeBtn"
+                                        data-url="{{ route('post-details.like', $post->id) }}"
+                                        class="border-0 cursor-fetcher-news bgcolor-E9ECEF">
+                                        <i class="far fa-heart text-dark border-0 fsize-20px likeBtn bgcolor-E9ECEF"></i>
+                                    </button>
+                                    <button onclick="disLikeBtn({{ $post->id }})" id="disLikeBtn"
+                                        data-url="{{ route('post-details.unlike', $post->id) }}"
+                                        class="d-none cursor-fetcher-news border-0 bgcolor-E9ECEF">
+                                        <i
+                                            class="fas fa-heart fcolor-FF0000 fsize-20px border-0 disLikeBtn bgcolor-E9ECEF"></i>
+                                    </button>
+                                </div>
+                            </span>
                         </div>
                     </div>
                     <!-- From -->
@@ -304,5 +340,48 @@
         </div>
     </div>
     <!-- About US End -->
+@endsection
+@section('script')
+    <script>
+        function removeAllClass() {
+            $('#likeBtn').removeClass('d-none');
+            $('#likeBtn').removeClass('d-inline-block');
+            $('#disLikeBtn').removeClass('d-none');
+            $('#disLikeBtn').removeClass('d-inline-block');
+        }
+
+        function likeBtn(id) {
+            var url = $('#likeBtn').attr('data-url');
+            console.log(url);
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function(response) {
+                    if (response.status) {
+                        console.log(response.status);
+                        removeAllClass();
+                        $('#likeBtn').addClass('d-none');
+                        $('#disLikeBtn').addClass('d-inline-block');
+                    }
+                }
+            });
+        }
+
+        function disLikeBtn() {
+            var url = $('#disLikeBtn').attr('data-url');
+            console.log(url);
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function(response) {
+                    if (response.status) {
+                        removeAllClass();
+                        $('#likeBtn').addClass('d-inline-block');
+                        $('#disLikeBtn').addClass('d-none');
+                    }
+                }
+            });
+        }
+    </script>
 @endsection
 {{-- script specific this page --}}

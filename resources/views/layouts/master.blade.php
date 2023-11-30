@@ -23,9 +23,10 @@
     @includeIf('layouts.script-tag')
     @yield('script')
 
+    {{-- sweetalert --}}
+    @includeIf('alerts.sweetalert.success')
+    @includeIf('alerts.sweetalert.error')
+
 </body>
 
 </html>
-
-
-

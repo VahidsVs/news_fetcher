@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'showHome'])->name("home");
 Route::get('posts/{category}', [HomeController::class, 'getPostsByCategory'])->name("home.category");
-Route::get('/post-details/{id}', [HomeController::class, 'getPostDetails'])->name("home.post-details");
+Route::get('post-details/{id}', [HomeController::class, 'getPostDetails'])->name("home.post-details");
+Route::get('post-details/like/{post}', [HomeController::class, 'likePost'])->name('post-details.like');
+Route::get('post-details/unlike/{post}', [HomeController::class, 'unlikePost'])->name('post-details.unlike');
 
 Route::get('/api/apifetchnews', [PostApiController::class, 'apiFetchNews'])->name("api.fetchNews");
 

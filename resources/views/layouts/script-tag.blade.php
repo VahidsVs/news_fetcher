@@ -33,3 +33,4 @@
 <script src="{{ asset('assets/js/plugins.js') }}"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="{{ asset('assets/js/components.js') }}"></script>
+<script src="{{ asset('assets/sweetalert/sweetalert2.min.js') }}"></script>

@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
+    /**
+     * Show latest post and popular posts.
+     */
     public function showHome()
     {
         // get all trending posts
@@ -37,12 +41,48 @@ class HomeController extends Controller
         );
     }
 
+    /**
+     * show details post.
+     */
     public function getPostDetails($id)
     {
         $post = Post::with(['category:id,name', 'user:id,username'])->where('id', $id)->first();
         return view("post-interior", compact('post'));
     }
 
+    /**
+     * like post.
+     */
+    public function likePost(Post $post)
+    {
+        $post->likes = (int)$post->likes + 1;
+        $result = $post->save();
+        if ($result)
+            return response()->json(['status' => true]);
+        else
+            return response()->json(['status' => false]);
+
+        // return Redirect::back()->withErrors(['swal-success' => 'Successfully registered']);
+    }
+
+    /**
+     * unlike post.
+     */
+    public function unlikePost(Post $post)
+    {
+        $post->likes = (int)$post->likes - 1;
+        $result = $post->save();
+        if ($result)
+            return response()->json(['status' => true]);
+        else
+            return response()->json(['status' => false]);
+
+        // return Redirect::back()->withErrors(['swal-success' => 'Successfully registered']);
+    }
+
+    /**
+     * Show specific post.
+     */
     public function getPostsByCategory(Category $category)
     {
         // post back section whats new
