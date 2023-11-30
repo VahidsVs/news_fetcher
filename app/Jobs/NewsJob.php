@@ -77,7 +77,6 @@ class NewsJob implements ShouldQueue
                     }
                     break;
                 case 'news-krone.at':
-
                     $jsonItems = json_decode(json_encode($xmlItem))->channel->item;
                     $jsonItems = json_decode(Str::of(json_encode($jsonItems))->replace('@attributes', 'attributes'));
                     foreach ($jsonItems as $item) {

@@ -33,7 +33,10 @@ class HomeController extends Controller
             compact('postsSection1', 'postsSection2', 'postsSection3', 'categories', 'lastetPost', 'posts', 'popularPosts')
         );
     }
+    public function getPostDetails(Post $post)
+    {
 
+    }
     public function getPostsByCategory(Category $category)
     {
         // post back section whats new
@@ -42,6 +45,6 @@ class HomeController extends Controller
         $posts = $posts->skip(1)->take(6);
 
         // return to view
-        return view("whats-new-post.post-only", compact('lastetPost', 'posts'));
+        return view("home-sections.whats-new-posts", compact('lastetPost', 'posts'));
     }
 }

@@ -302,7 +302,7 @@
                                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                         aria-labelledby="nav-home-tab">
                                         <div class="row posts-content">
-                                            @includeIf('whats-new-post.post-only')
+                                            @includeIf('home-sections.whats-new-posts')
                                         </div>
                                     </div>
                                 </div>
@@ -413,12 +413,12 @@
             <div class="weekly2-wrapper">
                 <div class="row">
                     <!-- Banner -->
-                    <div class="col-lg-3">
+                    {{-- <div class="col-lg-3">
                         <div class="home-banner2 d-none d-lg-block">
                             <img src="assets/img/gallery/body_card2.png" alt="" />
                         </div>
-                    </div>
-                    <div class="col-lg-9">
+                    </div> --}}
+                    <div class="col">
                         <div class="slider-wrapper">
                             <!-- section Tittle -->
                             <div class="row">
@@ -433,7 +433,7 @@
                                 <div class="col-lg-12">
                                     <div class="weekly2-news-active d-flex">
                                         <!-- Single -->
-                                        <div class="weekly2-single">
+                                        <div class="weekly2-single col-lg-3">
                                             <div class="weekly2-img">
                                                 <img src="assets/img/gallery/weeklyNews1.png" alt="" />
                                             </div>
@@ -475,6 +475,18 @@
                                         <div class="weekly2-single">
                                             <div class="weekly2-img">
                                                 <img src="assets/img/gallery/weeklyNews2.png" alt="" />
+                                            </div>
+                                            <div class="weekly2-caption">
+                                                <h4>
+                                                    <a href="#">Scarlett’s disappointment
+                                                        at latest accolade</a>
+                                                </h4>
+                                                <p>Jhon | 2 hours ago</p>
+                                            </div>
+                                        </div>
+                                        <div class="weekly2-single">
+                                            <div class="weekly2-img">
+                                                <img src="assets/img/gallery/weeklyNews3.png" alt="" />
                                             </div>
                                             <div class="weekly2-caption">
                                                 <h4>
