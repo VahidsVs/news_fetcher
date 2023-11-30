@@ -16,7 +16,7 @@ class HomeController extends Controller
         $postsSection3 = Post::where('display', 'section3')->with('category:id,name')->get();
 
         // get all Categories
-        $categories = Category::where('status', 1)->orderBy('order')->get();
+        $categories = Category::where(['parent_name' => 'news-gnews.io', 'status' => 1])->orderBy('order')->get();
         // dd($categories);
 
         // get all Post :: lazy loading
@@ -35,7 +35,6 @@ class HomeController extends Controller
     }
     public function getPostDetails(Post $post)
     {
-
     }
     public function getPostsByCategory(Category $category)
     {
