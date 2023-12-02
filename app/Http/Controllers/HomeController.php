@@ -76,8 +76,6 @@ class HomeController extends Controller
             return response()->json(['status' => true]);
         else
             return response()->json(['status' => false]);
-
-        // return Redirect::back()->withErrors(['swal-success' => 'Successfully registered']);
     }
 
     /**

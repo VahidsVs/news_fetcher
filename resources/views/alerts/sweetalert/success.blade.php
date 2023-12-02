@@ -2,10 +2,10 @@
     <script>
         $(document).ready(function() {
             Swal.fire({
-                icon: 'success',
-                title: 'موفقبت آمیز',
+                icon: 'Success',
+                title: 'Successful',
                 text: '{{ $message }}',
-                confirmButtonText: 'باشه'
+                confirmButtonText: 'Ok'
             })
         });
     </script>

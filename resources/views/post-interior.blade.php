@@ -4,7 +4,6 @@
 @endsection
 {{-- main-body --}}
 @section('content')
-    {{-- {{ dd($post) }} --}}
     <style>
         .cursor-fetcher-news {
             cursor: pointer;
@@ -179,6 +178,10 @@
         .disLikeBtn:active {
             transform: scale(1.5)
         }
+
+        .swal-wide {
+            width: 30px !important;
+        }
     </style>
     <!-- About US Start -->
     <div class="about-area2 gray-bg pt-60 pb-60">
@@ -240,7 +243,7 @@
                     </div>
                     <!-- From -->
                     <div class="row d-none">
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
                             <form class="form-contact contact_form mb-80" action="contact_process.php" method="post"
                                 id="contactForm" novalidate="novalidate">
                                 <div class="row">
@@ -352,33 +355,78 @@
 
         function likeBtn(id) {
             var url = $('#likeBtn').attr('data-url');
-            console.log(url);
             $.ajax({
                 type: "GET",
                 url: url,
                 success: function(response) {
                     if (response.status) {
-                        console.log(response.status);
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Successful',
+                            text: 'Successfully registered',
+                            timer: 3000,
+                            confirmButtonText: 'Ok'
+                        })
                         removeAllClass();
                         $('#likeBtn').addClass('d-none');
                         $('#disLikeBtn').addClass('d-inline-block');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'error!',
+                            text: 'Communication was not established',
+                            timer: 3000,
+                            confirmButtonText: 'Ok'
+                        })
                     }
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'error!',
+                        text: 'Communication was not established',
+                        timer: 3000,
+                        confirmButtonText: 'Ok'
+                    })
                 }
             });
         }
 
         function disLikeBtn() {
             var url = $('#disLikeBtn').attr('data-url');
-            console.log(url);
             $.ajax({
                 type: "GET",
                 url: url,
                 success: function(response) {
                     if (response.status) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Successful',
+                            text: 'Successfully registered',
+                            timer: 3000,
+                            confirmButtonText: 'Ok'
+                        })
                         removeAllClass();
                         $('#likeBtn').addClass('d-inline-block');
                         $('#disLikeBtn').addClass('d-none');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'error!',
+                            text: 'Communication was not established',
+                            timer: 3000,
+                            confirmButtonText: 'Ok'
+                        })
                     }
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'error!',
+                        text: 'Communication was not established',
+                        timer: 3000,
+                        confirmButtonText: 'Ok'
+                    })
                 }
             });
         }

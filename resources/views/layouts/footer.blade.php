@@ -63,7 +63,7 @@
                     <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
                         <div class="single-footer-caption mb-50">
                             <div class="banner">
-                                <img src="assets/img/gallery/body_card4.png" alt="">
+                                <img src="{{ asset('assets/img/gallery/body_card4.png') }}" alt="footer-picture">
                             </div>
                         </div>
                     </div>
