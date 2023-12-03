@@ -17,13 +17,10 @@ class HomeController extends Controller
     public function showHome()
     {
         // get all trending posts
-        $postsSection1 = Post::where('display', 'section1')->with('category:id,name')->get();
-        $postsSection2 = Post::where('display', 'section2')->with('category:id,name')->get();
-        $postsSection3 = Post::where('display', 'section3')->with('category:id,name')->get();
+        $postsSection1 = Post::with('category:id,name')->where(['display' => 'section1', 'status' => 1])->get();
 
         // get all Categories news-gnews.io
         $categories = Category::where(['parent_name' => 'news-gnews.io', 'status' => 1])->orderBy('order')->get();
-        // dd($categories);
 
         // get all Post just category name is general :: lazy loading
         $posts = Post::with('category:id,name')->where(['category_id' => 1, 'status' => 1])->orderByDesc('id')->get();
@@ -32,14 +29,14 @@ class HomeController extends Controller
 
         // get all Post just category name is total :: lazy loading
         $postsKronenTotal = Post::with('category:id,name')->where(['category_id' => 9, 'status' => 1])->orderByDesc('id')->get()->take(9);
-        //dd($postsKronenTotal);
-        // post populars
-        $popularPosts = Post::with('comments')->where('likes' , '>' , 0)->orderByDesc('likes')->get()->take(6);
+
+        // most liked
+        $postsMostLiked = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(6);
 
         // return to view
         return view(
             "home",
-            compact('postsSection1', 'postsSection2', 'postsSection3', 'categories', 'lastetPost', 'posts', 'popularPosts', 'postsKronenTotal')
+            compact('postsSection1', 'categories', 'lastetPost', 'posts', 'postsMostLiked', 'postsKronenTotal')
         );
     }
 
@@ -48,10 +45,8 @@ class HomeController extends Controller
      */
     public function getPostDetails($id)
     {
-        $post = Post::with(['category:id,name', 'user:id,username'])->where('id', $id)->first();
-        $comments = Comment::where('post_id', $id)->get();
-        $commentsCount = $comments->count();
-        return view("post-interior", compact('post', 'commentsCount', 'comments'));
+        $post = Post::with(['category:id,name', 'user:id,username', 'publishedComments'])->where(['id' => $id, 'status' => 1])->first();
+        return view("post-interior", compact('post'));
     }
 
     /**
@@ -61,10 +56,8 @@ class HomeController extends Controller
     {
         $post->likes = (int)$post->likes + 1;
         $result = $post->save();
-        if ($result)
-            return response()->json(['status' => true]);
-        else
-            return response()->json(['status' => false]);
+        $status = $result ? 'true' : 'false';
+        return response()->json(['status' => $status]);
     }
 
     /**
@@ -74,16 +67,22 @@ class HomeController extends Controller
     {
         $post->likes = (int)$post->likes - 1;
         $result = $post->save();
-        if ($result)
-            return response()->json(['status' => true]);
-        else
-            return response()->json(['status' => false]);
+        $status = $result ? 'true' : 'false';
+        return response()->json(['status' => $status]);
     }
 
-    /**
-     * Show specific post.
-     */
+    #region comment-ajax
+        // public function commentPost(Request $request)
+        // {
+        //     $comment = comment::create($request->except('_token'));
+        //     $status = $comment ? 'true' : 'false';
+        //     return response()->json(['status' => $status]);
+        // }
+    #endregion ajax
 
+    /**
+     * show comment with fetch.
+     */
     public function createComment(Post $post, Request $request)
     {
         $values = $request->validate(['comment' => ['required'], 'name' => 'required', 'email' => ['required', 'email'], 'website' => '']);
@@ -92,6 +91,10 @@ class HomeController extends Controller
         $result = $comment ? true : false;
         return response()->json(['result' => $result]);
     }
+
+    /**
+     * Show specific post.
+     */
     public function getPostsByCategory(Category $category)
     {
         // post back section whats new

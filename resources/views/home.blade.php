@@ -44,7 +44,7 @@
 
         .change-photo-size-online-section-one {
             width: 770px !important;
-            height: 650px !important;
+            height: 705px !important;
         }
 
         .change-photo-size-online-section-two {
@@ -169,11 +169,12 @@
                                                 src="{{ $item->thumbnail_path }}"
                                                 alt="{{ ucfirst($item->category->name) }}" />
                                             <div class="trend-top-cap">
-                                                <span class="bgcolor-red fsize-20px" data-animation="fadeInUp" data-delay=".2s"
+                                                <span class="bgcolor-red fsize-20px" data-animation="fadeInUp"
+                                                    data-delay=".2s"
                                                     data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
                                                 <h2>
-                                                    <a href="{{ route('home.post-details', $item->id) }}" class="fsize-25px" data-animation="fadeInUp"
-                                                        data-delay=".4s"
+                                                    <a href="{{ route('home.post-details', $item->id) }}" class="fsize-25px"
+                                                        data-animation="fadeInUp" data-delay=".4s"
                                                         data-duration="1000ms">{{ ucfirst($item->title) }}</a>
                                                 </h2>
                                                 <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">
@@ -190,38 +191,32 @@
                     <!-- Right content -->
                     <div class="col-lg-4">
                         <!-- Trending Top -->
-                        <div class="slider-active">
+                        <div class="slider-active-1">
                             <!-- Single -->
-                            @foreach ($postsSection2 as $item)
-                                <div class="col-lg-12 col-md-6 col-sm-6">
-                                    <div class="single-slider">
-                                        <div class="trending-top mb-30">
-                                            <div class="trend-top-img">
-                                                <img class="change-photo-size-online-section-two img-rounded img-fluid"
-                                                    src="{{ $item->thumbnail_path }}"
-                                                    alt="{{ ucfirst($item->category->name) }}" />
-                                                <div class="trend-top-cap trend-top-cap2">
-                                                    <span class="bgcolor-red fsize-15px" data-animation="fadeInUp" data-delay=".2s"
-                                                        data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
-                                                    <h2>
-                                                        <a href="#" class="fsize-15px" data-animation="fadeInUp"
-                                                            data-delay=".4s"
-                                                            data-duration="1000ms">{{ ucfirst($item->title) }}</a>
-                                                    </h2>
-                                                    <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">
-                                                        <i class="fas fa-history fcolor-blue fsize-15px"></i>
-                                                        <small class="fsize-15px">{{ $item->published_ago }}</small>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
+                            <a class="weatherwidget-io" href="https://forecast7.com/de/47d5214d55/austria/"
+                                data-label_1="Österreich" data-label_2="Wetter" data-font="Arial Narrow" data-theme="clear"
+                                class="border border-secondary rounded">Österreich Wetter</a>
+                            <script>
+                                ! function(d, s, id) {
+                                    var js, fjs = d.getElementsByTagName(s)[0];
+                                    if (!d.getElementById(id)) {
+                                        js = d.createElement(s);
+                                        js.id = id;
+                                        js.src = 'https://weatherwidget.io/js/widget.min.js';
+                                        fjs.parentNode.insertBefore(js, fjs);
+                                    }
+                                }(document, 'script', 'weatherwidget-io-js');
+                            </script>
                         </div>
-                        <div class="slider-active">
+                        <div class="slider-active-2">
                             <!-- Single -->
-                            @foreach ($postsSection3 as $item)
+                            <iframe src="https://goldbroker.com/widget/live-price/XAU?currency=EUR" width="370px"
+                                height="100" style="border: 0; overflow: hidden;"></iframe>
+                            <div class="bw-toplist" style="width: 370px; height: auto;" data-pane="top" data-theme='green'
+                                data-unit="EUR" data-size="10"><a href="https://bitgur.com">View Coin Top 100 on Bitgur</a>
+                            </div>
+                            <script src='https://bitgur.com/static/widgets/toplist/toplist.js'></script>
+                            {{-- @foreach ($postsSection3 as $item)
                                 <div class="col-lg-12 col-md-6 col-sm-6">
                                     <div class="single-slider">
                                         <div class="trending-top mb-30">
@@ -230,7 +225,8 @@
                                                     src="{{ $item->thumbnail_path }}"
                                                     alt="{{ ucfirst($item->category->name) }}" />
                                                 <div class="trend-top-cap trend-top-cap2">
-                                                    <span class="bgcolor-red fsize-15px" data-animation="fadeInUp" data-delay=".2s"
+                                                    <span class="bgcolor-red fsize-15px" data-animation="fadeInUp"
+                                                        data-delay=".2s"
                                                         data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
                                                     <h2>
                                                         <a href="#" class="fsize-15px" data-animation="fadeInUp"
@@ -246,7 +242,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            @endforeach --}}
                         </div>
                     </div>
                 </div>
@@ -376,7 +372,7 @@
                             </div>
                         </div>
                         <!-- Single -->
-                        @foreach ($popularPosts as $item)
+                        @foreach ($postsMostLiked as $item)
                             <div class="most-recent-single">
                                 <div class="most-recent-images">
                                     <img class="change-photo-size-online-popular-post img-rounded"
@@ -387,11 +383,17 @@
                                         <a href="{{ route('home.post-details', $item->id) }}"
                                             class="fsize-13px font-family-news-fetcher">{{ ucfirst($item->title) }}</a>
                                     </h4>
-                                    <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex justify-content-start align-items-center">
                                         <p>
                                             <i class="fas fa-thumbs-up fcolor-blue fsize-13px"></i>
-                                            <small class="fsize-13px">455</small>
+                                            <small class="fsize-13px">{{ (int) $item->likes }}</small>
                                         </p>
+                                        <div class="mx-2 text-secondary">|</div>
+                                        <p>
+                                            <i class="fas fa-comment fcolor-blue fsize-13px"></i>
+                                            <small class="fsize-13px">{{ (int) $item->publishedComments->count() }}</small>
+                                        </p>
+                                        <div class="mx-2 text-secondary">|</div>
                                         <p>
                                             <i class="fas fa-history fcolor-blue fsize-13px"></i>
                                             <small class="fsize-13px">{{ $item->published_ago }}</small>
@@ -433,17 +435,18 @@
                                     <div class="weekly2-news-active d-flex">
                                         <!-- Single -->
                                         @foreach ($postsKronenTotal as $item)
-                                        <div class="weekly2-single">
-                                            <div class="weekly2-img">
-                                                <img src="{{$item->thumbnail_path}}" alt="Total" />
+                                            <div class="weekly2-single">
+                                                <div class="weekly2-img">
+                                                    <img src="{{ $item->thumbnail_path }}" alt="Total" />
+                                                </div>
+                                                <div class="weekly2-caption">
+                                                    <h4>
+                                                        <a
+                                                            href="{{ route('home.post-details', $item->id) }}">{{ $item->title }}</a>
+                                                    </h4>
+                                                    <p>Krone.at | {{ $item->published_ago }}</p>
+                                                </div>
                                             </div>
-                                            <div class="weekly2-caption">
-                                                <h4>
-                                                    <a href="{{route('home.post-details',$item->id)}}">{{$item->title}}</a>
-                                                </h4>
-                                                <p>Krone.at | {{$item->published_ago}}</p>
-                                            </div>
-                                        </div>
                                         @endforeach
                                     </div>
                                 </div>

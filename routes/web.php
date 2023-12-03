@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+#region comment-ajax
+// Route::post('post-details/comment', [HomeController::class, 'commentPost'])->name('post-details.comment');
+#endregion comment-ajax
+
 Route::get('/', [HomeController::class, 'showHome'])->name("home");
 Route::get('posts/{category}', [HomeController::class, 'getPostsByCategory'])->name("home.category");
 Route::get('post-details/{id}', [HomeController::class, 'getPostDetails'])->name("home.post-details");
@@ -24,4 +28,3 @@ Route::get('post-details/unlike/{post}', [HomeController::class, 'unlikePost'])-
 Route::post('post-details/create-comment/{post}', [HomeController::class, 'createComment'])->name('post-details.create-comment');
 
 Route::get('/api/apifetchnews', [PostApiController::class, 'apiFetchNews'])->name("api.fetchNews");
-

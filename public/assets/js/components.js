@@ -1,78 +1,132 @@
-const Url_Home_Category = '/posts/';
+const Url_Home_Category = "/posts/";
 function getPostsByCategory(categoryId) {
-
     var route = Url_Home_Category + categoryId;
-    // region Fetch
-    fetch(route).then((response) => {
-        if (response.ok) {
-            return response.text();
-        }
-        $('.posts-content').html("<h3 class='colorr posts-content-error'>❌ There was a problem fetching the data!!!</h3>");
-        console.log('Problem fetching data from url')
-
-    })
+    //#region fetch
+    fetch(route)
+        .then((response) => {
+            if (response.ok) {
+                return response.text();
+            }
+            $(".posts-content").html(
+                "<h3 class='colorr posts-content-error'>❌ There was a problem fetching the data!!!</h3>"
+            );
+            console.log("Problem fetching data from url");
+        })
         .then((responseHTML) => {
-            $('.posts-content').html(responseHTML);
+            $(".posts-content").html(responseHTML);
         })
         .catch((error) => {
-            $('.posts-content').html("<h3 class='colorr posts-content-error'>❌ There was a server error!!!</h3>");
+            $(".posts-content").html(
+                "<h3 class='colorr posts-content-error'>❌ There was a server error!!!</h3>"
+            );
             console.log(error);
         });
-    //endregion Fetch
+    //#endregion fetch
 
-    /*region AJAX
-   $.ajax({
-       type: "GET",
-       url: route,
-       success: function(response) {
-           $('.posts-content').html(response);
-       },
-       error: function() {
-           $('.posts-content').html("<h3 class='colorr posts-content-error'>❌ There was a problem reading the data!!!</h3>");
-       }
-   });
-    endregion AJAX*/
+    //#region ajax
+    //    $.ajax({
+    //        type: "GET",
+    //        url: route,
+    //        success: function(response) {
+    //            $('.posts-content').html(response);
+    //        },
+    //        error: function() {
+    //            $('.posts-content').html("<h3 class='colorr posts-content-error'>❌ There was a problem reading the data!!!</h3>");
+    //        }
+    //    });
+    //#endregion
 }
+
 function elementValueIsRequired(element) {
     if (!element.val()) {
         element.addClass("border border-danger");
-        return false
+        return false;
     }
     element.removeClass("border border-danger");
     element.addClass("border border-success");
     return true;
-
 }
+
+//#region comment-ajax
+// function addComment() {
+//     var url = $("#submitForm").attr("data-url");
+//     $.ajaxSetup({
+//         headers: {
+//             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+//         },
+//     });
+//     $.ajax({
+//         type: "POST",
+//         url: url,
+//         data: $("#commentForm").serialize(),
+//         // means: _token=JAPF5R&post_id=10&comment=wow&name=farshid&email=farshidasadi9421@gmail.com&website=
+//         success: function (response) {
+//             if (response.status) {
+//                 Swal.fire({
+//                     icon: "success",
+//                     title: "Successful",
+//                     text: "Your comment will be successfully registered and displayed on the site after approval by experts",
+//                     timer: 3000,
+//                     confirmButtonText: "Ok",
+//                 });
+//                 removeAllClass();
+//                 $("#likeBtn").addClass("d-inline-block");
+//                 $("#disLikeBtn").addClass("d-none");
+//             } else {
+//                 Swal.fire({
+//                     icon: "error",
+//                     title: "error!",
+//                     text: "Communication was not established",
+//                     timer: 3000,
+//                     confirmButtonText: "Ok",
+//                 });
+//             }
+//         },
+//         error: function () {
+//             Swal.fire({
+//                 icon: "error",
+//                 title: "error!",
+//                 text: "Communication was not established",
+//                 timer: 3000,
+//                 confirmButtonText: "Ok",
+//             });
+//         },
+//     });
+// }
+//#endregion
+
 function createCommentForPost() {
-    var route = $('#btnSubmitComment').attr('data-url');
+    var route = $("#btnSubmitComment").attr("data-url");
     const data = new Object();
-    data.comment = $("#" + 'comment').val();
-    data.name = $("#" + 'name').val();
-    data.email = $("#" + 'email').val();
-    data.website = $("#" + 'website').val();
+    data.comment = $("#" + "comment").val();
+    data.name = $("#" + "name").val();
+    data.email = $("#" + "email").val();
+    data.website = $("#" + "website").val();
 
     if (data.comment && data.name && data.email)
         (async () => {
             const rawResponse = await fetch(route, {
-                method: 'POST',
+                method: "POST",
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
             });
             const content = await rawResponse.json();
             if (content.result) {
-                $("." + 'comment-info').val(null);
+                $("." + "comment-info").val(null);
                 var title = "Comment";
                 var text = "Successfully submited";
-                var icon = 'success';
+                var icon = "success";
                 Swal.fire({
                     icon: icon,
                     title: title,
                     text: text,
-                    timer: 3000
+                    timer: 3000,
                 });
             }
             console.log(content);
@@ -80,17 +134,17 @@ function createCommentForPost() {
 }
 
 function removeAllClass() {
-    $('#likeBtn').removeClass('d-none');
-    $('#likeBtn').removeClass('d-inline-block');
-    $('#disLikeBtn').removeClass('d-none');
-    $('#disLikeBtn').removeClass('d-inline-block');
+    $("#likeBtn").removeClass("d-none");
+    $("#likeBtn").removeClass("d-inline-block");
+    $("#disLikeBtn").removeClass("d-none");
+    $("#disLikeBtn").removeClass("d-inline-block");
 }
 
-function likeBtn(id) {
-    var url = $('#likeBtn').attr('data-url');
+function likeBtn() {
+    var url = $("#likeBtn").attr("data-url");
     removeAllClass();
-    $('#likeBtn').addClass('d-none');
-    $('#disLikeBtn').addClass('d-inline-block');
+    $("#likeBtn").addClass("d-none");
+    $("#disLikeBtn").addClass("d-inline-block");
     $.ajax({
         type: "GET",
         url: url,
@@ -103,7 +157,6 @@ function likeBtn(id) {
                 //     timer: 3000,
                 //     confirmButtonText: 'Ok'
                 // })
-
             }
             // else {
             //     Swal.fire({
@@ -117,21 +170,21 @@ function likeBtn(id) {
         },
         error: function () {
             Swal.fire({
-                icon: 'error',
-                title: 'error!',
-                text: 'Communication was not established',
+                icon: "error",
+                title: "error!",
+                text: "Communication was not established",
                 timer: 3000,
-                confirmButtonText: 'Ok'
-            })
-        }
+                confirmButtonText: "Ok",
+            });
+        },
     });
 }
 
 function disLikeBtn() {
-    var url = $('#disLikeBtn').attr('data-url');
+    var url = $("#disLikeBtn").attr("data-url");
     removeAllClass();
-    $('#likeBtn').addClass('d-inline-block');
-    $('#disLikeBtn').addClass('d-none');
+    $("#likeBtn").addClass("d-inline-block");
+    $("#disLikeBtn").addClass("d-none");
     $.ajax({
         type: "GET",
         url: url,
@@ -144,7 +197,6 @@ function disLikeBtn() {
                 //     timer: 3000,
                 //     confirmButtonText: 'Ok'
                 // })
-
             }
             //     } else {
             //         Swal.fire({
@@ -159,13 +211,13 @@ function disLikeBtn() {
         },
         error: function () {
             Swal.fire({
-                icon: 'error',
-                title: 'error!',
-                text: 'Communication was not established',
+                icon: "error",
+                title: "error!",
+                text: "Communication was not established",
                 timer: 3000,
-                confirmButtonText: 'Ok'
-            })
-        }
+                confirmButtonText: "Ok",
+            });
+        },
     });
 }
 // Function to validate email

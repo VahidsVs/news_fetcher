@@ -33,8 +33,9 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'author_id');
     }
-    public function comments()
+
+    public function publishedComments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class)->where('status', 1);
     }
 }

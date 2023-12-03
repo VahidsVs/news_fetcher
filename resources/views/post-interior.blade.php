@@ -184,7 +184,6 @@
         }
     </style>
     <!-- About US Start -->
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div class="about-area2 gray-bg pt-60 pb-60">
         <div class="container">
             <div class="row">
@@ -243,70 +242,89 @@
                         </div>
                     </div>
                     <!-- From -->
-                             <div class="row">
-                                <div class="col-lg-12">
-                                        <h4>Leave a Comment</h4>
-                                        <form class="form-contact comment_form"  id="formComment" action="javascript:void(0)">
-                                        @csrf
-                                           <div class="row">
-                                              <div class="col-12">
-                                                 <div class="form-group">
-                                                    <textarea class="form-control w-100 comment-info " name="comment" id="comment" cols="30" rows="9"
-                                                       placeholder="Comment *" required></textarea>
-                                                 </div>
-                                              </div>
-                                              <div class="col-sm-6">
-                                                 <div class="form-group">
-                                                    <input class="form-control comment-info" name="name" id="name" type="text" placeholder="Name *" required>
-                                                 </div>
-                                              </div>
-                                              <div class="col-sm-6">
-                                                 <div class="form-group">
-                                                    <input class="form-control comment-info" name="email" id="email" type="email" placeholder="Email *" required>
-                                                 </div>
-                                              </div>
-                                              <div class="col-12">
-                                                 <div class="form-group">
-                                                    <input class="form-control comment-info" name="website" id="website" type="text" placeholder="Website">
-                                                 </div>
-                                              </div>
-                                           </div>
-                                           <div class="form-group">
-                                              <button type="submit" id='btnSubmitComment' data-url="{{ route('post-details.create-comment', $post->id) }}" onclick="createCommentForPost()" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
-                                           </div>
-                                        </form>
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            {{-- regin comment ajax --}}
+                            {{-- <form class="form-contact contact_form mb-80" id="commentForm" action="javascript:void(0)"
+                                novalidate="novalidate">
+                                @csrf
+                                <div class="form-group mt-3">
+                                    <button type="submit" onclick="addComment()" id="submitForm"
+                                        data-url="{{ route('post-details.comment') }}"
+                                        class="button button-contactForm btn_1 boxed-btn font-weight-bold">Send</button>
                                 </div>
-                            </div>
-                            <div class="comments-area">
-                                <h4>{{$commentsCount}} Comment{{$commentsCount>1?'s':''}}</h4>
-                                @foreach ($comments as $item)
-                                <div class="comment-list">
-                                   <div class="single-comment justify-content-between d-flex">
-                                      <div class="user justify-content-between d-flex">
-                                         <div class="thumb">
+                            </form> --}}
+
+                            <h4>Leave a Comment</h4>
+                            <form class="form-contact comment_form" id="formComment" action="javascript:void(0)">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <textarea class="form-control w-100 comment-info " name="comment" id="comment" cols="30" rows="9"
+                                                placeholder="Comment *" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input class="form-control comment-info" name="name" id="name"
+                                                type="text" placeholder="Name *" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input class="form-control comment-info" name="email" id="email"
+                                                type="email" placeholder="Email *" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <input class="form-control comment-info" name="website" id="website"
+                                                type="text" placeholder="Website">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" id='btnSubmitComment'
+                                        data-url="{{ route('post-details.create-comment', $post->id) }}"
+                                        onclick="createCommentForPost()"
+                                        class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="comments-area">
+                        <h4>{{ $post->publishedComments->count() }}
+                            Comment{{ $post->publishedComments->count() > 1 ? 's' : '' }}</h4>
+                        @foreach ($post->publishedComments as $item)
+                            <div class="comment-list">
+                                <div class="single-comment justify-content-between d-flex">
+                                    <div class="user justify-content-between d-flex">
+                                        <div class="thumb">
                                             <i class="fa fa-user-circle" style="font-size:48px;color:blue"></i>
                                         </div>
-                                         <div class="desc">
+                                        <div class="desc">
                                             <p class="comment">
-                                                {{$item->comment}}
+                                                {{ $item->comment }}
                                             </p>
                                             <div class="d-flex justify-content-between">
-                                               <div class="d-flex align-items-center">
-                                                  <h5>
-                                                     <a href="#"> {{$item->name}}</a>
-                                                  </h5>
-                                                  <p class="date">{{$item->created_at->diffForHumans()}}</p>
-                                               </div>
-                                               <div class="reply-btn">
-                                                  <a href="#" class="btn-reply text-uppercase">reply</a>
-                                               </div>
+                                                <div class="d-flex align-items-center">
+                                                    <h5>
+                                                        <a href="#"> {{ $item->name }}</a>
+                                                    </h5>
+                                                    <p class="date">{{ $item->created_at->diffForHumans() }}</p>
+                                                </div>
+                                                <div class="reply-btn">
+                                                    <a href="#" class="btn-reply text-uppercase">reply</a>
+                                                </div>
                                             </div>
-                                         </div>
-                                      </div>
-                                   </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                @endforeach
-                             </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
                 {{-- sidebar --}}
                 <div class="col-lg-4">
@@ -359,18 +377,18 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- New Poster -->
                     <div class="news-poster d-none d-lg-block">
                         <img src="{{ asset('assets/img/news/news_card.jpg') }}" alt="banner">
                     </div>
-                    
-                </div>
 
                 </div>
 
             </div>
+
         </div>
+    </div>
     </div>
     <!-- About US End -->
 @endsection
