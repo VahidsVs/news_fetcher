@@ -21,6 +21,7 @@ Route::get('posts/{category}', [HomeController::class, 'getPostsByCategory'])->n
 Route::get('post-details/{id}', [HomeController::class, 'getPostDetails'])->name("home.post-details");
 Route::get('post-details/like/{post}', [HomeController::class, 'likePost'])->name('post-details.like');
 Route::get('post-details/unlike/{post}', [HomeController::class, 'unlikePost'])->name('post-details.unlike');
+Route::post('post-details/create-comment/{post}', [HomeController::class, 'createComment'])->name('post-details.create-comment');
 
 Route::get('/api/apifetchnews', [PostApiController::class, 'apiFetchNews'])->name("api.fetchNews");
 

@@ -368,7 +368,7 @@
                     <div class="most-recent-area">
                         <!-- Section Tittle -->
                         <div class="small-tittle mb-20">
-                            <h4>Most Popular</h4>
+                            <h4>Most Liked</h4>
                             <div>
                                 <hr class="mt-0 mb-0">
                                 <hr class="mt-0 mb-0 w-25 border-3px-red rounded">
@@ -380,7 +380,7 @@
                             <div class="most-recent-single">
                                 <div class="most-recent-images">
                                     <img class="change-photo-size-online-popular-post img-rounded"
-                                        src="{{ $item->thumbnail_path }}" alt="Most-Popular" />
+                                        src="{{ $item->thumbnail_path }}" alt="Most-Liked" />
                                 </div>
                                 <div class="most-recent-capt">
                                     <h4>
@@ -423,7 +423,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="small-tittle mb-30">
-                                        <h4>Most Popular</h4>
+                                        <h4>Trendings</h4>
                                     </div>
                                 </div>
                             </div>
@@ -432,69 +432,19 @@
                                 <div class="col-lg-12">
                                     <div class="weekly2-news-active d-flex">
                                         <!-- Single -->
-                                        <div class="weekly2-single col-lg-3">
-                                            <div class="weekly2-img">
-                                                <img src="assets/img/gallery/weeklyNews1.png" alt="" />
-                                            </div>
-                                            <div class="weekly2-caption">
-                                                <h4>
-                                                    <a href="#">Scarlett’s disappointment
-                                                        at latest accolade</a>
-                                                </h4>
-                                                <p>Jhon | 2 hours ago</p>
-                                            </div>
-                                        </div>
-                                        <!-- Single -->
+                                        @foreach ($postsKronenTotal as $item)
                                         <div class="weekly2-single">
                                             <div class="weekly2-img">
-                                                <img src="assets/img/gallery/weeklyNews2.png" alt="" />
+                                                <img src="{{$item->thumbnail_path}}" alt="Total" />
                                             </div>
                                             <div class="weekly2-caption">
                                                 <h4>
-                                                    <a href="#">Scarlett’s disappointment
-                                                        at latest accolade</a>
+                                                    <a href="{{route('home.post-details',$item->id)}}">{{$item->title}}</a>
                                                 </h4>
-                                                <p>Jhon | 2 hours ago</p>
+                                                <p>Krone.at | {{$item->published_ago}}</p>
                                             </div>
                                         </div>
-                                        <!-- Single -->
-                                        <div class="weekly2-single">
-                                            <div class="weekly2-img">
-                                                <img src="assets/img/gallery/weeklyNews3.png" alt="" />
-                                            </div>
-                                            <div class="weekly2-caption">
-                                                <h4>
-                                                    <a href="#">Scarlett’s disappointment
-                                                        at latest accolade</a>
-                                                </h4>
-                                                <p>Jhon | 2 hours ago</p>
-                                            </div>
-                                        </div>
-                                        <!-- Single -->
-                                        <div class="weekly2-single">
-                                            <div class="weekly2-img">
-                                                <img src="assets/img/gallery/weeklyNews2.png" alt="" />
-                                            </div>
-                                            <div class="weekly2-caption">
-                                                <h4>
-                                                    <a href="#">Scarlett’s disappointment
-                                                        at latest accolade</a>
-                                                </h4>
-                                                <p>Jhon | 2 hours ago</p>
-                                            </div>
-                                        </div>
-                                        <div class="weekly2-single">
-                                            <div class="weekly2-img">
-                                                <img src="assets/img/gallery/weeklyNews3.png" alt="" />
-                                            </div>
-                                            <div class="weekly2-caption">
-                                                <h4>
-                                                    <a href="#">Scarlett’s disappointment
-                                                        at latest accolade</a>
-                                                </h4>
-                                                <p>Jhon | 2 hours ago</p>
-                                            </div>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

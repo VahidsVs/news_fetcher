@@ -184,6 +184,7 @@
         }
     </style>
     <!-- About US Start -->
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <div class="about-area2 gray-bg pt-60 pb-60">
         <div class="container">
             <div class="row">
@@ -242,46 +243,70 @@
                         </div>
                     </div>
                     <!-- From -->
-                    <div class="row d-none">
-                        <div class="col-lg-12">
-                            <form class="form-contact contact_form mb-80" action="contact_process.php" method="post"
-                                id="contactForm" novalidate="novalidate">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <textarea class="form-control w-100 error" name="message" id="message" cols="30" rows="9"
-                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder="Enter Message"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input class="form-control error" name="name" id="name" type="text"
-                                                onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = 'Enter your name'" placeholder="Enter your name">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input class="form-control error" name="email" id="email" type="email"
-                                                onfocus="this.placeholder = ''"
-                                                onblur="this.placeholder = 'Enter email address'" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <input class="form-control error" name="subject" id="subject" type="text"
-                                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'"
-                                                placeholder="Enter Subject">
-                                        </div>
-                                    </div>
+                             <div class="row">
+                                <div class="col-lg-12">
+                                        <h4>Leave a Comment</h4>
+                                        <form class="form-contact comment_form"  id="formComment" action="javascript:void(0)">
+                                        @csrf
+                                           <div class="row">
+                                              <div class="col-12">
+                                                 <div class="form-group">
+                                                    <textarea class="form-control w-100 comment-info " name="comment" id="comment" cols="30" rows="9"
+                                                       placeholder="Comment *" required></textarea>
+                                                 </div>
+                                              </div>
+                                              <div class="col-sm-6">
+                                                 <div class="form-group">
+                                                    <input class="form-control comment-info" name="name" id="name" type="text" placeholder="Name *" required>
+                                                 </div>
+                                              </div>
+                                              <div class="col-sm-6">
+                                                 <div class="form-group">
+                                                    <input class="form-control comment-info" name="email" id="email" type="email" placeholder="Email *" required>
+                                                 </div>
+                                              </div>
+                                              <div class="col-12">
+                                                 <div class="form-group">
+                                                    <input class="form-control comment-info" name="website" id="website" type="text" placeholder="Website">
+                                                 </div>
+                                              </div>
+                                           </div>
+                                           <div class="form-group">
+                                              <button type="submit" id='btnSubmitComment' data-url="{{ route('post-details.create-comment', $post->id) }}" onclick="createCommentForPost()" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                                           </div>
+                                        </form>
                                 </div>
-                                <div class="form-group mt-3">
-                                    <button type="submit"
-                                        class="button button-contactForm boxed-btn boxed-btn2">Send</button>
+                            </div>
+                            <div class="comments-area">
+                                <h4>{{$commentsCount}} Comment{{$commentsCount>1?'s':''}}</h4>
+                                @foreach ($comments as $item)
+                                <div class="comment-list">
+                                   <div class="single-comment justify-content-between d-flex">
+                                      <div class="user justify-content-between d-flex">
+                                         <div class="thumb">
+                                            <i class="fa fa-user-circle" style="font-size:48px;color:blue"></i>
+                                        </div>
+                                         <div class="desc">
+                                            <p class="comment">
+                                                {{$item->comment}}
+                                            </p>
+                                            <div class="d-flex justify-content-between">
+                                               <div class="d-flex align-items-center">
+                                                  <h5>
+                                                     <a href="#"> {{$item->name}}</a>
+                                                  </h5>
+                                                  <p class="date">{{$item->created_at->diffForHumans()}}</p>
+                                               </div>
+                                               <div class="reply-btn">
+                                                  <a href="#" class="btn-reply text-uppercase">reply</a>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </div>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
+                                @endforeach
+                             </div>
                 </div>
                 {{-- sidebar --}}
                 <div class="col-lg-4">
@@ -334,102 +359,18 @@
                             </div>
                         </div>
                     </div>
+                    
                     <!-- New Poster -->
                     <div class="news-poster d-none d-lg-block">
                         <img src="{{ asset('assets/img/news/news_card.jpg') }}" alt="banner">
                     </div>
+                    
                 </div>
+
+                </div>
+
             </div>
         </div>
     </div>
     <!-- About US End -->
 @endsection
-@section('script')
-    <script>
-        function removeAllClass() {
-            $('#likeBtn').removeClass('d-none');
-            $('#likeBtn').removeClass('d-inline-block');
-            $('#disLikeBtn').removeClass('d-none');
-            $('#disLikeBtn').removeClass('d-inline-block');
-        }
-
-        function likeBtn(id) {
-            var url = $('#likeBtn').attr('data-url');
-            $.ajax({
-                type: "GET",
-                url: url,
-                success: function(response) {
-                    if (response.status) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Successful',
-                            text: 'Successfully registered',
-                            timer: 3000,
-                            confirmButtonText: 'Ok'
-                        })
-                        removeAllClass();
-                        $('#likeBtn').addClass('d-none');
-                        $('#disLikeBtn').addClass('d-inline-block');
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'error!',
-                            text: 'Communication was not established',
-                            timer: 3000,
-                            confirmButtonText: 'Ok'
-                        })
-                    }
-                },
-                error: function() {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'error!',
-                        text: 'Communication was not established',
-                        timer: 3000,
-                        confirmButtonText: 'Ok'
-                    })
-                }
-            });
-        }
-
-        function disLikeBtn() {
-            var url = $('#disLikeBtn').attr('data-url');
-            $.ajax({
-                type: "GET",
-                url: url,
-                success: function(response) {
-                    if (response.status) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Successful',
-                            text: 'Successfully registered',
-                            timer: 3000,
-                            confirmButtonText: 'Ok'
-                        })
-                        removeAllClass();
-                        $('#likeBtn').addClass('d-inline-block');
-                        $('#disLikeBtn').addClass('d-none');
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'error!',
-                            text: 'Communication was not established',
-                            timer: 3000,
-                            confirmButtonText: 'Ok'
-                        })
-                    }
-                },
-                error: function() {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'error!',
-                        text: 'Communication was not established',
-                        timer: 3000,
-                        confirmButtonText: 'Ok'
-                    })
-                }
-            });
-        }
-    </script>
-@endsection
-{{-- script specific this page --}}

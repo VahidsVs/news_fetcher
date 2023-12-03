@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -29,15 +31,15 @@ class HomeController extends Controller
         $posts = $posts->skip(1)->take(6);
 
         // get all Post just category name is total :: lazy loading
-        // $posts = Post::where(['category_id' => 9, 'status' => 1])->with('category:id,name')->orderByDesc('id')->get();
-
+        $postsKronenTotal = Post::with('category:id,name')->where(['category_id' => 9, 'status' => 1])->orderByDesc('id')->get()->take(9);
+        //dd($postsKronenTotal);
         // post populars
-        $popularPosts = Post::where(['display' => 'section4', 'status' => 1])->get();
+        $popularPosts = Post::with('comments')->where('likes' , '>' , 0)->orderByDesc('likes')->get()->take(6);
 
         // return to view
         return view(
             "home",
-            compact('postsSection1', 'postsSection2', 'postsSection3', 'categories', 'lastetPost', 'posts', 'popularPosts')
+            compact('postsSection1', 'postsSection2', 'postsSection3', 'categories', 'lastetPost', 'posts', 'popularPosts', 'postsKronenTotal')
         );
     }
 
@@ -47,7 +49,9 @@ class HomeController extends Controller
     public function getPostDetails($id)
     {
         $post = Post::with(['category:id,name', 'user:id,username'])->where('id', $id)->first();
-        return view("post-interior", compact('post'));
+        $comments = Comment::where('post_id', $id)->get();
+        $commentsCount = $comments->count();
+        return view("post-interior", compact('post', 'commentsCount', 'comments'));
     }
 
     /**
@@ -61,8 +65,6 @@ class HomeController extends Controller
             return response()->json(['status' => true]);
         else
             return response()->json(['status' => false]);
-
-        // return Redirect::back()->withErrors(['swal-success' => 'Successfully registered']);
     }
 
     /**
@@ -81,13 +83,21 @@ class HomeController extends Controller
     /**
      * Show specific post.
      */
+
+    public function createComment(Post $post, Request $request)
+    {
+        $values = $request->validate(['comment' => ['required'], 'name' => 'required', 'email' => ['required', 'email'], 'website' => '']);
+        $values['post_id'] = $post->id;
+        $comment = Comment::create($values);
+        $result = $comment ? true : false;
+        return response()->json(['result' => $result]);
+    }
     public function getPostsByCategory(Category $category)
     {
         // post back section whats new
         $posts = Post::where('category_id', $category->id)->with('category:id,name')->orderByDesc('id')->get();
         $lastetPost = $posts->first();
         $posts = $posts->skip(1)->take(6);
-
         // return to view
         return view("home-sections.whats-new-posts", compact('lastetPost', 'posts'));
     }

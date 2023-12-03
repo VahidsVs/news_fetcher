@@ -1,5 +1,4 @@
 const Url_Home_Category = '/posts/';
-
 function getPostsByCategory(categoryId) {
 
     var route = Url_Home_Category + categoryId;
@@ -19,18 +18,158 @@ function getPostsByCategory(categoryId) {
             $('.posts-content').html("<h3 class='colorr posts-content-error'>❌ There was a server error!!!</h3>");
             console.log(error);
         });
-     //endregion Fetch
+    //endregion Fetch
 
-     /*region AJAX
+    /*region AJAX
+   $.ajax({
+       type: "GET",
+       url: route,
+       success: function(response) {
+           $('.posts-content').html(response);
+       },
+       error: function() {
+           $('.posts-content').html("<h3 class='colorr posts-content-error'>❌ There was a problem reading the data!!!</h3>");
+       }
+   });
+    endregion AJAX*/
+}
+function elementValueIsRequired(element) {
+    if (!element.val()) {
+        element.addClass("border border-danger");
+        return false
+    }
+    element.removeClass("border border-danger");
+    element.addClass("border border-success");
+    return true;
+
+}
+function createCommentForPost() {
+    var route = $('#btnSubmitComment').attr('data-url');
+    const data = new Object();
+    data.comment = $("#" + 'comment').val();
+    data.name = $("#" + 'name').val();
+    data.email = $("#" + 'email').val();
+    data.website = $("#" + 'website').val();
+
+    if (data.comment && data.name && data.email)
+        (async () => {
+            const rawResponse = await fetch(route, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                body: JSON.stringify(data)
+            });
+            const content = await rawResponse.json();
+            if (content.result) {
+                $("." + 'comment-info').val(null);
+                var title = "Comment";
+                var text = "Successfully submited";
+                var icon = 'success';
+                Swal.fire({
+                    icon: icon,
+                    title: title,
+                    text: text,
+                    timer: 3000
+                });
+            }
+            console.log(content);
+        })();
+}
+
+function removeAllClass() {
+    $('#likeBtn').removeClass('d-none');
+    $('#likeBtn').removeClass('d-inline-block');
+    $('#disLikeBtn').removeClass('d-none');
+    $('#disLikeBtn').removeClass('d-inline-block');
+}
+
+function likeBtn(id) {
+    var url = $('#likeBtn').attr('data-url');
+    removeAllClass();
+    $('#likeBtn').addClass('d-none');
+    $('#disLikeBtn').addClass('d-inline-block');
     $.ajax({
         type: "GET",
-        url: route,
-        success: function(response) {
-            $('.posts-content').html(response);
+        url: url,
+        success: function (response) {
+            if (response.status) {
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'Successful',
+                //     text: 'Successfully liked',
+                //     timer: 3000,
+                //     confirmButtonText: 'Ok'
+                // })
+
+            }
+            // else {
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: 'error!',
+            //         text: 'Communication was not established',
+            //         timer: 3000,
+            //         confirmButtonText: 'Ok'
+            //     })
+            // }
         },
-        error: function() {
-            $('.posts-content').html("<h3 class='colorr posts-content-error'>❌ There was a problem reading the data!!!</h3>");
+        error: function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'error!',
+                text: 'Communication was not established',
+                timer: 3000,
+                confirmButtonText: 'Ok'
+            })
         }
     });
-     endregion AJAX*/
+}
+
+function disLikeBtn() {
+    var url = $('#disLikeBtn').attr('data-url');
+    removeAllClass();
+    $('#likeBtn').addClass('d-inline-block');
+    $('#disLikeBtn').addClass('d-none');
+    $.ajax({
+        type: "GET",
+        url: url,
+        success: function (response) {
+            if (response.status) {
+                // Swal.fire({
+                //     icon: 'success',
+                //     title: 'Successful',
+                //     text: 'Successfully unliked',
+                //     timer: 3000,
+                //     confirmButtonText: 'Ok'
+                // })
+
+            }
+            //     } else {
+            //         Swal.fire({
+            //             icon: 'error',
+            //             title: 'error!',
+            //             text: 'Communication was not established',
+            //             timer: 3000,
+            //             confirmButtonText: 'Ok'
+            //         })
+            //     }
+            // },
+        },
+        error: function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'error!',
+                text: 'Communication was not established',
+                timer: 3000,
+                confirmButtonText: 'Ok'
+            })
+        }
+    });
+}
+// Function to validate email
+function isEmailValid(email) {
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return emailPattern.test(email);
 }
