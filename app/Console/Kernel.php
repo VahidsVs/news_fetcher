@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         //$schedule->command('inspire')->everyFifteenSeconds();
-        $categories = Category::where('status', 1)->whereIn('source', ['api1', 'rss'])->get();
+        $categories = Category::where('status', 1)->whereIn('source', ['api', 'rss'])->get();
         // dd($categories);
         foreach ($categories as $item) {
             $apiKey = $item->parent_name == 'news-gnews.io' ? env('API_KEY_Gnews') : null;
