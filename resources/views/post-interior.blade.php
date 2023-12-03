@@ -22,6 +22,10 @@
             font-size: 15px !important;
         }
 
+        .fsize-11px {
+            font-size: 11px !important;
+        }
+
         .fsize-13px {
             font-size: 13px !important;
         }
@@ -298,25 +302,20 @@
                         <h4>{{ $post->publishedComments->count() }}
                             Comment{{ $post->publishedComments->count() > 1 ? 's' : '' }}</h4>
                         @foreach ($post->publishedComments as $item)
-                            <div class="comment-list">
-                                <div class="single-comment justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
+                            <div class="comment-list bgcolor-E9ECEF p-3 rounded">
+                                <div class="single-comment d-flex border-bottom border-white">
+                                    <div class="user d-flex">
                                         <div class="thumb">
-                                            <i class="fa fa-user-circle" style="font-size:48px;color:blue"></i>
+                                            <i class="fa fa-user fsize-25px"></i>
                                         </div>
-                                        <div class="desc">
+                                        <div class="desc ">
                                             <p class="comment">
-                                                {{ $item->comment }}
+                                                {{ ucfirst($item->comment) }}
                                             </p>
-                                            <div class="d-flex justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <h5>
-                                                        <a href="#"> {{ $item->name }}</a>
-                                                    </h5>
-                                                    <p class="date">{{ $item->created_at->diffForHumans() }}</p>
-                                                </div>
-                                                <div class="reply-btn">
-                                                    <a href="#" class="btn-reply text-uppercase">reply</a>
+                                            <div>
+                                                <div class="d-flex">
+                                                    <p class="fsize-13px"> {{ ucfirst($item->name) }}</p>
+                                                    <p class="date fsize-13px">{{ $item->created_at->diffForHumans() }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -377,18 +376,13 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- New Poster -->
                     <div class="news-poster d-none d-lg-block">
                         <img src="{{ asset('assets/img/news/news_card.jpg') }}" alt="banner">
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-    </div>
     </div>
     <!-- About US End -->
 @endsection
