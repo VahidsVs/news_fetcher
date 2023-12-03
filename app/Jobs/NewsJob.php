@@ -73,11 +73,11 @@ class NewsJob implements ShouldQueue
                         $item->publishedAt = Str::of($item->publishedAt)->replace('Z', '');
                         $item->publishedAt = Str::of($item->publishedAt)->trim();
                         Post::updateOrCreate(
+                            ['slug' => $item->url, 'category_id' => $this->categoryId],
                             [
                                 'title' => $item->title, 'body' => $item->content, 'summary' => $item->description,
                                 'thumbnail_path' => $item->image, 'author_id' => 1, 'source' => $item->source->name . '_' . $item->source->url, 'published_at' => $item->publishedAt
-                            ],
-                            ['slug' => $item->url, 'category_id' => $this->categoryId]
+                            ]
                         );
                     }
                     break;
@@ -92,11 +92,11 @@ class NewsJob implements ShouldQueue
                         $item->pubDate = date_create($item->pubDate);
                         $item->pubDate = date_format($item->pubDate, "Y/m/d H:i:s");
                         Post::updateOrCreate(
+                            ['slug' => $item->guid, 'category_id' => $this->categoryId],
                             [
                                 'title' => $item->title, 'body' => strip_tags($item->content), 'summary' => strip_tags($item->description),
                                 'thumbnail_path' => $imagePath, 'author_id' => 1, 'source' => $item->guid, 'published_at' => $item->pubDate
-                            ],
-                            ['slug' => $item->guid, 'category_id' => $this->categoryId]
+                            ]
                         );
                         // Log::info("message is: {$item->title}");
                     }
