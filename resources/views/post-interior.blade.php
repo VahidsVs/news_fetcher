@@ -22,10 +22,6 @@
             font-size: 15px !important;
         }
 
-        .fsize-11px {
-            font-size: 11px !important;
-        }
-
         .fsize-13px {
             font-size: 13px !important;
         }
@@ -41,13 +37,29 @@
         }
 
         .change-photo-size-online-middle {
-            width: 360px !important;
-            height: 245px !important;
+            width: 100% !important;
+            height: auto !important;
         }
 
         .change-photo-size-online-section-one {
-            width: 770px !important;
-            height: 650px !important;
+            width: 100% !important;
+            height: 705px !important;
+        }
+
+        .change-photo-size-post-interior {
+            width: 100% !important;
+            height: 400px !important;
+        }
+
+        @media (max-width: 767px) {
+            .change-photo-size-online-section-one {
+                width: 100% !important;
+                height: 20% !important;
+            }
+
+            .f-15px-min-size {
+                font-size: 15px !important;
+            }
         }
 
         .change-photo-size-online-section-two {
@@ -73,10 +85,6 @@
             color: #068FFF !important;
         }
 
-        .fcolor-FF0000 {
-            color: #FF0000 !important;
-        }
-
         .bgcolor-red {
             background-color: #f4796c !important;
         }
@@ -85,16 +93,16 @@
             background-color: #f4f4f4 !important;
         }
 
-        .bgcolor-f9f9f9 {
-            background-color: #f9f9f9 !important;
-        }
-
         .bgcolor-E9ECEF {
             background-color: #E9ECEF !important;
         }
 
         .fcolor-white {
             color: #ffffff !important;
+        }
+
+        .fcolor-FF0000 {
+            color: #FF0000 !important;
         }
 
         .icon-facebook {
@@ -164,27 +172,7 @@
         }
 
         .last-four-posts-parent:hover .change-photo-size-online-min {
-            transform: scale(1.1) !important;
-        }
-
-        /* ======================== Post Interior ======================== */
-        . .change-photo-size-post-interior {
-            width: 750px !important;
-            height: 400px !important;
-        }
-
-        .likeBtn,
-        .disLikeBtn {
-            transition: all linear .2s;
-        }
-
-        .likeBtn:active,
-        .disLikeBtn:active {
-            transform: scale(1.5)
-        }
-
-        .swal-wide {
-            width: 30px !important;
+            transform: scale(.9) !important;
         }
     </style>
     <!-- About US Start -->
@@ -266,26 +254,26 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <textarea class="form-control w-100 comment-info " name="comment" id="comment" cols="30" rows="9"
-                                                placeholder="Comment *" required></textarea>
+                                            <textarea class="form-control w-100 comment-info bg-light border-secondary rounded" name="comment" id="comment"
+                                                cols="30" rows="9" placeholder="Comment *" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input class="form-control comment-info" name="name" id="name"
-                                                type="text" placeholder="Name *" required>
+                                            <input class="form-control comment-info bg-light border-secondary rounded"
+                                                name="name" id="name" type="text" placeholder="Name *" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input class="form-control comment-info" name="email" id="email"
-                                                type="email" placeholder="Email *" required>
+                                            <input class="form-control comment-info bg-light border-secondary rounded"
+                                                name="email" id="email" type="email" placeholder="Email *" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <input class="form-control comment-info" name="website" id="website"
-                                                type="text" placeholder="Website">
+                                            <input class="form-control comment-info bg-light border-secondary rounded"
+                                                name="website" id="website" type="text" placeholder="Website">
                                         </div>
                                     </div>
                                 </div>
@@ -293,7 +281,7 @@
                                     <button type="submit" id='btnSubmitComment'
                                         data-url="{{ route('post-details.create-comment', $post->id) }}"
                                         onclick="createCommentForPost()"
-                                        class="button button-contactForm btn_1 boxed-btn">Send Message</button>
+                                        class="button button-contactForm btn_1 boxed-btn rounded">Send Message</button>
                                 </div>
                             </form>
                         </div>

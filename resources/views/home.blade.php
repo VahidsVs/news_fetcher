@@ -38,13 +38,29 @@
         }
 
         .change-photo-size-online-middle {
-            width: 360px !important;
-            height: 245px !important;
+            width: 100% !important;
+            height: auto !important;
         }
 
         .change-photo-size-online-section-one {
-            width: 770px !important;
+            width: 100% !important;
             height: 705px !important;
+        }
+
+        .change-photo-size-post-interior {
+            width: 100% !important;
+            height: 400px !important;
+        }
+
+        @media (max-width: 767px) {
+            .change-photo-size-online-section-one {
+                width: 100% !important;
+                height: 20% !important;
+            }
+
+            .f-15px-min-size {
+                font-size: 15px !important;
+            }
         }
 
         .change-photo-size-online-section-two {
@@ -78,8 +94,16 @@
             background-color: #f4f4f4 !important;
         }
 
+        .bgcolor-E9ECEF {
+            background-color: #E9ECEF !important;
+        }
+
         .fcolor-white {
             color: #ffffff !important;
+        }
+
+        .fcolor-FF0000 {
+            color: #FF0000 !important;
         }
 
         .icon-facebook {
@@ -149,7 +173,7 @@
         }
 
         .last-four-posts-parent:hover .change-photo-size-online-min {
-            transform: scale(1.1) !important;
+            transform: scale(.9) !important;
         }
     </style>
     <!-- Trending Area Start -->
@@ -168,18 +192,20 @@
                                             <img class="change-photo-size-online-section-one img-rounded img-fluid"
                                                 src="{{ $item->thumbnail_path }}"
                                                 alt="{{ ucfirst($item->category->name) }}" />
-                                            <div class="trend-top-cap">
-                                                <span class="bgcolor-red fsize-20px" data-animation="fadeInUp"
-                                                    data-delay=".2s"
+                                            <div class="trend-top-cap pl-2 pl-md-0">
+                                                <span class="bgcolor-red fsize-20px f-15px-min-size"
+                                                    data-animation="fadeInUp" data-delay=".2s"
                                                     data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
                                                 <h2>
-                                                    <a href="{{ route('home.post-details', $item->id) }}" class="fsize-25px"
-                                                        data-animation="fadeInUp" data-delay=".4s"
+                                                    <a href="{{ route('home.post-details', $item->id) }}"
+                                                        class="fsize-25px f-15px-min-size" data-animation="fadeInUp"
+                                                        data-delay=".4s"
                                                         data-duration="1000ms">{{ ucfirst($item->title) }}</a>
                                                 </h2>
                                                 <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">
-                                                    <i class="fas fa-history fcolor-blue fsize-20px"></i>
-                                                    <small class="fsize-20px">{{ $item->published_ago }}</small>
+                                                    <i class="fas fa-history fcolor-blue fsize-20px f-15px-min-size"></i>
+                                                    <small
+                                                        class="fsize-20px f-15px-min-size">{{ $item->published_ago }}</small>
                                                 </p>
                                             </div>
                                         </div>
@@ -271,20 +297,29 @@
                             {{-- categories menu --}}
                             <div class="col-xl-12">
                                 <div class="properties__button">
-                                    <!--Nav Button  -->
-                                    <nav>
-                                        <div class="nav nav-tabs categories-list mb-0 d-flex justify-content-start"
-                                            id="nav-tab" role="tablist">
-                                            @foreach ($categories as $item)
-                                                <a onclick="getPostsByCategory({{ $item->id }})"
-                                                    class="nav-item nav-link cursor-fetcher-news font-family-news-fetcher"
-                                                    id="nav-home-tab" data-toggle="tab" role="tab"
-                                                    aria-controls="nav-home"
-                                                    aria-selected="true">{{ ucfirst($item->name) }}</a>
-                                            @endforeach
+                                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                                        <button
+                                            class="fab fa-buromobelexperte fsize-20px bg-light font-weight-bold fcolor-blue border-0"></button>
+                                        <button class="navbar-toggler border-0 bg-light" type="button"
+                                            data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+                                            aria-expanded="false" aria-label="Toggle navigation">
+                                            <span
+                                                class="navbar-toggler-icon fsize-20px font-weight-bold border-0 bg-light"></span>
+                                        </button>
+                                        <div class="collapse navbar-collapse" id="navbarNav">
+                                            <ul class="navbar-nav pl-2 pl-md-0">
+                                                @foreach ($categories as $item)
+                                                    <li class="nav-item">
+                                                        <a onclick="getPostsByCategory({{ $item->id }})"
+                                                            class="fsize-13px font-weight-bold nav-item nav-link cursor-fetcher-news font-family-news-fetcher"
+                                                            id="nav-home-tab" data-toggle="tab" role="tab"
+                                                            aria-controls="nav-home"
+                                                            aria-selected="true">{{ ucfirst($item->name) }}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
                                         </div>
                                     </nav>
-                                    <!--End Nav Button  -->
                                 </div>
                             </div>
                         </div>
@@ -391,7 +426,8 @@
                                         <div class="mx-2 text-secondary">|</div>
                                         <p>
                                             <i class="fas fa-comment fcolor-blue fsize-13px"></i>
-                                            <small class="fsize-13px">{{ (int) $item->publishedComments->count() }}</small>
+                                            <small
+                                                class="fsize-13px">{{ (int) $item->publishedComments->count() }}</small>
                                         </p>
                                         <div class="mx-2 text-secondary">|</div>
                                         <p>
@@ -458,99 +494,8 @@
         </div>
     </div>
     <!-- End Weekly-News -->
-    <!--  Recent Articles start -->
-    <div class="recent-articles pt-80 pb-80">
-        <div class="container">
-            <div class="recent-wrapper">
-                <!-- section Tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle mb-30">
-                            <h3>Trending News</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div class="recent-active dot-style d-flex dot-style">
-                            <!-- Single -->
-                            <div class="single-recent">
-                                <div class="what-img">
-                                    <img src="assets/img/gallery/tranding1.png" alt="" />
-                                </div>
-                                <div class="what-cap">
-                                    <h4>
-                                        <a href="#">
-                                            <h4>
-                                                <a href="latest_news.html">What to Expect From the 2020
-                                                    Oscar Nomin ations</a>
-                                            </h4>
-                                        </a>
-                                    </h4>
-                                    <p>Jun 19, 2020</p>
-                                    <a class="popup-video btn-icon"
-                                        href="https://www.youtube.com/watch?v=1aP-TXUpNoU"><span
-                                            class="flaticon-play-button"></span></a>
-                                </div>
-                            </div>
-                            <!-- Single -->
-                            <div class="single-recent">
-                                <div class="what-img">
-                                    <img src="assets/img/gallery/tranding2.png" alt="" />
-                                </div>
-                                <div class="what-cap">
-                                    <h4>
-                                        <a href="latest_news.html">What to Expect From the 2020 Oscar
-                                            Nomin ations</a>
-                                    </h4>
-                                    <p>Jun 19, 2020</p>
-                                    <a class="popup-video" href="https://www.youtube.com/watch?v=1aP-TXUpNoU"><span
-                                            class="flaticon-play-button"></span></a>
-                                </div>
-                            </div>
-                            <!-- Single -->
-                            <div class="single-recent">
-                                <div class="what-img">
-                                    <img src="assets/img/gallery/tranding1.png" alt="" />
-                                </div>
-                                <div class="what-cap">
-                                    <h4>
-                                        <a href="latest_news.html">
-                                            <h4>
-                                                <a href="latest_news.html">What to Expect From the 2020
-                                                    Oscar Nomin ations</a>
-                                            </h4>
-                                        </a>
-                                    </h4>
-                                    <p>Jun 19, 2020</p>
-                                    <a class="popup-video" href="https://www.youtube.com/watch?v=1aP-TXUpNoU"><span
-                                            class="flaticon-play-button"></span></a>
-                                </div>
-                            </div>
-                            <!-- Single -->
-                            <div class="single-recent">
-                                <div class="what-img">
-                                    <img src="assets/img/gallery/tranding2.png" alt="" />
-                                </div>
-                                <div class="what-cap">
-                                    <h4>
-                                        <a href="latest_news.html">What to Expect From the 2020 Oscar
-                                            Nomin ations</a>
-                                    </h4>
-                                    <p>Jun 19, 2020</p>
-                                    <a class="popup-video" href="https://www.youtube.com/watch?v=1aP-TXUpNoU"><span
-                                            class="flaticon-play-button"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Recent Articles End -->
     <!--   Weekly3-News start -->
-    <div class="weekly3-news-area gray-bg pt-80 pb-130">
+    <div class="weekly3-news-area pt-80 pb-130">
         <div class="container">
             <div class="weekly3-wrapper">
                 <div class="row">
@@ -631,7 +576,7 @@
     </div>
     <!-- End Weekly-News -->
     <!-- banner-last Start -->
-    <div class="banner-area pt-90 pb-90">
+    <div class="banner-area gray-bg pt-90 pb-90">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10 col-md-10">
