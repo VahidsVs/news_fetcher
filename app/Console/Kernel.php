@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
         // dd($categories);
         foreach ($categories as $item) {
             $apiKey = $item->parent_name == 'news-gnews.io' ? env('API_KEY_Gnews') : null;
-            $schedule->job(new NewsJob($item->api_url . $apiKey, $item->source_data_type, $item->parent_name, $item->id, "kernel"))->everyThirtyMinutes();
+            $schedule->job(new NewsJob($item->api_url . $apiKey, $item->source_data_type, $item->parent_name, $item->id, "kernel"));
         }
     }
 
