@@ -126,6 +126,19 @@
             font-size: 30px !important
         }
 
+        .show-all-post-text,
+        .icon-right-arrow {
+            transition: all linear .5s;
+        }
+
+        .show-all-post-text:hover p {
+            color: #068FFF !important;
+        }
+
+        .show-all-post-text:hover .icon-right-arrow {
+            transform: translateX(1rem) !important;
+        }
+
         .border-3px-red {
             border: 3px solid #FE2142;
         }
@@ -203,7 +216,7 @@
                                                         data-duration="1000ms">{{ ucfirst($item->title) }}</a>
                                                 </h2>
                                                 <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">
-                                                    <i class="fas fa-history fcolor-blue fsize-20px f-15px-min-size"></i>
+                                                    <i class="fa fa-history fcolor-blue fsize-20px f-15px-min-size"></i>
                                                     <small
                                                         class="fsize-20px f-15px-min-size">{{ $item->published_ago }}</small>
                                                 </p>
@@ -260,7 +273,7 @@
                                                             data-duration="1000ms">{{ ucfirst($item->title) }}</a>
                                                     </h2>
                                                     <p data-animation="fadeInUp" data-delay=".6s" data-duration="1000ms">
-                                                        <i class="fas fa-history fcolor-blue fsize-15px"></i>
+                                                        <i class="fa     fa-history fcolor-blue fsize-15px"></i>
                                                         <small class="fsize-15px">{{ $item->published_ago }}</small>
                                                     </p>
                                                 </div>
@@ -299,7 +312,7 @@
                                 <div class="properties__button">
                                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                                         <button
-                                            class="fab fa-buromobelexperte fsize-20px bg-light font-weight-bold fcolor-blue border-0"></button>
+                                            class="fa fa-th-list fsize-20px bg-light font-weight-bold fcolor-blue border-0"></button>
                                         <button class="navbar-toggler border-0 bg-light" type="button"
                                             data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
                                             aria-expanded="false" aria-label="Toggle navigation">
@@ -352,7 +365,7 @@
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
                                     <a href="#">
-                                        <i class="fab fa-facebook icon-facebook"></i>
+                                        <i class="fa fa-facebook icon-facebook"></i>
                                     </a>
                                 </div>
                                 <div class="follow-count">
@@ -363,7 +376,7 @@
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
                                     <a href="#">
-                                        <i class="fab fa-twitter-square icon-twitter"></i>
+                                        <i class="fa fa-twitter-square icon-twitter"></i>
                                     </a>
                                 </div>
                                 <div class="follow-count">
@@ -374,7 +387,7 @@
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
                                     <a href="#">
-                                        <i class="fab fa-instagram icon-instagram"></i>
+                                        <i class="fa fa-instagram icon-instagram"></i>
                                     </a>
                                 </div>
                                 <div class="follow-count">
@@ -385,7 +398,7 @@
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
                                     <a href="#">
-                                        <i class="fab fa-youtube icon-youtube"></i>
+                                        <i class="fa fa-youtube icon-youtube"></i>
                                     </a>
                                 </div>
                                 <div class="follow-count">
@@ -420,18 +433,18 @@
                                     </h4>
                                     <div class="d-flex justify-content-start align-items-center">
                                         <p>
-                                            <i class="fas fa-thumbs-up fcolor-blue fsize-13px"></i>
+                                            <i class="fa fa-thumbs-up fcolor-blue fsize-13px"></i>
                                             <small class="fsize-13px">{{ (int) $item->likes }}</small>
                                         </p>
                                         <div class="mx-2 text-secondary">|</div>
                                         <p>
-                                            <i class="fas fa-comment fcolor-blue fsize-13px"></i>
+                                            <i class="fa fa-comment fcolor-blue fsize-13px"></i>
                                             <small
                                                 class="fsize-13px">{{ (int) $item->publishedComments->count() }}</small>
                                         </p>
                                         <div class="mx-2 text-secondary">|</div>
                                         <p>
-                                            <i class="fas fa-history fcolor-blue fsize-13px"></i>
+                                            <i class="fa fa-history fcolor-blue fsize-13px"></i>
                                             <small class="fsize-13px">{{ $item->published_ago }}</small>
                                         </p>
                                     </div>

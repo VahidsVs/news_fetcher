@@ -14,7 +14,8 @@
 <link rel="stylesheet" href="{{ asset('assets/css/slicknav.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.min.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.min.css') }}"> --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{ asset('assets/sweetalert/sweetalert2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">

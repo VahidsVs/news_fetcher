@@ -50,6 +50,18 @@ class HomeController extends Controller
     }
 
     /**
+     * show all posts.
+     */
+    public function getAllPosts($id)
+    {
+        $posts = Post::with(['category:id,name', 'user:id,username', 'publishedComments'])
+            ->where(['category_id' => $id, 'status' => 1])
+            ->orderByDesc('id')
+            ->paginate(6);
+        return view('all-posts', compact('posts'));
+    }
+
+    /**
      * like post.
      */
     public function likePost(Post $post)
@@ -72,12 +84,12 @@ class HomeController extends Controller
     }
 
     #region comment-ajax
-        // public function commentPost(Request $request)
-        // {
-        //     $comment = comment::create($request->except('_token'));
-        //     $status = $comment ? 'true' : 'false';
-        //     return response()->json(['status' => $status]);
-        // }
+    // public function commentPost(Request $request)
+    // {
+    //     $comment = comment::create($request->except('_token'));
+    //     $status = $comment ? 'true' : 'false';
+    //     return response()->json(['status' => $status]);
+    // }
     #endregion ajax
 
     /**
