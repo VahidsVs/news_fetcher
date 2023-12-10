@@ -78,6 +78,11 @@
             height: 79px !important;
         }
 
+        .change-photo-size-all-posts {
+            width: 100% !important;
+            height: 245px !important;
+        }
+
         .fcolor-707b8e {
             color: #707b8e !important;
         }

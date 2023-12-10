@@ -125,6 +125,19 @@
             font-size: 30px !important
         }
 
+        .show-all-post-text,
+        .icon-right-arrow {
+            transition: all linear .5s;
+        }
+
+        .show-all-post-text:hover p {
+            color: #068FFF !important;
+        }
+
+        .show-all-post-text:hover .icon-right-arrow {
+            transform: translateX(1rem) !important;
+        }
+
         .border-3px-red {
             border: 3px solid #FE2142;
         }
@@ -203,11 +216,11 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <p>
-                                <i class="far fa-user-circle fcolor-blue fsize-20px"></i>
+                                <i class="fa fa-user fcolor-blue fsize-20px"></i>
                                 <small class="fsize-20px fcolor-707b8e">{{ $post->user->username }}</small>
                             </p>
                             <p>
-                                <i class="fas fa-history fcolor-blue fsize-20px"></i>
+                                <i class="fa fa-history fcolor-blue fsize-20px"></i>
                                 <small class="fsize-20px fcolor-707b8e">{{ $post->published_ago }}</small>
                             </p>
                         </div>
@@ -221,13 +234,13 @@
                                     <button onclick="likeBtn({{ $post->id }})" id="likeBtn"
                                         data-url="{{ route('post-details.like', $post->id) }}"
                                         class="border-0 cursor-fetcher-news bgcolor-E9ECEF">
-                                        <i class="far fa-heart text-dark border-0 fsize-20px likeBtn bgcolor-E9ECEF"></i>
+                                        <i class="fa fa-heart-o text-dark border-0 fsize-20px likeBtn bgcolor-E9ECEF"></i>
                                     </button>
                                     <button onclick="disLikeBtn({{ $post->id }})" id="disLikeBtn"
                                         data-url="{{ route('post-details.unlike', $post->id) }}"
                                         class="d-none cursor-fetcher-news border-0 bgcolor-E9ECEF">
                                         <i
-                                            class="fas fa-heart fcolor-FF0000 fsize-20px border-0 disLikeBtn bgcolor-E9ECEF"></i>
+                                            class="fa fa-heart fcolor-FF0000 fsize-20px border-0 disLikeBtn bgcolor-E9ECEF"></i>
                                     </button>
                                 </div>
                             </span>
@@ -296,7 +309,7 @@
                                         <div class="thumb">
                                             <i class="fa fa-user fsize-25px"></i>
                                         </div>
-                                        <div class="desc ">
+                                        <div class="desc">
                                             <p class="comment">
                                                 {{ ucfirst($item->comment) }}
                                             </p>
@@ -321,7 +334,7 @@
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
                                     <a href="#">
-                                        <i class="fab fa-facebook icon-facebook"></i>
+                                        <i class="fa fa-facebook icon-facebook"></i>
                                     </a>
                                 </div>
                                 <div class="follow-count">
@@ -332,7 +345,7 @@
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
                                     <a href="#">
-                                        <i class="fab fa-twitter-square icon-twitter"></i>
+                                        <i class="fa fa-twitter-square icon-twitter"></i>
                                     </a>
                                 </div>
                                 <div class="follow-count">
@@ -343,7 +356,7 @@
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
                                     <a href="#">
-                                        <i class="fab fa-instagram icon-instagram"></i>
+                                        <i class="fa fa-instagram icon-instagram"></i>
                                     </a>
                                 </div>
                                 <div class="follow-count">
@@ -354,7 +367,7 @@
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
                                     <a href="#">
-                                        <i class="fab fa-youtube icon-youtube"></i>
+                                        <i class="fa fa-youtube icon-youtube"></i>
                                     </a>
                                 </div>
                                 <div class="follow-count">

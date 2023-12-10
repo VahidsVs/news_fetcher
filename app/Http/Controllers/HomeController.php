@@ -34,9 +34,7 @@ class HomeController extends Controller
         $postsMostLiked = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(6);
 
         // return to view
-        return view(
-            "home",
-            compact('postsSection1', 'categories', 'lastetPost', 'posts', 'postsMostLiked', 'postsKronenTotal')
+        return view('home', compact('postsSection1', 'categories', 'lastetPost', 'posts', 'postsMostLiked', 'postsKronenTotal')
         );
     }
 
@@ -54,11 +52,11 @@ class HomeController extends Controller
      */
     public function getAllPosts($id)
     {
-        $posts = Post::with(['category:id,name', 'user:id,username', 'publishedComments'])
+        $allPosts = Post::with(['category:id,name', 'user:id,username', 'publishedComments'])
             ->where(['category_id' => $id, 'status' => 1])
             ->orderByDesc('id')
             ->paginate(6);
-        return view('all-posts', compact('posts'));
+        return view('all-posts', compact('allPosts'));
     }
 
     /**
