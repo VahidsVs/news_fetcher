@@ -20,13 +20,13 @@
                         <div class="row d-flex justify-content-between align-items-center">
                             <div class="header-info-left">
                                 <ul>
-                                    <li class="title"><span class="flaticon-energy"></span> trending-title</li>
-                                    <li>Class property employ ancho red multi level mansion</li>
+                                    <li class="title"><span class="flaticon-energy"></span> Lastest News</li>
+                                    <li>Breaking News from all-over the World</li>
                                 </ul>
                             </div>
                             <div class="header-info-right">
                                 <ul class="header-date">
-                                    <li><span class="flaticon-calendar"></span> +880166 253 232</li>
+                                    <li><span class="flaticon-calendar"></span> +43 664 99657071</li>
                                 </ul>
                             </div>
                         </div>

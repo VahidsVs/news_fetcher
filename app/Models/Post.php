@@ -16,12 +16,16 @@ class Post extends Model
     protected $guarded = ['id'];
 
     protected $appends = [
-        'published_ago'
+        'published_ago', 'post_source'
     ];
 
     public function getPublishedAgoAttribute()
     {
         return  Carbon::parse($this->published_at)->diffForHumans();
+    }
+    public function getPostSourceAttribute()
+    {
+        return ucfirst(strtolower(explode('_', $this->source)[0]));
     }
 
     public function category()

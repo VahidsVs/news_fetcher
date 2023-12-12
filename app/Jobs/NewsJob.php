@@ -95,7 +95,7 @@ class NewsJob implements ShouldQueue
                             ['slug' => $item->guid, 'category_id' => $this->categoryId],
                             [
                                 'title' => $item->title, 'body' => strip_tags($item->content), 'summary' => strip_tags($item->description),
-                                'thumbnail_path' => $imagePath, 'author_id' => 1, 'source' => $item->guid, 'published_at' => $item->pubDate
+                                'thumbnail_path' => $imagePath, 'author_id' => 1, 'source' => 'Kronen Zeitung', 'published_at' => $item->pubDate
                             ]
                         );
                         // Log::info("message is: {$item->title}");

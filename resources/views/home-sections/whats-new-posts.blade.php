@@ -13,7 +13,7 @@
                 <p class="source-last-post">
                     <i class="fa fa-clone fcolor-blue fsize-15px"></i>
                     <small><a class="fsize-15px" href="{{ explode('_', $lastetPost->source)[1] }}"
-                            target="__blank">{{ ucfirst(strtolower(explode('_', $lastetPost->source)[0])) }}</a></small>
+                            target="__blank"> {{$item->post_source}} </a></small>
                 </p>
                 <p class="date-last-post">
                     <i class="fa fa-history fcolor-blue fsize-15px"></i>
@@ -52,7 +52,7 @@
                             <p class="source-last-four-posts">
                                 <i class="fa fa-clone fcolor-blue fsize-13px"></i>
                                 <small><a href="{{ explode('_', $item['source'])[1] }}"
-                                        target="__blank">{{ ucfirst(strtolower(explode('_', $item['source'])[0])) }}</a></small>
+                                        target="__blank">{{$item->post_source }}</a></small>
                             </p>
                             <p class="date-last-four-posts pt-2">
                                 <i class="fa fa-history fcolor-blue fsize-13px"></i>

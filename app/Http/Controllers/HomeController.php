@@ -32,9 +32,9 @@ class HomeController extends Controller
 
         // most liked
         $postsMostLiked = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(6);
-
+        $postsMostLikedFooter = $postsMostLiked->slice(0, -2);
         // return to view
-        return view('home', compact('postsSection1', 'categories', 'lastetPost', 'posts', 'postsMostLiked', 'postsKronenTotal')
+        return view('home', compact('postsSection1', 'categories', 'lastetPost', 'posts', 'postsMostLiked', 'postsKronenTotal','postsMostLikedFooter')
         );
     }
 
@@ -43,8 +43,9 @@ class HomeController extends Controller
      */
     public function getPostDetails($id)
     {
+        $postsMostLikedFooter = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(4);
         $post = Post::with(['category:id,name', 'user:id,username', 'publishedComments'])->where(['id' => $id, 'status' => 1])->first();
-        return view("post-interior", compact('post'));
+        return view("post-interior", compact('post','postsMostLikedFooter'));
     }
 
     /**
@@ -52,11 +53,12 @@ class HomeController extends Controller
      */
     public function getAllPosts($id)
     {
+        $postsMostLikedFooter = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(4);
         $allPosts = Post::with(['category:id,name', 'user:id,username', 'publishedComments'])
             ->where(['category_id' => $id, 'status' => 1])
             ->orderByDesc('id')
             ->paginate(12);
-        return view('all-posts', compact('allPosts'));
+        return view('all-posts', compact('allPosts','postsMostLikedFooter'));
     }
 
     /**

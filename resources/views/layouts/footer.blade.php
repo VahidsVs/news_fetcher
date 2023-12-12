@@ -14,10 +14,10 @@
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
-                                        <p class="info1">Lorem ipsum dolor sit amet, nsectetur adipiscing elit, sed do
-                                            eiusmod tempor incididunt ut labore.</p>
-                                        <p class="info2">198 West 21th Street, Suite 721 New York,NY 10010</p>
-                                        <p class="info2">Phone: +95 (0) 123 456 789 Cell: +95 (0) 123 456 789</p>
+                                        <p class="info2">MegaTechNews  &copy; is an automated Newspress powered by MegaTech &copy; presents most recent news from multiple sources</p>
+                                        <p class="info2">Weiz, Austria</p>
+                                        <p class="info2">Email: admin@megatechapp.at</p>
+                                        <p class="info2">Phone: +43 664 99657071</p>
                                     </div>
                                 </div>
                             </div>
@@ -26,38 +26,22 @@
                     <div class="col-xl-4 col-lg-4 col-md-5 col-sm-7">
                         <div class="single-footer-caption mb-50">
                             <div class="footer-tittle">
-                                <h4>Popular post</h4>
+                                <h4>Popular posts</h4>
                             </div>
                             <!-- Popular post -->
+                            @foreach ($postsMostLikedFooter as $item)
                             <div class="whats-right-single mb-20">
                                 <div class="whats-right-img">
-                                    <img src="{{ asset('assets/img/gallery/footer_post1.png') }}" alt="footer-picture">
+                                    <img class="change-photo-size-online-popular-post img-rounded" src="{{ $item->thumbnail_path }}" alt="most-liked">
                                 </div>
                                 <div class="whats-right-cap">
-                                    <h4><a href="latest_news.html">Scarlett’s disappointment at latest accolade</a></h4>
-                                    <p>Jhon | 2 hours ago</p>
+                                    <h4><a href="{{ route('home.post-details', $item->id) }}">{{ ucfirst($item->title) }}</a></h4>
+                                    <p>{{$item->post_source}} | {{ $item->published_ago }}</p>
                                 </div>
                             </div>
+                            @endforeach
                             <!-- Popular post -->
-                            <div class="whats-right-single mb-20">
-                                <div class="whats-right-img">
-                                    <img src="{{ asset('assets/img/gallery/footer_post2.png') }}" alt="footer-picture">
-                                </div>
-                                <div class="whats-right-cap">
-                                    <h4><a href="latest_news.html">Scarlett’s disappointment at latest accolade</a></h4>
-                                    <p>Jhon | 2 hours ago</p>
-                                </div>
-                            </div>
-                            <!-- Popular post -->
-                            <div class="whats-right-single mb-20">
-                                <div class="whats-right-img">
-                                    <img src="{{ asset('assets/img/gallery/footer_post3.png') }}" alt="footer-picture">
-                                </div>
-                                <div class="whats-right-cap">
-                                    <h4><a href="latest_news.html">Scarlett’s disappointment at latest accolade</a></h4>
-                                    <p>Jhon | 2 hours ago</p>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-5 col-sm-7">
