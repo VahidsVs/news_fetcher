@@ -193,6 +193,34 @@
         .last-four-posts-parent:hover .change-photo-size-online-min {
             transform: scale(.9) !important;
         }
+
+        .terending-title {
+            transition: all .3s linear !important;
+        }
+
+        .terending-title:hover {
+            color: #068FFF !important;
+        }
+
+        ::placeholder {
+            color: #505050 !important;
+        }
+
+        .change-style-comment-form-box {
+            outline: none !important;
+            border: none !important;
+            background-color: #ffffff !important;
+            border-radius: .5rem !important;
+            box-shadow: 2px 2px 5px 0 rgb(255, 33, 67, .5);
+        }
+
+        .change-style-comment-form-box:focus {
+            outline: none !important;
+            border: none !important;
+            background-color: #ffffff !important;
+            border-radius: .5rem !important;
+            box-shadow: unset !important;
+        }
     </style>
     <!-- Trending Area Start -->
     <div class="trending-area fix pt-25 gray-bg">
@@ -210,7 +238,7 @@
                                             <img class="change-photo-size-online-section-one img-rounded img-fluid"
                                                 src="{{ $item->thumbnail_path }}"
                                                 alt="{{ ucfirst($item->category->name) }}" />
-                                            <div class="trend-top-cap pl-2 pl-md-0">
+                                            <div class="trend-top-cap px-2 px-md-1">
                                                 <span class="bgcolor-red fsize-20px f-15px-min-size"
                                                     data-animation="fadeInUp" data-delay=".2s"
                                                     data-duration="1000ms">{{ ucfirst($item->category->name) }}</span>
@@ -325,12 +353,12 @@
                                                 class="navbar-toggler-icon fsize-20px font-weight-bold border-0 bg-light"></span>
                                         </button>
                                         <div class="collapse navbar-collapse" id="navbarNav">
-                                            <ul class="navbar-nav pl-2 pl-md-0">
+                                            <ul class="navbar-nav ml-2 ml-lg-0">
                                                 @foreach ($categories as $item)
                                                     <li class="nav-item">
-                                                        <a onclick="getPostsByCategory({{ $item->id }})"
-                                                            class="fsize-13px font-weight-bold nav-item nav-link cursor-fetcher-news font-family-news-fetcher"
-                                                            id="nav-home-tab" data-toggle="tab" role="tab"
+                                                        <a onclick="getPostsByCategory({{ $item->id }}, {{ $categories->count() }})"
+                                                            class="{{ $item->name == 'General' ? 'fcolor-FF0000' : '' }} fsize-13px font-weight-bold nav-item nav-link cursor-fetcher-news font-family-news-fetcher"
+                                                            id="nameSelector{{ $item->id }}" data-toggle="tab" role="tab"
                                                             aria-controls="nav-home"
                                                             aria-selected="true">{{ ucfirst($item->name) }}</a>
                                                     </li>
@@ -479,8 +507,10 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="small-tittle mb-30">
-                                     <a href="{{route('home.all-posts',$postsKronenTotal[0]->category_id)}}"><p class="font-weight-bold fsize-20px">Trendings
-                                            </p></a>
+                                        <a href="{{ route('home.all-posts', $postsKronenTotal[0]->category_id) }}">
+                                            <p class="font-weight-bold fsize-20px terending-title">Trendings
+                                            </p>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

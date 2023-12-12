@@ -1,5 +1,25 @@
 const Url_Home_Category = "/posts/";
-function getPostsByCategory(categoryId) {
+
+function removeAllClassDsiplay() {
+    $("#likeBtn").removeClass("d-none");
+    $("#likeBtn").removeClass("d-inline-block");
+    $("#disLikeBtn").removeClass("d-none");
+    $("#disLikeBtn").removeClass("d-inline-block");
+}
+
+function removeAllClassColor(catid = null) {
+    for (let index = 1; index < catid; index++) {
+        var element = $("#nameSelector" + index);
+        element.removeClass('fcolor-FF0000');
+    }
+
+}
+
+function getPostsByCategory(categoryId, countCategoryName) {
+    removeAllClassColor(countCategoryName);
+    var element = $("#nameSelector" + categoryId);
+    element.addClass('fcolor-FF0000');
+
     var route = Url_Home_Category + categoryId;
     //#region fetch
     fetch(route)
@@ -69,7 +89,7 @@ function elementValueIsRequired(element) {
 //                     timer: 3000,
 //                     confirmButtonText: "Ok",
 //                 });
-//                 removeAllClass();
+//                 removeAllClassDsiplay();
 //                 $("#likeBtn").addClass("d-inline-block");
 //                 $("#disLikeBtn").addClass("d-none");
 //             } else {
@@ -133,16 +153,9 @@ function createCommentForPost() {
         })();
 }
 
-function removeAllClass() {
-    $("#likeBtn").removeClass("d-none");
-    $("#likeBtn").removeClass("d-inline-block");
-    $("#disLikeBtn").removeClass("d-none");
-    $("#disLikeBtn").removeClass("d-inline-block");
-}
-
 function likeBtn() {
     var url = $("#likeBtn").attr("data-url");
-    removeAllClass();
+    removeAllClassDsiplay();
     $("#likeBtn").addClass("d-none");
     $("#disLikeBtn").addClass("d-inline-block");
     $.ajax({
@@ -182,7 +195,7 @@ function likeBtn() {
 
 function disLikeBtn() {
     var url = $("#disLikeBtn").attr("data-url");
-    removeAllClass();
+    removeAllClassDsiplay();
     $("#likeBtn").addClass("d-inline-block");
     $("#disLikeBtn").addClass("d-none");
     $.ajax({

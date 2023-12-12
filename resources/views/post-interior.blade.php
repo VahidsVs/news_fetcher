@@ -181,11 +181,39 @@
         }
 
         .whats-right-cap .source-last-four-posts small a:hover {
-            color: #ff2143 !important;
+            color: rgb(255, 33, 67) !important;
         }
 
         .last-four-posts-parent:hover .change-photo-size-online-min {
             transform: scale(.9) !important;
+        }
+
+        .terending-title {
+            transition: all .3s linear !important;
+        }
+
+        .terending-title:hover {
+            color: #068FFF !important;
+        }
+
+        ::placeholder {
+            color: #505050 !important;
+        }
+
+        .change-style-comment-form-box {
+            outline: none !important;
+            border: none !important;
+            background-color: #ffffff !important;
+            border-radius: .5rem !important;
+            box-shadow: 2px 2px 5px 0 rgb(255, 33, 67, .5);
+        }
+
+        .change-style-comment-form-box:focus {
+            outline: none !important;
+            border: none !important;
+            background-color: #ffffff !important;
+            border-radius: .5rem !important;
+            box-shadow: unset !important;
         }
     </style>
     <!-- About US Start -->
@@ -261,31 +289,31 @@
                                 </div>
                             </form> --}}
 
-                            <h4>Leave a Comment</h4>
+                            <h4 class="mb-3">Leave a Comment</h4>
                             <form class="form-contact comment_form" id="formComment" action="javascript:void(0)">
                                 @csrf
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <textarea class="form-control w-100 comment-info bg-light border-secondary rounded" name="comment" id="comment"
+                                            <textarea class="change-style-comment-form-box form-control w-100 comment-info" name="comment" id="comment"
                                                 cols="30" rows="9" placeholder="Comment *" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input class="form-control comment-info bg-light border-secondary rounded"
+                                            <input class="change-style-comment-form-box form-control comment-info"
                                                 name="name" id="name" type="text" placeholder="Name *" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input class="form-control comment-info bg-light border-secondary rounded"
+                                            <input class="change-style-comment-form-box form-control comment-info"
                                                 name="email" id="email" type="email" placeholder="Email *" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <input class="form-control comment-info bg-light border-secondary rounded"
+                                            <input class="change-style-comment-form-box form-control comment-info"
                                                 name="website" id="website" type="text" placeholder="Website">
                                         </div>
                                     </div>
@@ -294,7 +322,8 @@
                                     <button type="submit" id='btnSubmitComment'
                                         data-url="{{ route('post-details.create-comment', $post->id) }}"
                                         onclick="createCommentForPost()"
-                                        class="button button-contactForm btn_1 boxed-btn rounded">Send Message</button>
+                                        class="w-100 button button-contactForm btn_1 boxed-btn rounded fsize-15px font-weight-bold">Send
+                                        Message</button>
                                 </div>
                             </form>
                         </div>
@@ -329,7 +358,7 @@
                 {{-- sidebar --}}
                 <div class="col-lg-4">
                     <!-- Flow Socail -->
-                    <div class="single-follow mb-45">
+                    <div class="single-follow mb-45 mt-3 mt-lg-0">
                         <div class="single-box">
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">

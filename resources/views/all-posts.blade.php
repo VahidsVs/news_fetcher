@@ -192,6 +192,34 @@
         .last-four-posts-parent:hover .change-photo-size-online-min {
             transform: scale(.9) !important;
         }
+
+        .terending-title {
+            transition: all .3s linear!important;
+        }
+
+        .terending-title:hover {
+            color: #068FFF !important;
+        }
+
+        ::placeholder {
+            color: #505050 !important;
+        }
+
+        .change-style-comment-form-box {
+            outline: none !important;
+            border: none !important;
+            background-color: #ffffff !important;
+            border-radius: .5rem !important;
+            box-shadow: 2px 2px 5px 0 rgb(255, 33, 67, .5);
+        }
+
+        .change-style-comment-form-box:focus {
+            outline: none !important;
+            border: none !important;
+            background-color: #ffffff !important;
+            border-radius: .5rem !important;
+            box-shadow: unset !important;
+        }
     </style>
     <!-- About US Start -->
     <div class="about-area2 gray-bg pt-60 pb-60">
@@ -220,25 +248,25 @@
                                                                     href="{{ route('home.post-details', $item->id) }}">{{ ucfirst($item->title) }}</a>
                                                             </h4>
                                                             <div class="d-flex">
-                                                                <span class="d-flex align-items-center">
+                                                                <span class="d-flex justify-content-start align-items-center">
                                                                     <span class="fa fa-user fcolor-blue fsize-15px"></span>
                                                                     <span
                                                                         class="fsize-15px ml-1">{{ $item->user->username }}</span>
                                                                 </span>
-                                                                <span class="mx-3">|</span>
+                                                                <div class="mx-2 text-secondary">|</div>
                                                                 <span class="d-flex align-items-center">
                                                                     <span
                                                                         class="fa fa-comment fcolor-blue fsize-15px"></span>
                                                                     <span
                                                                         class="fsize-15px ml-1">{{ $item->publishedComments->count() }}</span>
                                                                 </span>
-                                                                <span class="mx-3">|</span>
+                                                                <div class="mx-2 text-secondary">|</div>
                                                                 <span class="d-flex align-items-center">
                                                                     <span
                                                                         class="fa fa-thumbs-up fcolor-blue fsize-15px"></span>
                                                                     <span class="fsize-15px ml-1">{{ $item->likes }}</span>
                                                                 </span>
-                                                                <span class="mx-3">|</span>
+                                                                <div class="mx-2 text-secondary">|</div>
                                                                 <span class="d-flex align-items-center">
                                                                     <span
                                                                         class="fa fa-history fcolor-blue fsize-15px"></span>
@@ -246,7 +274,7 @@
                                                                         class="fsize-15px ml-1">{{ $item->published_ago }}</span>
                                                                 </span>
                                                             </div>
-                                                            <p>{{ ucfirst($item->summary) }}</p>
+                                                            <p class="text-secondary fsize-15px">{{ ucfirst($item->summary) }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -261,7 +289,7 @@
                 </div>
                 <div class="col-lg-4">
                     <!-- Flow Socail -->
-                    <div class="single-follow bgcolor-gray mb-45 p-0">
+                    <div class="single-follow bgcolor-gray mb-45 mt-3 mt-lg-0 p-0">
                         <div class="single-box">
                             <div class="follow-us d-flex align-items-center">
                                 <div class="follow-social">
