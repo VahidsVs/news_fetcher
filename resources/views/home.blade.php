@@ -356,7 +356,7 @@
                                             <ul class="navbar-nav ml-2 ml-lg-0">
                                                 @foreach ($categories as $item)
                                                     <li class="nav-item">
-                                                        <a onclick="getPostsByCategory({{ $item->id }}, {{ $categories->count() }})"
+                                                        <a onclick="getPostsByCategory({{ $item->id }}, {{ $categories->count() }})"   data-url="{{ route('home.category', $item->id) }}"
                                                             class="{{ $item->name == 'General' ? 'fcolor-FF0000' : '' }} fsize-13px font-weight-bold nav-item nav-link cursor-fetcher-news font-family-news-fetcher"
                                                             id="nameSelector{{ $item->id }}" data-toggle="tab" role="tab"
                                                             aria-controls="nav-home"

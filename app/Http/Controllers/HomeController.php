@@ -32,7 +32,8 @@ class HomeController extends Controller
 
         // most liked
         $postsMostLiked = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(6);
-        $postsMostLikedFooter = $postsMostLiked->slice(0, -2);
+        $postsMostLikedFooter =Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(4);
+
         // return to view
         return view('home', compact('postsSection1', 'categories', 'lastetPost', 'posts', 'postsMostLiked', 'postsKronenTotal','postsMostLikedFooter')
         );
