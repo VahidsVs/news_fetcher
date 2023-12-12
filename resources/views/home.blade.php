@@ -479,7 +479,8 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="small-tittle mb-30">
-                                        <h4>Trendings</h4>
+                                     <a href="{{route('home.all-posts',$postsKronenTotal[0]->category_id)}}"><p class="font-weight-bold fsize-20px">Trendings
+                                            </p></a>
                                     </div>
                                 </div>
                             </div>

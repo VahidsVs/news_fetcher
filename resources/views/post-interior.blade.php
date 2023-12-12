@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('head-tag')
-    <title>Post Interior</title>
+    <title>Post details</title>
 @endsection
 {{-- main-body --}}
 @section('content')

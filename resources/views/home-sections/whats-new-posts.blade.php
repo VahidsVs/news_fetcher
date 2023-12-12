@@ -66,7 +66,7 @@
         <div class="col-xl-12 col-lg-6 col-md-6 col-sm-10">
             <div>
                 <a href="{{ route('home.all-posts', $posts[1]->category->id) }}" class="d-flex align-content-center show-all-post-text">
-                    <p class="font-weight-bold fsize-13px">Show All Posts {{ ucfirst($posts[1]->category->name) }}</p>
+                    <p class="font-weight-bold fsize-13px">View All {{ ucfirst($posts[1]->category->name) }} News</p>
                     <span class="fa fa-long-arrow-right fcolor-blue fsize-25px mt-1 ml-2 icon-right-arrow"></span>
                 </a>
             </div>

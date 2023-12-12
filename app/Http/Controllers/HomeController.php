@@ -28,7 +28,7 @@ class HomeController extends Controller
         $posts = $posts->skip(1)->take(6);
 
         // get all Post just category name is total :: lazy loading
-        $postsKronenTotal = Post::with('category:id,name')->where(['category_id' => 9, 'status' => 1])->orderByDesc('id')->get()->take(9);
+        $postsKronenTotal = Post::with('category:id,name')->where(['category_id' => 9, 'status' => 1])->orderByDesc('id')->get()->take(12);
 
         // most liked
         $postsMostLiked = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(6);
@@ -55,7 +55,7 @@ class HomeController extends Controller
         $allPosts = Post::with(['category:id,name', 'user:id,username', 'publishedComments'])
             ->where(['category_id' => $id, 'status' => 1])
             ->orderByDesc('id')
-            ->paginate(6);
+            ->paginate(12);
         return view('all-posts', compact('allPosts'));
     }
 

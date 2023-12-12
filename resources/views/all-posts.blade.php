@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('head-tag')
-    <title>all posts</title>
+    <title>{{$allPosts[0]->category->name }} News</title>
 @endsection
 {{-- main-body --}}
 @section('content')
