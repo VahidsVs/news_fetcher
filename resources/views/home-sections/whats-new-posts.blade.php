@@ -13,7 +13,7 @@
                 <p class="source-last-post">
                     <i class="fa fa-clone fcolor-blue fsize-15px"></i>
                     <small><a class="fsize-15px" href="{{ explode('_', $lastetPost->source)[1] }}"
-                            target="__blank"> {{$lastetPost->post_source}} </a></small>
+                            target="__blank">{{ $lastetPost->post_source }}</a></small>
                 </p>
                 <p class="date-last-post">
                     <i class="fa fa-history fcolor-blue fsize-15px"></i>

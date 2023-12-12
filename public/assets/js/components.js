@@ -19,7 +19,7 @@ function getPostsByCategory(categoryId, countCategoryName) {
     removeAllClassColor(countCategoryName);
     var element = $("#nameSelector" + categoryId);
     element.addClass('fcolor-FF0000');
-    var route = $("#nameSelector").attr("data-url");
+    var route = $("#nameSelector" + categoryId).attr("data-url");
     //#region fetch
     fetch(route)
         .then((response) => {
