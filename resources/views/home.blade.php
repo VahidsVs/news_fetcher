@@ -221,6 +221,10 @@
             border-radius: .5rem !important;
             box-shadow: unset !important;
         }
+
+        textarea {
+            resize: none !important;
+        }
     </style>
     <!-- Trending Area Start -->
     <div class="trending-area fix pt-25 gray-bg">
@@ -343,7 +347,7 @@
                             {{-- categories menu --}}
                             <div class="col-xl-12">
                                 <div class="properties__button">
-                                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                                    <nav class="navbar navbar-expand-lg navbar-light bg-light p-0">
                                         <button
                                             class="fa fa-th-list fsize-20px bg-light font-weight-bold fcolor-blue border-0"></button>
                                         <button class="navbar-toggler border-0 bg-light" type="button"

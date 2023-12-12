@@ -215,6 +215,10 @@
             border-radius: .5rem !important;
             box-shadow: unset !important;
         }
+
+        textarea {
+            resize: none !important;
+        }
     </style>
     <!-- About US Start -->
     <div class="about-area2 gray-bg pt-60 pb-60">
