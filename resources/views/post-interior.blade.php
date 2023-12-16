@@ -48,11 +48,12 @@
 
         .change-photo-size-post-interior {
             width: 100% !important;
-            height: 400px !important;
+            height: 500px !important;
         }
 
         @media (max-width: 767px) {
-            .change-photo-size-online-section-one {
+            .change-photo-size-online-section-one,
+            .change-photo-size-post-interior {
                 width: 100% !important;
                 height: 20% !important;
             }
@@ -248,12 +249,12 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
                             <p>
-                                <i class="fa fa-user fcolor-blue fsize-20px"></i>
-                                <small class="fsize-20px fcolor-707b8e">{{ $post->user->username }}</small>
+                                <i class="fa fa-user fcolor-blue fsize-20px f-15px-min-size"></i>
+                                <small class="fsize-20px fcolor-707b8e f-15px-min-size">{{ $post->user->username }}</small>
                             </p>
                             <p>
-                                <i class="fa fa-history fcolor-blue fsize-20px"></i>
-                                <small class="fsize-20px fcolor-707b8e">{{ $post->published_ago }}</small>
+                                <i class="fa fa-history fcolor-blue fsize-20px f-15px-min-size"></i>
+                                <small class="fsize-20px fcolor-707b8e f-15px-min-size">{{ $post->published_ago }}</small>
                             </p>
                         </div>
                         <div class="about-prea text-justify bgcolor-f9f9f9 p-2 rounded">
