@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\LogJob;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
 use Carbon\Carbon;
+use Illuminate\Contracts\Queue\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
@@ -14,8 +17,9 @@ class HomeController extends Controller
     /**
      * Show latest post and popular posts.
      */
-    public function showHome()
+    public function showHome(Request $request)
     {
+      //  LogJob::dispatch("$request->getClientIp()} Visited Hompage");
         // get all trending posts
         $postsSection1 = Post::with('category:id,name')->where(['display' => 'section1', 'status' => 1])->get();
 
@@ -47,6 +51,8 @@ class HomeController extends Controller
         $postsMostLikedFooter = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(4);
         $post = Post::with(['category:id,name', 'user:id,username', 'publishedComments'])->where(['id' => $id, 'status' => 1])->first();
         return view("post-interior", compact('post','postsMostLikedFooter'));
+
+       // return Redirect::to('http://heera.it');
     }
 
     /**
@@ -102,6 +108,7 @@ class HomeController extends Controller
         $values['post_id'] = $post->id;
         $comment = Comment::create($values);
         $result = $comment ? true : false;
+     
         return response()->json(['result' => $result]);
     }
 

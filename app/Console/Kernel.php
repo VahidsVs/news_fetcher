@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Jobs\LogJob;
 use App\Jobs\NewsJob;
 use App\Models\ApiResource;
 use App\Models\Category;
@@ -15,13 +16,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        //$schedule->command('inspire')->everyFifteenSeconds();
-        $categories = Category::where('status', 1)->whereIn('source', ['api', 'rss'])->get();
-        // dd($categories);
-        foreach ($categories as $item) {
-            $apiKey = $item->parent_name == 'news-gnews.io' ? env('API_KEY_Gnews') : null;
-            $schedule->job(new NewsJob($item->api_url . $apiKey, $item->source_data_type, $item->parent_name, $item->id, "kernel"));
-        }
+        $schedule->job(new NewsJob('kernel'))->everySixHours();
+        $schedule->command('set:section1')->cron('0 1 * * *');
     }
 
     /**
