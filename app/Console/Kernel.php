@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->job(new NewsJob('kernel'))->everySixHours();
+        $schedule->job(new NewsJob('kernel'))->everyFiveSeconds();
         $schedule->command('set:section1')->cron('0 1 * * *');
     }
 

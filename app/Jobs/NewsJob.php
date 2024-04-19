@@ -44,7 +44,7 @@ class NewsJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $categories = Category::where('status', 1)->whereIn('source', ['api', 'rss'])->get();
+        $categories = Category::where('status', 1)->whereIn('source', ['', 'rss'])->get();
         // dd($categories);
         foreach ($categories as $items) {
             $apiKey = $items->parent_name == 'news-gnews.io' ? env('API_KEY_Gnews') : null;
@@ -93,7 +93,7 @@ class NewsJob implements ShouldQueue
                             $item->pubDate = date_create($item->pubDate);
                             $item->pubDate = date_format($item->pubDate, "Y/m/d H:i:s");
                             Post::updateOrCreate(
-                                ['slug' => $item->guid, 'category_id' => $this->categoryId],
+                                ['slug' => $item->guid, 'category_id' => $items->id],
                                 [
                                     'title' => $item->title, 'body' => strip_tags($item->content), 'summary' => strip_tags($item->description),
                                     'thumbnail_path' => $imagePath, 'author_id' => 1, 'source' => 'Kronen Zeitung', 'published_at' => $item->pubDate
