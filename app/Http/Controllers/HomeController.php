@@ -6,11 +6,8 @@ use App\Jobs\LogJob;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
-use Carbon\Carbon;
-use Illuminate\Contracts\Queue\Job;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Redirect;
+
 
 class HomeController extends Controller
 {
@@ -19,7 +16,7 @@ class HomeController extends Controller
      */
     public function showHome(Request $request)
     {
-      //  LogJob::dispatch("$request->getClientIp()} Visited Hompage");
+        //LogJob::dispatch("{$request->getClientIp()} Visited Hompage")->onQueue('logQueue');
         // get all trending posts
         $postsSection1 = Post::with('category:id,name')->where(['display' => 'section1', 'status' => 1])->get();
 
@@ -36,10 +33,12 @@ class HomeController extends Controller
 
         // most liked
         $postsMostLiked = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(6);
-        $postsMostLikedFooter =Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(4);
+        $postsMostLikedFooter = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(4);
 
         // return to view
-        return view('home', compact('postsSection1', 'categories', 'lastetPost', 'posts', 'postsMostLiked', 'postsKronenTotal','postsMostLikedFooter')
+        return view(
+            'home',
+            compact('postsSection1', 'categories', 'lastetPost', 'posts', 'postsMostLiked', 'postsKronenTotal', 'postsMostLikedFooter')
         );
     }
 
@@ -50,9 +49,9 @@ class HomeController extends Controller
     {
         $postsMostLikedFooter = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(4);
         $post = Post::with(['category:id,name', 'user:id,username', 'publishedComments'])->where(['id' => $id, 'status' => 1])->first();
-        return view("post-interior", compact('post','postsMostLikedFooter'));
+        return view("post-interior", compact('post', 'postsMostLikedFooter'));
 
-       // return Redirect::to('http://heera.it');
+        // return Redirect::to('http://heera.it');
     }
 
     /**
@@ -65,7 +64,7 @@ class HomeController extends Controller
             ->where(['category_id' => $id, 'status' => 1])
             ->orderByDesc('id')
             ->paginate(12);
-        return view('all-posts', compact('allPosts','postsMostLikedFooter'));
+        return view('all-posts', compact('allPosts', 'postsMostLikedFooter'));
     }
 
     /**
@@ -108,7 +107,7 @@ class HomeController extends Controller
         $values['post_id'] = $post->id;
         $comment = Comment::create($values);
         $result = $comment ? true : false;
-     
+
         return response()->json(['result' => $result]);
     }
 

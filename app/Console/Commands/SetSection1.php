@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class SetSection1 extends Command
 {
@@ -30,5 +31,6 @@ class SetSection1 extends Command
         //
         Post::where('created_at', '>', Carbon::now()->subDays(2))->inRandomOrder()->limit(10)->update(['display' => 'section1']);
         Post::where('created_at', '<', Carbon::now()->subDays(2))->update(['display' => null]);
+        Log::debug("Set featured posts, In section 1");
     }
 }

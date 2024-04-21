@@ -8,6 +8,7 @@ use App\Models\ApiResource;
 use App\Models\Category;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -16,10 +17,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->job(new NewsJob('kernel'))->everySixHours();
-        $schedule->command('set:section1')->cron('0 1 * * *');
+        $schedule->command('fetch:news')->cron('0 */6 * * *');
+        $schedule->command('set:section1')->cron('0 */6 * * *');
+        // $schedule->call(function ($x = 1) {
+        //     Log::debug("$x");
+        // })->everyFiveSeconds();
     }
-
     /**
      * Register the commands for the application.
      */

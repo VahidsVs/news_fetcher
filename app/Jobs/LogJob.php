@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Log;
 class LogJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    private $data;
+
     /**
      * Create a new job instance.
      */
-    public function __construct($data)
+
+    public function __construct(private $data = null)
     {
-        $this->data=$data;
         //
     }
 
