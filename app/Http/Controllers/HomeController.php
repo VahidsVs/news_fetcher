@@ -26,7 +26,7 @@ class HomeController extends Controller
         // get all Post just category name is general :: lazy loading
         $posts = Post::with('category:id,name')->where(['category_id' => 1, 'status' => 1])->orderByDesc('id')->get();
         $lastetPost = $posts->first();
-        $posts = $posts->skip(1)->take(6);
+        $posts = $posts->skip(1)->take(5);
 
         // get all Post just category name is total :: lazy loading
         $postsKronenTotal = Post::with('category:id,name')->where(['category_id' => 9, 'status' => 1])->orderByDesc('id')->get()->take(12);

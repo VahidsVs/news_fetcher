@@ -288,10 +288,8 @@
                             <!-- Single -->
                             <iframe src="https://goldbroker.com/widget/live-price/XAU?currency=EUR" width="370px"
                                 height="100" style="border: 0; overflow: hidden;"></iframe>
-                            <div class="bw-toplist" style="width: 370px; height: auto;" data-pane="top" data-theme='green'
-                                data-unit="EUR" data-size="10"><a href="https://bitgur.com">View Coin Top 100 on Bitgur</a>
-                            </div>
-                            <script src='https://bitgur.com/static/widgets/toplist/toplist.js'></script>
+                                <script src="https://widgets.coingecko.com/coingecko-coin-heatmap-widget.js"></script>
+                                <coingecko-coin-heatmap-widget  height="400" locale="en" top="15"></coingecko-coin-heatmap-widget>
                             {{-- @foreach ($postsSection3 as $item)
                                 <div class="col-lg-12 col-md-6 col-sm-6">
                                     <div class="single-slider">
