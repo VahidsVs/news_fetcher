@@ -48,7 +48,7 @@
 
         .change-photo-size-post-interior {
             width: 100% !important;
-            height: 500px !important;
+            height: 700px !important;
         }
 
         @media (max-width: 767px) {
@@ -232,7 +232,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item active">Home</li>
-                                    <li class="breadcrumb-item active">Post Interior</li>
+                                    <li class="breadcrumb-item active">Post Detail</li>
                                     <li class="breadcrumb-item active">{{ ucfirst($post->category->name) }}</li>
                                 </ol>
                             </nav>

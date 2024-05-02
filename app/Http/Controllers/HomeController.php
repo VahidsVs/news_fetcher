@@ -30,6 +30,7 @@ class HomeController extends Controller
 
         // get all Post just category name is total :: lazy loading
         $postsKronenTotal = Post::with('category:id,name')->where(['category_id' => 9, 'status' => 1])->orderByDesc('id')->get()->take(12);
+        $postsUnsplashTotal = Post::with('category:id,name')->where(['category_id' => 10, 'status' => 1])->orderByDesc('id')->get()->take(12);
 
         // most liked
         $postsMostLiked = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(6);
@@ -38,7 +39,7 @@ class HomeController extends Controller
         // return to view
         return view(
             'home',
-            compact('postsSection1', 'categories', 'lastetPost', 'posts', 'postsMostLiked', 'postsKronenTotal', 'postsMostLikedFooter')
+            compact('postsSection1', 'categories', 'lastetPost', 'posts', 'postsMostLiked', 'postsKronenTotal','postsUnsplashTotal', 'postsMostLikedFooter')
         );
     }
 

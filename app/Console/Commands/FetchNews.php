@@ -32,18 +32,22 @@ class FetchNews extends Command
      */
     public function handle()
     {
-        $categories = Category::where('status', 1)->whereIn('source', ['api', 'rss'])->get();
+        $categories = Category::where('status', 1)->whereIn('source', ['', 'user'])->get();
         print_r("Begin Command Fetch News");
         // dd($categories);
         foreach ($categories as $items) {
-            $apiKey = $items->parent_name == 'news-gnews.io' ? env('API_KEY_Gnews') : null;
             try {
+                if ($items->parent_name == 'news-gnews.io')
+                    $apiKey = env('API_KEY_Gnews');
+                if ($items->parent_name == 'photos-unsplash.com')
+                    $apiKey = env('API_KEY_Unsplash');
                 #region get json/xml data from sources
                 $client = new Client();
                 Log::debug("api_url: $items->api_url$apiKey");
                 $srcURL = $items->api_url . $apiKey;
                 $res = $client->get($srcURL);
                 $content = (string)$res->getBody();
+
                 if ($items->source_data_type == 'xml') {
                     $content = Str::of($content)->replace('dc:', '');
                     $content = Str::of($content)->replace(':encoded', '');
@@ -54,7 +58,7 @@ class FetchNews extends Command
                 #region fetch news based on parent_names of categories
                 switch ($items->parent_name) {
                         // get json data
-                    case 'news-gnews.io':
+                    case 'news-gnews.io1':
                         $jsonItems = json_decode($content)->articles;
                         foreach ($jsonItems as $item) {
                             // $item->publishedAt=str_replace('T',' ',$item->publishedAt);
@@ -72,7 +76,7 @@ class FetchNews extends Command
                         }
                         break;
                         // get xml data
-                    case 'news-krone.at':
+                    case 'news-krone.at1':
                         Log::debug("news-krone.at");
                         $jsonItems = json_decode(json_encode($xmlItem))->channel->item;
                         $jsonItems = json_decode(Str::of(json_encode($jsonItems))->replace('@attributes', 'attributes'));
@@ -90,6 +94,23 @@ class FetchNews extends Command
                                 ]
                             );
                             // Log::info("message is: {$item->title}");
+                        }
+                        break;
+                    case 'photos-unsplash.com':
+             
+                        Log::debug("photos-unsplash.com");
+                        $jsonItems = json_decode($content);
+                      
+                        foreach ($jsonItems as $item) {
+                            $item->publishedAt = Str::of($item->updated_at)->replace('T', ' ');
+                            $item->publishedAt = Str::of($item->updated_at)->replace('Z', '');
+                            Post::updateOrCreate(
+                                ['slug' => $item->urls->full, 'category_id' => $items->id],
+                                [
+                                    'title' => $item->alt_description, 'body' => $item->alt_description, 'summary' => $item->alt_description,
+                                    'thumbnail_path' => $item->urls->small, 'author_id' => 1, 'source' => $item->user->username . '_' . $item->user->links->self, 'published_at' => $item->publishedAt
+                                ]
+                            );
                         }
                         break;
                 }

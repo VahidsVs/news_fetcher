@@ -39,12 +39,12 @@
                         <!-- Logo -->
                         <div class="col-xl-3 col-lg-3 col-md-3 d-none d-md-block">
                             <div class="logo">
-                                <a href="index.html"><img src="{{ asset('assets/img/logo/logo.png') }}" alt=""></a>
+                                <a href="{{route("home")}}"><img src="{{ asset('assets/img/logo/logo.png') }}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-xl-9 col-lg-9 col-md-9">
                             <div class="header-banner f-right ">
-                                <img src="{{ asset('assets/img/gallery/header_card.png') }}" alt="">
+                                <img src="{{ asset('assets/img/gallery/header_ca1rd.png') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a href="{{route("home")}}">Home</a></li>
-                                        <li><a href="about.html">about</a></li>
+                                        {{-- <li><a href="about.html">about</a></li>
                                         <li><a href="categori.html">Category</a></li>
                                         <li><a href="latest_news.html">Latest News</a></li>
                                         <li><a href="#">Pages</a>
@@ -73,7 +73,7 @@
                                                 <li><a href="elements.html">Element</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="contact.html">Contact</a></li> --}}
                                     </ul>
                                 </nav>
                             </div>

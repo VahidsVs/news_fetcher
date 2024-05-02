@@ -555,67 +555,32 @@
                             <!-- Slider -->
                             <div class="row">
                                 <div class="col-lg-12">
+                                    <div class="small-tittle mb-30">
+                                        <a href="{{ route('home.all-posts', $postsUnsplashTotal[0]->category_id) }}">
+                                            <p class="font-weight-bold fsize-20px terending-title">Photos
+                                            </p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
                                     <div class="weekly3-news-active dot-style d-flex">
+                                        @foreach ($postsUnsplashTotal as $item)
                                         <div class="weekly3-single">
                                             <div class="weekly3-img">
-                                                <img src="assets/img/gallery/weekly2News1.png" alt="" />
+                                                <img  src="{{ $item->thumbnail_path }}" alt="Total" />
                                             </div>
                                             <div class="weekly3-caption">
                                                 <h4>
-                                                    <a href="latest_news.html">What to Expect From the
-                                                        2020 Oscar Nomin ations</a>
-                                                </h4>
-                                                <p>19 Jan 2020</p>
+                                                    <a
+                                                            href="{{ route('home.post-details', $item->id) }}">{{ $item->title }}</a>
+                                                    </h4>
+                                                    <p>Unsplash.com | {{ $item->published_ago }}</p>
                                             </div>
                                         </div>
-                                        <div class="weekly3-single">
-                                            <div class="weekly3-img">
-                                                <img src="assets/img/gallery/weekly2News2.png" alt="" />
-                                            </div>
-                                            <div class="weekly3-caption">
-                                                <h4>
-                                                    <a href="latest_news.html">What to Expect From the
-                                                        2020 Oscar Nomin ations</a>
-                                                </h4>
-                                                <p>19 Jan 2020</p>
-                                            </div>
-                                        </div>
-                                        <div class="weekly3-single">
-                                            <div class="weekly3-img">
-                                                <img src="assets/img/gallery/weekly2News3.png" alt="" />
-                                            </div>
-                                            <div class="weekly3-caption">
-                                                <h4>
-                                                    <a href="latest_news.html">What to Expect From the
-                                                        2020 Oscar Nomin ations</a>
-                                                </h4>
-                                                <p>19 Jan 2020</p>
-                                            </div>
-                                        </div>
-                                        <div class="weekly3-single">
-                                            <div class="weekly3-img">
-                                                <img src="assets/img/gallery/weekly2News4.png" alt="" />
-                                            </div>
-                                            <div class="weekly3-caption">
-                                                <h4>
-                                                    <a href="latest_news.html">What to Expect From the
-                                                        2020 Oscar Nomin ations</a>
-                                                </h4>
-                                                <p>19 Jan 2020</p>
-                                            </div>
-                                        </div>
-                                        <div class="weekly3-single">
-                                            <div class="weekly3-img">
-                                                <img src="assets/img/gallery/weekly2News2.png" alt="" />
-                                            </div>
-                                            <div class="weekly3-caption">
-                                                <h4>
-                                                    <a href="latest_news.html">What to Expect From the
-                                                        2020 Oscar Nomin ations</a>
-                                                </h4>
-                                                <p>19 Jan 2020</p>
-                                            </div>
-                                        </div>
+                                        @endforeach
+
                                     </div>
                                 </div>
                             </div>

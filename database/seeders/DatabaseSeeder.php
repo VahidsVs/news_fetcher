@@ -106,12 +106,23 @@ class DatabaseSeeder extends Seeder
             'description' => 'krone.at',
             'order'=>1
             
+        ],
+        [
+            'parent_name' => 'Unsplash.com',
+            'name' => 'Photos',
+            'api_url' => 'https://api.unsplash.com/photos/?client_id=',
+            'status' => '1',
+            'source' => 'api',
+            'source_data_type' => 'json',
+            'description' => 'photos-unsplash.com',
+            'order'=>1
+            
         ]
     ]);
         DB::table('users')->insert([
             'first_name' => 'api',
             'last_name' => 'auto',
-            'username' => 'user',
+            'username' => 'API',
             'password' => 'pass',
             'user_type' => 'api'
         ]);
