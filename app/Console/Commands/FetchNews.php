@@ -32,7 +32,7 @@ class FetchNews extends Command
      */
     public function handle()
     {
-        $categories = Category::where('status', 1)->whereIn('source', ['', 'user'])->get();
+        $categories = Category::where('status', 1)->whereIn('source', ['api', 'rss'])->get();
         print_r("Begin Command Fetch News");
         // dd($categories);
         foreach ($categories as $items) {
