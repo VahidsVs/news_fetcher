@@ -41,6 +41,8 @@ class FetchNews extends Command
                     $apiKey = env('API_KEY_Gnews');
                 if ($items->parent_name == 'photos-unsplash.com')
                     $apiKey = env('API_KEY_Unsplash');
+                if ($items->parent_name == 'news-krone.at')
+                    $apiKey = null;
                 #region get json/xml data from sources
                 $client = new Client();
                 Log::debug("api_url: $items->api_url$apiKey");
@@ -58,7 +60,7 @@ class FetchNews extends Command
                 #region fetch news based on parent_names of categories
                 switch ($items->parent_name) {
                         // get json data
-                    case 'news-gnews.io1':
+                    case 'news-gnews.io':
                         $jsonItems = json_decode($content)->articles;
                         foreach ($jsonItems as $item) {
                             // $item->publishedAt=str_replace('T',' ',$item->publishedAt);
@@ -76,7 +78,7 @@ class FetchNews extends Command
                         }
                         break;
                         // get xml data
-                    case 'news-krone.at1':
+                    case 'news-krone.at':
                         Log::debug("news-krone.at");
                         $jsonItems = json_decode(json_encode($xmlItem))->channel->item;
                         $jsonItems = json_decode(Str::of(json_encode($jsonItems))->replace('@attributes', 'attributes'));
