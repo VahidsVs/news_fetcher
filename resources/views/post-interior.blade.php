@@ -48,7 +48,7 @@
 
         .change-photo-size-post-interior {
             width: 100% !important;
-            height: 700px !important;
+            height: 800px !important;
         }
 
         @media (max-width: 767px) {
@@ -238,7 +238,7 @@
                             </nav>
                         </div>
                         <div class="about-img">
-                            <img src="{{ $post->thumbnail_path }}" class="change-photo-size-post-interior img-fluid rounded"
+                            <img src="{{ $post->slug }}" class="change-photo-size-post-interior img-fluid rounded"
                                 alt="post-image">
                         </div>
                         <div>
