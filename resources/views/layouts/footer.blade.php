@@ -16,8 +16,8 @@
                                     <div class="footer-pera">
                                         <p class="info2">MegaTechNews  &copy; is an automated Newspress powered by MegaTech &copy; presents most recent news from multiple sources</p>
                                         <p class="info2">Weiz, Austria</p>
-                                        <p class="info2">Email: admin@megatechapp.at</p>
-                                        <p class="info2">Phone: +43 664 99657071</p>
+                                        <p class="info2">Email:</p>
+                                        <p class="info2">Phone:</p>
                                     </div>
                                 </div>
                             </div>

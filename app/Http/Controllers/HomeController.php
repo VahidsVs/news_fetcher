@@ -7,7 +7,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -35,7 +35,7 @@ class HomeController extends Controller
         // most liked
         $postsMostLiked = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(6);
         $postsMostLikedFooter = Post::with('publishedComments')->where('likes', '>', 0)->orderByDesc('likes')->get()->take(4);
-
+        Auth::check();
         // return to view
         return view(
             'home',
